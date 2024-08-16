@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Telemetry Data</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<h1>Telemetry Data</h1>
+<button onclick="sendStatus('MACHINESUPPLY')">Get supply</button>
+
+<table>
+    <thead>
+    <tr>
+        <th>Product ID</th>
+        <th>CoffeeType</th>
+        <th>ProductAmount</th>
+        <th>Timestamp</th>
+        <th>PayType</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="telemetry : ${telemetryDataList}">
+        <td th:text="${telemetry.product_id}"></td>
+        <td th:text="${telemetry.nameKey}"></td>
+        <td th:text="${telemetry.productAmount}"></td>
+        <td th:text="${telemetry.formattedDate}"></td>
+        <td th:text="${telemetry.payType}"></td>
+    </tr>
+    </tbody>
+</table>
+<script>
+    function sendStatus(status) {
+        fetch('/machinestatus', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                data: "supply"
+            })
+            .then(response => response.json())
+        });
+    }
+</script>
+</body>
+</html>

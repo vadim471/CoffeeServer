@@ -55,11 +55,13 @@ public class ResponseService {
         TelemetryData data = new TelemetryData(productId, nameKey, productAmount, payType, date);
         telemetryDataRepository.save(data);
     }
-
+    /*
     public byte[] processTelemetry(ObjectNode jsonNode){
 
 
     }
+
+     */
 
     public byte[] processTelemetry(byte[] inputStream){
         try {
@@ -71,7 +73,7 @@ public class ResponseService {
             int responseLength = responseBody.getBytes(StandardCharsets.UTF_8).length;
             byte[] responseHeader = generateHeader(responseLength);
 
-            System.out.println("Response: " + responseBody);
+            //System.out.println("Response: " + responseBody);
 
             return createFrame(responseHeader, responseBody);
         } catch (Exception e) {
@@ -143,6 +145,16 @@ public class ResponseService {
         response.put("ret",0);
         response.put("date_time", formatDate());
         response.put("server_list", "10.9.2.86");
+        return response;
+    }
+
+    private ObjectNode handlerRemote(ObjectNode jsonNode){
+        ObjectNode response = objectMapper.createObjectNode();
+        response.put("cmd", "remote");
+        response.put("operation", "upload");
+        response.put("vmc_no", jsonNode.get("vmc_no").asInt());
+        response.put("folder", "/storage/emulated/0/Jetinno/Log/Order");
+        response.put("dir", "http://10.9.2.86/C:/Users/vadim.tissen/order");
         return response;
     }
 

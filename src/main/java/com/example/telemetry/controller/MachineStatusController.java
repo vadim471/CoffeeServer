@@ -21,6 +21,7 @@ public class MachineStatusController {
         this.responseService = responseService;
     }
 
+    /*
     @PostMapping("/machinestatus")
     public void getMachineStatus(@RequestBody Map<String, Object> request) {
         try {
@@ -37,5 +38,8 @@ public class MachineStatusController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
     }
+    */
 }

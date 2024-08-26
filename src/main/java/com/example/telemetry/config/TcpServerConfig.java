@@ -63,7 +63,7 @@ public class TcpServerConfig {
                 int bytesRead;
                 while ((bytesRead = in.read(buffer)) != -1) {
                     String inputLine = new String(buffer, 0, bytesRead);
-                    System.out.println("Received: " + inputLine);
+                    //System.out.println("Received: " + inputLine);
 
                     System.arraycopy(buffer, 0, header, 0, 4);
                     getChinaHeader(header);

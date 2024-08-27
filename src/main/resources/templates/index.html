@@ -19,6 +19,7 @@
 <body>
 <h1>Telemetry Data</h1>
 <button onclick="sendStatus('MACHINESUPPLY')">Get supply</button>
+<button onclick="sendOperation('SYNC')">Get machine report </button>
 
 <table>
     <thead>
@@ -50,8 +51,21 @@
             body: JSON.stringify({
                 data: "supply"
             })
-            .then(response => response.json())
-        });
+        })
+        .then(response => response.json());
+    }
+
+    function sendOperation(operation) {
+        fetch('/remote', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                operation: "SYNC"
+            })
+        })
+        .then(response => response.json());
     }
 </script>
 </body>

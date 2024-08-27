@@ -1,15 +1,16 @@
 package com.example.telemetry.service;
 
+
+import com.example.telemetry.model.Task;
 import com.example.telemetry.model.TelemetryData;
 import com.example.telemetry.repository.TelemetryDataRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +22,7 @@ import java.util.function.Function;
 @Service
 public class ResponseService {
     private final ObjectMapper objectMapper =                                       new ObjectMapper();
-    private static final Logger LOGGER =                                            LoggerFactory.getLogger(ResponseService.class);
+    private static final Logger LOGGER =                                            LogManager.getLogger(ResponseService.class);
     private final Map<String, Function<ObjectNode, ObjectNode>> commandHandlers =   new HashMap<>();
     private final TelemetryDataRepository telemetryDataRepository;
 
@@ -33,47 +34,16 @@ public class ResponseService {
         commandHandlers.put("productdone", this :: handlerProductCompletion);
         commandHandlers.put("error", this :: handlerError);
         commandHandlers.put("rinsingrecord", this :: handleRinsing);
+        commandHandlers.put("remote", this :: handlerRemote);
         this.telemetryDataRepository = telemetryDataRepository;
     }
 
-    private void saveTelemetryData(ObjectNode jsonNode){
-        String nameKey = jsonNode.get("nameKey").asText();
-        Integer productId = jsonNode.get("ProductId").asInt();
-        String payType = jsonNode.get("PayType").asText();
-        Integer productAmount = jsonNode.get("ProductAmount").asInt() / 100;
-        String timestamp = jsonNode.get("timestamp").asText();
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
-        LocalDateTime date = LocalDateTime.parse(timestamp, formatter);
-
-        Optional<TelemetryData> existingData = telemetryDataRepository.findByDate(date);
-
-        if (existingData.isPresent())
-            return;
-
-
-        TelemetryData data = new TelemetryData(productId, nameKey, productAmount, payType, date);
-        telemetryDataRepository.save(data);
-    }
-    /*
-    public byte[] processTelemetry(ObjectNode jsonNode){
-
-
-    }
-
-     */
-
-    public byte[] processTelemetry(byte[] inputStream){
+    public byte[] processTelemetry(Task task){
         try {
-            String receivedJson = new String(inputStream, StandardCharsets.UTF_8);
-            System.out.println("Received: " + receivedJson);
-
-            String responseBody = generateResponseBody(receivedJson);
-
+            String responseBody = generateResponseBody(task);
+            System.out.println(responseBody);
             int responseLength = responseBody.getBytes(StandardCharsets.UTF_8).length;
             byte[] responseHeader = generateHeader(responseLength);
-
-            //System.out.println("Response: " + responseBody);
 
             return createFrame(responseHeader, responseBody);
         } catch (Exception e) {
@@ -81,16 +51,17 @@ public class ResponseService {
         }
         return null;
     }
-    private String generateResponseBody(String receivedJson){
-        try {
-            ObjectNode jsonNode = (ObjectNode) objectMapper.readTree(receivedJson);
 
-            String cmd = jsonNode.get("cmd").asText();
+    private String generateResponseBody(Task task){
+        try {
+            ObjectNode jsonNode = task.getBody();
+
+            String cmd = task.getCommand();
 
             Function<ObjectNode, ObjectNode> receiveBody = commandHandlers.get(cmd);
             if (receiveBody != null) {
                 ObjectNode response = receiveBody.apply(jsonNode);
-                System.out.println("My response: " + receiveBody);
+                //System.out.println("My response: " + receiveBody);
                 return objectMapper.writeValueAsString(response);
 
             } else {
@@ -116,7 +87,6 @@ public class ResponseService {
 
         return header;
     }
-
 
     private byte[] createFrame(byte[] header, String body) {
         byte[] bodyBytes = body.getBytes(StandardCharsets.UTF_8);
@@ -151,12 +121,13 @@ public class ResponseService {
     private ObjectNode handlerRemote(ObjectNode jsonNode){
         ObjectNode response = objectMapper.createObjectNode();
         response.put("cmd", "remote");
-        response.put("operation", "upload");
         response.put("vmc_no", jsonNode.get("vmc_no").asInt());
-        response.put("folder", "/storage/emulated/0/Jetinno/Log/Order");
-        response.put("dir", "http://10.9.2.86/C:/Users/vadim.tissen/order");
+        response.put("session_id", "202408261843585541821673");
+        response.put("operation", jsonNode.get("operation").asText());
         return response;
     }
+
+
 
     private ObjectNode handlerMachineStatus(ObjectNode jsonNode){
         ObjectNode response = objectMapper.createObjectNode();
@@ -200,12 +171,23 @@ public class ResponseService {
         return objectMapper;
     }
 
-    public void getFullMessage(InputStream inputStream, OutputStream outputStream) throws IOException {
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
-        byte[] buffer = new byte[4];
-        inputStream.read(buffer, 0,4);
-        for (byte b : buffer) {
-            System.out.println(String.format("%02x", b));
-        }
+    private void saveTelemetryData(ObjectNode jsonNode){
+        String nameKey = jsonNode.get("nameKey").asText();
+        Integer productId = jsonNode.get("ProductId").asInt();
+        String payType = jsonNode.get("PayType").asText();
+        Integer productAmount = jsonNode.get("ProductAmount").asInt() / 100;
+        String timestamp = jsonNode.get("timestamp").asText();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        LocalDateTime date = LocalDateTime.parse(timestamp, formatter);
+
+        Optional<TelemetryData> existingData = telemetryDataRepository.findByDate(date);
+
+        if (existingData.isPresent())
+            return;
+
+
+        TelemetryData data = new TelemetryData(productId, nameKey, productAmount, payType, date);
+        telemetryDataRepository.save(data);
     }
 }

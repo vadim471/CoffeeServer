@@ -1,4 +1,4 @@
-package com.example.telemetry.service;
+package com.example.telemetry.enums;
 
 public enum MachineStatus {
     MACHINESUPPLY("supply");

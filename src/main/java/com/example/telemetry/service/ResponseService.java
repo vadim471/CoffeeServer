@@ -6,8 +6,8 @@ import com.example.telemetry.model.TelemetryData;
 import com.example.telemetry.repository.TelemetryDataRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +16,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
 @Service
 public class ResponseService {
     private final ObjectMapper objectMapper =                                       new ObjectMapper();
-    private static final Logger LOGGER =                                            LogManager.getLogger(ResponseService.class);
+    private static final Logger LOGGER =                                            LoggerFactory.getLogger(ResponseService.class);
     private final Map<String, Function<ObjectNode, ObjectNode>> commandHandlers =   new HashMap<>();
     private final TelemetryDataRepository telemetryDataRepository;
 
@@ -65,7 +66,7 @@ public class ResponseService {
                 return objectMapper.writeValueAsString(response);
 
             } else {
-                LOGGER.error("Unknown command: " + cmd);
+                LOGGER.info("Unknown command: " + cmd);
                 return null;
             }
         } catch (Exception e) {
@@ -138,7 +139,8 @@ public class ResponseService {
     }
 
     private ObjectNode handlerProductCompletion(ObjectNode jsonNode){
-        saveTelemetryData(jsonNode);
+        if (!Objects.equals(jsonNode.get("PayType").asText(), "test"))
+            saveTelemetryData(jsonNode);
         ObjectNode response = objectMapper.createObjectNode();
         response.put("cmd", "productdone_r");
         response.put("vmc_no", jsonNode.get("vmc_no").asInt());

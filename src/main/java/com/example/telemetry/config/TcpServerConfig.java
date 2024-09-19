@@ -40,6 +40,12 @@ public class TcpServerConfig {
     @Value("${china_server_ip}")
     private String chinaIp;
 
+    @Value("${inputFrames}")
+    private String input;
+
+    @Value("${expectedFrames}")
+    private String expected;
+
     private final ResponseService responseService;
     private final CoffeeMessageRepository coffeeMessageRepository;
     private final ChinaMessageRepository chinaMessageRepository;
@@ -87,14 +93,16 @@ public class TcpServerConfig {
 
             Thread forwardThread = new Thread(() -> {
                 try {
-                    //messageSender = new MessageSender(out);
+                    messageSender = new MessageSender(out);
 
                     byte[] header = new byte[4];
                     byte[] buffer = new byte[1024];
+
                     int bytesRead;
                     while ((bytesRead = in.read(buffer)) != -1) {
 
                         System.arraycopy(buffer, 0, header, 0, 4);
+
                         getChinaHeader(header);
                         int bodyLength = getPacketSize(header);
                         byte[] bodyBuffer = new byte[bodyLength];
@@ -110,20 +118,26 @@ public class TcpServerConfig {
 
                         if (!Objects.equals(body.get("cmd").asText(), "hb")) {
                             logger.info(jsonBody);
-                            logger.info("hb : " + hb_counter);
+                            if (hb_counter > 0)
+                                logger.info("hb : " + hb_counter);
                         } else {
                             hb_counter++;
                         }
 
-
                         if (jsonBody.contains("PayType")) {
                             saveCoffeeOrder(jsonBody);
                         } else {
-                            saveCoffeeMessage(jsonBody);
+                            //saveCoffeeMessage(jsonBody); //to DB for what??
                         }
-
+                        //saveFrameToFile(header, jsonBody, input); //for creating tests
                         chinaOut.write(buffer, 0, bytesRead);
                         chinaOut.flush();
+                        /*
+                        if (responseFrame != null)
+                            messageSender.sendMessage(responseFrame);
+
+
+                         */
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -147,19 +161,8 @@ public class TcpServerConfig {
                         String responseJsonBody = new String(responseBodyBuffer, StandardCharsets.UTF_8);
                         System.out.println("Received from server to machine: " + responseJsonBody);
 
-                        /*
-                        ObjectNode body = (ObjectNode) responseService.getObjectMapper().readTree(responseJsonBody);
-                        Task task = new Task(body.get("cmd").asText(), body);
-
-                        if (!Objects.equals(body.get("cmd").asText(), "hb")) {
-                            logger.info(responseJsonBody);
-                            logger.info("hb : " + hb_counter);
-                        } else {
-                            hb_counter++;
-                        }
-                         */
-
-                        saveChinaMessage(responseJsonBody);
+                        //saveChinaMessage(responseJsonBody);  //to DB for what??
+                        //saveFrameToFile(responseHeader, responseJsonBody, expected); //for creating tests
 
                         out.write(responseBuffer, 0, bytesRead);
                         out.flush();
@@ -175,84 +178,97 @@ public class TcpServerConfig {
             forwardThread.join();
             reverseThread.join();
 
-
-            //messageSender.sendMessage(responseFrame);
-
-    } catch(IOException | InterruptedException e) {
-        e.printStackTrace();
-    } finally {
-        try {
-            clientSocket.close();
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                clientSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-}
+    private void saveFrameToFile(byte[] header, String body, String filename) throws IOException{
+        try (FileOutputStream fos = new FileOutputStream(filename, true)){
+            fos.write("Header : " .getBytes(StandardCharsets.UTF_8));
+            fos.write(header);
+            fos.write('\n');
+        }
 
+        try (FileWriter writer = new FileWriter(filename, true)) {
+            writer.write("Body : " + body + "\n\n");
+
+        }
+    }
     private void saveCoffeeOrder(String responseJsonBody) throws JsonProcessingException {
         ObjectNode body = (ObjectNode) responseService.getObjectMapper().readTree(responseJsonBody);
-        Optional<CoffeeOrder> existingMessage = coffeeOrderRepository.findByProductName(body.get("nameKey").asText());
+        if (body.get("nameKey") != null) {
+            Optional<CoffeeOrder> existingMessage = coffeeOrderRepository.findByProductName(body.get("nameKey").asText());
 
-        if (existingMessage.isPresent()) {
-            CoffeeOrder message = existingMessage.get();
-            message.setProductRepeat(message.getProductRepeat() + 1);
-            coffeeOrderRepository.save(message);
-        } else {
-            CoffeeOrder newMessage = new CoffeeOrder();
-            newMessage.setProductName(body.get("nameKey").asText());
-            newMessage.setProductAmount(body.get("ProductAmount").asInt() / 100);
-            newMessage.setProductRepeat(1);
-            coffeeOrderRepository.save(newMessage);
+
+            if (existingMessage.isPresent()) {
+                CoffeeOrder message = existingMessage.get();
+                message.setProductPriceSumm(message.getProductPriceSumm() + body.get("ProductAmount").asInt() / 100);
+                message.setProductRepeat(message.getProductRepeat() + 1);
+                coffeeOrderRepository.save(message);
+            } else {
+                CoffeeOrder newMessage = new CoffeeOrder();
+                newMessage.setProductName(body.get("nameKey").asText());
+                newMessage.setProductLastPrice(body.get("ProductAmount").asInt() / 100);
+                newMessage.setProductPriceSumm(body.get("ProductAmount").asInt() / 100);
+                newMessage.setProductRepeat(1);
+                coffeeOrderRepository.save(newMessage);
+            }
         }
     }
 
     private void saveChinaMessage(String jsonBody) {
-    Optional<ChinaMessage> existingMessage = chinaMessageRepository.findByMessage(jsonBody);
+        Optional<ChinaMessage> existingMessage = chinaMessageRepository.findByMessage(jsonBody);
 
-    if (existingMessage.isPresent()) {
-        ChinaMessage message = existingMessage.get();
-        message.setRepeatCount(message.getRepeatCount() + 1);
-        chinaMessageRepository.save(message);
-    } else {
-        ChinaMessage newMessage = new ChinaMessage();
-        newMessage.setMessage(jsonBody);
-        newMessage.setRepeatCount(1);
-        chinaMessageRepository.save(newMessage);
+        if (existingMessage.isPresent()) {
+            ChinaMessage message = existingMessage.get();
+            message.setRepeatCount(message.getRepeatCount() + 1);
+            chinaMessageRepository.save(message);
+        } else {
+            ChinaMessage newMessage = new ChinaMessage();
+            newMessage.setMessage(jsonBody.length() > 250 ? jsonBody.substring(0, 250) : jsonBody);
+            newMessage.setRepeatCount(1);
+            chinaMessageRepository.save(newMessage);
+        }
     }
-}
 
-private void saveCoffeeMessage(String jsonBody) {
-    Optional<CoffeeMessage> existingMessage = coffeeMessageRepository.findByMessage(jsonBody);
+    private void saveCoffeeMessage(String jsonBody) {
+        Optional<CoffeeMessage> existingMessage = coffeeMessageRepository.findByMessage(jsonBody);
 
-    if (existingMessage.isPresent()) {
-        CoffeeMessage message = existingMessage.get();
-        message.setRepeatCount(message.getRepeatCount() + 1);
-        coffeeMessageRepository.save(message);
-    } else {
-        CoffeeMessage newMessage = new CoffeeMessage();
-        newMessage.setMessage(jsonBody.length() > 250 ? jsonBody.substring(0, 250) : jsonBody);
-        newMessage.setRepeatCount(1);
-        coffeeMessageRepository.save(newMessage);
+        if (existingMessage.isPresent()) {
+            CoffeeMessage message = existingMessage.get();
+            message.setRepeatCount(message.getRepeatCount() + 1);
+            coffeeMessageRepository.save(message);
+        } else {
+            CoffeeMessage newMessage = new CoffeeMessage();
+            newMessage.setMessage(jsonBody.length() > 250 ? jsonBody.substring(0, 250) : jsonBody);
+            newMessage.setRepeatCount(1);
+            coffeeMessageRepository.save(newMessage);
+        }
     }
-}
 
-public void sendCommandToMachine(byte[] data) throws IOException {
-    if (messageSender != null) {
-        messageSender.sendMessage(data);
-    } else {
-        System.out.println("No active connections!");
+    public void sendCommandToMachine(byte[] data) throws IOException {
+        if (messageSender != null) {
+            messageSender.sendMessage(data);
+        } else {
+            System.out.println("No active connections!");
+        }
     }
-}
 
-private void getChinaHeader(byte[] buffer) {
-    for (int i = 0; i < buffer.length; i++)
-        buffer[i] = (byte) (buffer[i] - 48);
-}
+    private void getChinaHeader(byte[] buffer) {
+        for (int i = 0; i < buffer.length; i++)
+            buffer[i] = (byte) (buffer[i] - 48);
+    }
 
-private int getPacketSize(byte[] headerBuffer) {
-    ByteBuffer byteBuffer = ByteBuffer.wrap(headerBuffer);
-    byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
-    return byteBuffer.getInt() - 12; //12 - size of header
-}
+    private int getPacketSize(byte[] headerBuffer) {
+        ByteBuffer byteBuffer = ByteBuffer.wrap(headerBuffer);
+        byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
+        return byteBuffer.getInt() - 12; //12 - size of header
+    }
 }

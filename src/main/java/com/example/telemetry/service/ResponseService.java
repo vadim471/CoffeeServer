@@ -31,7 +31,7 @@ public class ResponseService {
     public ResponseService(TelemetryDataRepository telemetryDataRepository) {
         commandHandlers.put("hb", this :: handlerHeartbeat);
         commandHandlers.put("login", this :: handlerLogin);
-        commandHandlers.put("machinestatus", this :: handlerMachineStatus);
+        //commandHandlers.put("machinestatus", this :: handlerMachineStatus);
         commandHandlers.put("productdone", this :: handlerProductCompletion);
         commandHandlers.put("error", this :: handlerError);
         commandHandlers.put("rinsingrecord", this :: handleRinsing);
@@ -42,10 +42,11 @@ public class ResponseService {
     public byte[] processTelemetry(Task task){
         try {
             String responseBody = generateResponseBody(task);
-            System.out.println(responseBody);
+            if (responseBody == null)
+                return null;
+            //System.out.println(responseBody);
             int responseLength = responseBody.getBytes(StandardCharsets.UTF_8).length;
             byte[] responseHeader = generateHeader(responseLength);
-
             return createFrame(responseHeader, responseBody);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -53,7 +54,7 @@ public class ResponseService {
         return null;
     }
 
-    private String generateResponseBody(Task task){
+    public String generateResponseBody(Task task){
         try {
             ObjectNode jsonNode = task.getBody();
 
@@ -64,7 +65,6 @@ public class ResponseService {
                 ObjectNode response = receiveBody.apply(jsonNode);
                 //System.out.println("My response: " + receiveBody);
                 return objectMapper.writeValueAsString(response);
-
             } else {
                 LOGGER.info("Unknown command: " + cmd);
                 return null;
@@ -127,8 +127,6 @@ public class ResponseService {
         response.put("operation", jsonNode.get("operation").asText());
         return response;
     }
-
-
 
     private ObjectNode handlerMachineStatus(ObjectNode jsonNode){
         ObjectNode response = objectMapper.createObjectNode();

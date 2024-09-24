@@ -1,0 +1,791 @@
+2024-09-11 10:10:55 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":18,"sign":"tangtang","timestamp":"20240911","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-11 10:10:55 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-11 10:10:55 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-11 10:10:55 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-11 13:33:01 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":22,"sign":"tangtang","timestamp":"20240911","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-11 13:33:01 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-11 13:34:34 [Thread-4] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":24,"sign":"tangtang","timestamp":"20240911","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-11 13:34:34 [Thread-4] INFO  c.e.telemetry.config.TcpServerConfig - hb : 1
+2024-09-11 13:36:07 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":26,"sign":"tangtang","timestamp":"20240911","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-11 13:36:07 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 3
+2024-09-11 13:37:40 [Thread-6] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":28,"sign":"tangtang","timestamp":"20240911","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-11 13:37:40 [Thread-6] INFO  c.e.telemetry.config.TcpServerConfig - hb : 5
+2024-09-11 13:39:14 [Thread-7] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":30,"sign":"tangtang","timestamp":"20240911","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-11 13:39:14 [Thread-7] INFO  c.e.telemetry.config.TcpServerConfig - hb : 7
+2024-09-11 13:40:47 [Thread-8] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":32,"sign":"tangtang","timestamp":"20240911","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-11 13:40:47 [Thread-8] INFO  c.e.telemetry.config.TcpServerConfig - hb : 9
+2024-09-12 08:44:23 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":6,"sign":"tangtang","timestamp":"20240912","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-12 08:44:23 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 08:44:24 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-12 08:44:24 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 08:44:24 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409111118465541820319","order_resend_times":3,"order_uploaded":false,"recipeName":"","timestamp":"20240911112026","cmd":"productdone","vmc_no":55418}
+2024-09-12 08:44:24 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 08:44:24 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409111135495541854006","order_resend_times":3,"order_uploaded":false,"recipeName":"","timestamp":"20240911113721","cmd":"productdone","vmc_no":55418}
+2024-09-12 08:44:24 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 08:44:24 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409111301265541821141","order_resend_times":3,"order_uploaded":false,"recipeName":"","timestamp":"20240911130319","cmd":"productdone","vmc_no":55418}
+2024-09-12 08:44:24 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 08:44:24 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409111309015541899751","order_resend_times":3,"order_uploaded":false,"recipeName":"","timestamp":"20240911131033","cmd":"productdone","vmc_no":55418}
+2024-09-12 08:44:24 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 08:44:25 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":500,"ProductId":108,"ProductName":"Лунго","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"long_coffee","order_no":"202409111448275541896875","order_resend_times":3,"order_uploaded":false,"recipeName":"","timestamp":"20240911144947","cmd":"productdone","vmc_no":55418}
+2024-09-12 08:44:25 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 08:44:25 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":4000,"ProductId":178,"ProductName":"双份长咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"lungo_coffee_2","order_no":"202409111450165541856437","order_resend_times":3,"order_uploaded":false,"recipeName":"","timestamp":"20240911145205","cmd":"productdone","vmc_no":55418}
+2024-09-12 08:44:25 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 08:44:25 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":3000,"ProductId":243,"ProductName":"拿铁","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"latte","order_no":"202409120813185541876089","order_resend_times":1,"order_uploaded":false,"recipeName":"","timestamp":"20240912081435","cmd":"productdone","vmc_no":55418}
+2024-09-12 08:44:25 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 08:44:25 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409120825105541855334","order_resend_times":1,"order_uploaded":false,"recipeName":"","timestamp":"20240912082648","cmd":"productdone","vmc_no":55418}
+2024-09-12 08:44:25 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 08:47:13 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":8,"sign":"tangtang","timestamp":"20240912","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-12 08:47:13 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 3
+2024-09-12 08:47:14 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-12 08:47:14 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 3
+2024-09-12 08:47:14 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409111118465541820319","order_resend_times":4,"order_uploaded":false,"recipeName":"","timestamp":"20240911112026","cmd":"productdone","vmc_no":55418}
+2024-09-12 08:47:14 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 3
+2024-09-12 08:47:14 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409111135495541854006","order_resend_times":4,"order_uploaded":false,"recipeName":"","timestamp":"20240911113721","cmd":"productdone","vmc_no":55418}
+2024-09-12 08:47:14 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 3
+2024-09-12 08:47:15 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409111301265541821141","order_resend_times":4,"order_uploaded":false,"recipeName":"","timestamp":"20240911130319","cmd":"productdone","vmc_no":55418}
+2024-09-12 08:47:15 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 3
+2024-09-12 08:47:15 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409111309015541899751","order_resend_times":4,"order_uploaded":false,"recipeName":"","timestamp":"20240911131033","cmd":"productdone","vmc_no":55418}
+2024-09-12 08:47:15 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 3
+2024-09-12 08:47:15 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":500,"ProductId":108,"ProductName":"Лунго","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"long_coffee","order_no":"202409111448275541896875","order_resend_times":4,"order_uploaded":false,"recipeName":"","timestamp":"20240911144947","cmd":"productdone","vmc_no":55418}
+2024-09-12 08:47:15 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 3
+2024-09-12 08:47:15 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":4000,"ProductId":178,"ProductName":"双份长咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"lungo_coffee_2","order_no":"202409111450165541856437","order_resend_times":4,"order_uploaded":false,"recipeName":"","timestamp":"20240911145205","cmd":"productdone","vmc_no":55418}
+2024-09-12 08:47:15 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 3
+2024-09-12 08:47:16 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":3000,"ProductId":243,"ProductName":"拿铁","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"latte","order_no":"202409120813185541876089","order_resend_times":2,"order_uploaded":false,"recipeName":"","timestamp":"20240912081435","cmd":"productdone","vmc_no":55418}
+2024-09-12 08:47:16 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 3
+2024-09-12 08:47:16 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409120825105541855334","order_resend_times":2,"order_uploaded":false,"recipeName":"","timestamp":"20240912082648","cmd":"productdone","vmc_no":55418}
+2024-09-12 08:47:16 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 3
+2024-09-12 09:08:36 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":14,"sign":"tangtang","timestamp":"20240912","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-12 09:08:36 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 09:08:36 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-12 09:08:36 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 09:08:36 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409111118465541820319","order_resend_times":5,"order_uploaded":false,"recipeName":"","timestamp":"20240911112026","cmd":"productdone","vmc_no":55418}
+2024-09-12 09:08:36 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 09:08:37 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409111135495541854006","order_resend_times":5,"order_uploaded":false,"recipeName":"","timestamp":"20240911113721","cmd":"productdone","vmc_no":55418}
+2024-09-12 09:08:37 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 09:08:37 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409111301265541821141","order_resend_times":5,"order_uploaded":false,"recipeName":"","timestamp":"20240911130319","cmd":"productdone","vmc_no":55418}
+2024-09-12 09:08:37 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 09:08:37 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409111309015541899751","order_resend_times":5,"order_uploaded":false,"recipeName":"","timestamp":"20240911131033","cmd":"productdone","vmc_no":55418}
+2024-09-12 09:08:37 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 09:08:37 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":500,"ProductId":108,"ProductName":"Лунго","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"long_coffee","order_no":"202409111448275541896875","order_resend_times":5,"order_uploaded":false,"recipeName":"","timestamp":"20240911144947","cmd":"productdone","vmc_no":55418}
+2024-09-12 09:08:37 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 09:08:38 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":4000,"ProductId":178,"ProductName":"双份长咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"lungo_coffee_2","order_no":"202409111450165541856437","order_resend_times":5,"order_uploaded":false,"recipeName":"","timestamp":"20240911145205","cmd":"productdone","vmc_no":55418}
+2024-09-12 09:08:38 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 09:08:38 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":3000,"ProductId":243,"ProductName":"拿铁","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"latte","order_no":"202409120813185541876089","order_resend_times":3,"order_uploaded":false,"recipeName":"","timestamp":"20240912081435","cmd":"productdone","vmc_no":55418}
+2024-09-12 09:08:38 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 09:08:38 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409120825105541855334","order_resend_times":3,"order_uploaded":false,"recipeName":"","timestamp":"20240912082648","cmd":"productdone","vmc_no":55418}
+2024-09-12 09:08:38 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 09:08:38 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409120853455541871226","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240912085518","cmd":"productdone","vmc_no":55418}
+2024-09-12 09:08:38 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+
+2024-09-12 09:42:08 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 5020 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-12 09:42:08 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-12 09:42:15 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 7.893 seconds (process running for 8.495)
+2024-09-12 09:42:29 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":18,"sign":"tangtang","timestamp":"20240912","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-12 09:42:29 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 09:42:30 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-12 09:42:30 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 09:42:30 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409111118465541820319","order_resend_times":6,"order_uploaded":false,"recipeName":"","timestamp":"20240911112026","cmd":"productdone","vmc_no":55418}
+2024-09-12 09:42:30 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 09:42:31 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409111135495541854006","order_resend_times":6,"order_uploaded":false,"recipeName":"","timestamp":"20240911113721","cmd":"productdone","vmc_no":55418}
+2024-09-12 09:42:31 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 09:42:31 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409111301265541821141","order_resend_times":6,"order_uploaded":false,"recipeName":"","timestamp":"20240911130319","cmd":"productdone","vmc_no":55418}
+2024-09-12 09:42:31 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 09:42:31 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409111309015541899751","order_resend_times":6,"order_uploaded":false,"recipeName":"","timestamp":"20240911131033","cmd":"productdone","vmc_no":55418}
+2024-09-12 09:42:31 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 09:42:31 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":500,"ProductId":108,"ProductName":"Лунго","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"long_coffee","order_no":"202409111448275541896875","order_resend_times":6,"order_uploaded":false,"recipeName":"","timestamp":"20240911144947","cmd":"productdone","vmc_no":55418}
+2024-09-12 09:42:31 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 09:42:32 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":4000,"ProductId":178,"ProductName":"双份长咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"lungo_coffee_2","order_no":"202409111450165541856437","order_resend_times":6,"order_uploaded":false,"recipeName":"","timestamp":"20240911145205","cmd":"productdone","vmc_no":55418}
+2024-09-12 09:42:32 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 09:42:32 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":3000,"ProductId":243,"ProductName":"拿铁","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"latte","order_no":"202409120813185541876089","order_resend_times":4,"order_uploaded":false,"recipeName":"","timestamp":"20240912081435","cmd":"productdone","vmc_no":55418}
+2024-09-12 09:42:32 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 09:42:32 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409120825105541855334","order_resend_times":4,"order_uploaded":false,"recipeName":"","timestamp":"20240912082648","cmd":"productdone","vmc_no":55418}
+2024-09-12 09:42:32 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 09:42:32 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409120853455541871226","order_resend_times":1,"order_uploaded":false,"recipeName":"","timestamp":"20240912085518","cmd":"productdone","vmc_no":55418}
+2024-09-12 09:42:32 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 0
+2024-09-12 11:17:10 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 4308 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-12 11:17:10 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-12 11:17:17 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 7.531 seconds (process running for 9.011)
+2024-09-12 16:06:50 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 13564 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-12 16:06:50 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-12 16:09:31 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 16296 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-12 16:09:31 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-12 16:12:55 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 14616 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-12 16:12:55 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-13 08:31:40 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 12216 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-13 08:31:40 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-13 08:37:20 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 14500 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-13 08:37:20 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-13 08:37:23 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5433/ProductTelemetry (PostgreSQL 15.8)
+2024-09-13 08:37:23 [main] INFO  o.f.c.i.s.JdbcTableSchemaHistory - Schema history table "public"."flyway_schema_history" does not exist yet
+2024-09-13 08:37:23 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 1 migration (execution time 00:00.023s)
+2024-09-13 08:37:57 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 12920 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-13 08:37:57 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-13 08:38:01 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-13 08:38:01 [main] INFO  o.f.c.i.s.JdbcTableSchemaHistory - Schema history table "public"."flyway_schema_history" does not exist yet
+2024-09-13 08:38:01 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 1 migration (execution time 00:00.027s)
+2024-09-13 08:46:15 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 4680 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-13 08:46:15 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-13 08:46:19 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-13 08:46:19 [main] INFO  o.f.c.i.s.JdbcTableSchemaHistory - Schema history table "public"."flyway_schema_history" does not exist yet
+2024-09-13 08:46:19 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 1 migration (execution time 00:00.031s)
+2024-09-13 08:46:19 [main] INFO  o.f.c.i.s.JdbcTableSchemaHistory - Creating Schema History table "public"."flyway_schema_history" with baseline ...
+2024-09-13 08:46:19 [main] INFO  o.f.core.internal.command.DbBaseline - Successfully baselined schema with version: 1
+2024-09-13 08:46:19 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-13 08:46:19 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-13 08:46:23 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.344 seconds (process running for 8.976)
+2024-09-13 08:46:59 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":2,"sign":"tangtang","timestamp":"20240913","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-13 08:47:00 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-13 08:47:00 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":4000,"ProductId":178,"ProductName":"双份长咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"lungo_coffee_2","order_no":"202409121147005541864843","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240912114903","cmd":"productdone","vmc_no":55418}
+2024-09-13 09:06:13 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 15332 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-13 09:06:13 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-13 09:06:17 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-13 09:06:17 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.054s)
+2024-09-13 09:06:17 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-13 09:06:17 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-13 09:06:21 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.78 seconds (process running for 10.065)
+2024-09-13 09:07:10 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":4,"sign":"tangtang","timestamp":"20240913","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-13 09:07:11 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-13 09:07:11 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":4000,"ProductId":178,"ProductName":"双份长咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"lungo_coffee_2","order_no":"202409121147005541864843","order_resend_times":1,"order_uploaded":false,"recipeName":"","timestamp":"20240912114903","cmd":"productdone","vmc_no":55418}
+2024-09-13 09:11:54 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 14352 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-13 09:11:54 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-13 09:11:57 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-13 09:11:57 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.037s)
+2024-09-13 09:11:57 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-13 09:11:57 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-13 09:12:01 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.135 seconds (process running for 8.733)
+2024-09-13 10:47:13 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 7348 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-13 10:47:13 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-13 10:47:16 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-13 10:47:16 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.038s)
+2024-09-13 10:47:16 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-13 10:47:16 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-13 10:47:20 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.085 seconds (process running for 8.715)
+2024-09-13 10:47:44 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":6,"sign":"tangtang","timestamp":"20240913","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-13 10:47:45 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-13 10:47:45 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":4000,"ProductId":178,"ProductName":"双份长咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"lungo_coffee_2","order_no":"202409121147005541864843","order_resend_times":2,"order_uploaded":false,"recipeName":"","timestamp":"20240912114903","cmd":"productdone","vmc_no":55418}
+2024-09-13 10:47:45 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409121234275541858872","order_resend_times":2,"order_uploaded":false,"recipeName":"","timestamp":"20240912123601","cmd":"productdone","vmc_no":55418}
+2024-09-13 10:47:45 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1500,"ProductId":105,"ProductName":"美式咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"american_style_coffee","order_no":"202409121249385541858683","order_resend_times":2,"order_uploaded":false,"recipeName":"","timestamp":"20240912125114","cmd":"productdone","vmc_no":55418}
+2024-09-13 10:47:46 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":500,"ProductId":108,"ProductName":"Лунго","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"long_coffee","order_no":"202409121340255541893971","order_resend_times":2,"order_uploaded":false,"recipeName":"","timestamp":"20240912134135","cmd":"productdone","vmc_no":55418}
+2024-09-13 10:47:46 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1500,"ProductId":105,"ProductName":"美式咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"american_style_coffee","order_no":"202409130704065541830518","order_resend_times":2,"order_uploaded":false,"recipeName":"","timestamp":"20240913070551","cmd":"productdone","vmc_no":55418}
+2024-09-13 10:47:46 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":500,"ProductId":108,"ProductName":"Лунго","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"long_coffee","order_no":"202409130807195541844471","order_resend_times":2,"order_uploaded":false,"recipeName":"","timestamp":"20240913080839","cmd":"productdone","vmc_no":55418}
+2024-09-13 10:47:46 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":4000,"ProductId":178,"ProductName":"双份长咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"lungo_coffee_2","order_no":"202409130808465541893304","order_resend_times":2,"order_uploaded":false,"recipeName":"","timestamp":"20240913081145","cmd":"productdone","vmc_no":55418}
+2024-09-13 10:47:46 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1500,"ProductId":105,"ProductName":"美式咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"american_style_coffee","order_no":"202409130827285541836670","order_resend_times":2,"order_uploaded":false,"recipeName":"","timestamp":"20240913082939","cmd":"productdone","vmc_no":55418}
+2024-09-13 11:28:00 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 12880 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-13 11:28:00 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-13 11:28:03 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-13 11:28:03 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.056s)
+2024-09-13 11:28:04 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-13 11:28:04 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-13 11:28:07 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.25 seconds (process running for 8.912)
+2024-09-13 11:28:53 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":10,"sign":"tangtang","timestamp":"20240913","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-13 11:28:54 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-16 12:14:28 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 8680 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-16 12:14:28 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-16 12:14:31 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-16 12:14:31 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.040s)
+2024-09-16 12:14:31 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-16 12:14:31 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-16 12:14:35 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.32 seconds (process running for 9.019)
+2024-09-16 12:14:38 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":2,"sign":"tangtang","timestamp":"20240916","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-16 12:17:36 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 9908 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-16 12:17:36 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-16 12:17:40 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-16 12:17:40 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.051s)
+2024-09-16 12:17:40 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-16 12:17:40 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-16 12:17:44 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":4,"sign":"tangtang","timestamp":"20240916","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-16 12:17:45 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 9.129 seconds (process running for 9.77)
+2024-09-16 12:23:00 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 7440 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-16 12:23:00 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-16 12:23:03 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-16 12:23:04 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.051s)
+2024-09-16 12:23:04 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-16 12:23:04 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-16 12:23:07 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.138 seconds (process running for 8.764)
+2024-09-16 12:23:55 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":6,"sign":"tangtang","timestamp":"20240916","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-16 12:24:34 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 14400 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-16 12:24:34 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-16 12:24:37 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-16 12:24:37 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.041s)
+2024-09-16 12:24:37 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-16 12:24:37 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-16 12:24:40 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 7.674 seconds (process running for 8.318)
+2024-09-16 12:25:28 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":8,"sign":"tangtang","timestamp":"20240916","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-16 12:26:24 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 14080 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-16 12:26:24 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-16 12:26:28 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-16 12:26:28 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.043s)
+2024-09-16 12:26:28 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-16 12:26:28 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-16 12:26:32 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.074 seconds (process running for 8.695)
+2024-09-16 12:27:00 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":10,"sign":"tangtang","timestamp":"20240916","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-16 12:30:43 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 14408 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-16 12:30:43 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-16 12:30:47 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-16 12:30:47 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.046s)
+2024-09-16 12:30:47 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-16 12:30:47 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-16 12:30:51 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.557 seconds (process running for 9.253)
+2024-09-16 12:31:35 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":12,"sign":"tangtang","timestamp":"20240916","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-16 12:35:11 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 14712 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-16 12:35:11 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-16 12:35:15 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-16 12:35:15 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.047s)
+2024-09-16 12:35:15 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-16 12:35:15 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-16 12:35:18 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 7.769 seconds (process running for 8.381)
+2024-09-16 12:36:14 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":14,"sign":"tangtang","timestamp":"20240916","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-16 12:38:42 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 11848 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-16 12:38:42 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-16 12:38:45 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-16 12:38:46 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.046s)
+2024-09-16 12:38:46 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-16 12:38:46 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-16 12:38:49 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.042 seconds (process running for 8.651)
+2024-09-16 12:39:17 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":16,"sign":"tangtang","timestamp":"20240916","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-16 12:39:19 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-16 12:39:19 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":4000,"ProductId":178,"ProductName":"双份长咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"lungo_coffee_2","order_no":"202409131147145541838954","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240913114920","cmd":"productdone","vmc_no":55418}
+2024-09-16 12:39:19 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":3000,"ProductId":243,"ProductName":"拿铁","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"latte","order_no":"202409160706405541882076","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240916070800","cmd":"productdone","vmc_no":55418}
+2024-09-16 12:39:20 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":500,"ProductId":108,"ProductName":"Лунго","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"long_coffee","order_no":"202409160724425541863476","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240916072625","cmd":"productdone","vmc_no":55418}
+2024-09-16 12:39:20 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1500,"ProductId":105,"ProductName":"美式咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"american_style_coffee","order_no":"202409160759065541835621","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240916080122","cmd":"productdone","vmc_no":55418}
+2024-09-16 12:39:20 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409160918495541831759","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240916092026","cmd":"productdone","vmc_no":55418}
+2024-09-16 12:39:20 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":3000,"ProductId":243,"ProductName":"拿铁","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"latte","order_no":"202409161035545541862791","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240916103727","cmd":"productdone","vmc_no":55418}
+2024-09-16 12:39:20 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409161103175541873673","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240916110521","cmd":"productdone","vmc_no":55418}
+2024-09-16 12:39:21 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1500,"ProductId":105,"ProductName":"美式咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"american_style_coffee","order_no":"202409161139365541825094","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240916114133","cmd":"productdone","vmc_no":55418}
+2024-09-16 12:39:21 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409161147145541854377","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240916114848","cmd":"productdone","vmc_no":55418}
+2024-09-16 13:46:48 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 9812 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-16 13:46:48 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-16 13:46:52 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-16 13:46:52 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.055s)
+2024-09-16 13:46:52 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-16 13:46:52 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-16 13:46:56 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.489 seconds (process running for 9.091)
+2024-09-16 13:48:24 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":18,"sign":"tangtang","timestamp":"20240916","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-16 13:48:25 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-16 13:56:46 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 8368 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-16 13:56:46 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-16 13:56:49 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-16 13:56:49 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.042s)
+2024-09-16 13:56:50 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-16 13:56:50 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-16 13:56:53 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.096 seconds (process running for 8.698)
+2024-09-16 13:58:13 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":20,"sign":"tangtang","timestamp":"20240916","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-16 13:58:14 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-16 14:05:47 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"170,225,226","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409161404115541843394","order_resend_times":0,"order_uploaded":false,"recipeName":"卡布奇诺","timestamp":"20240916140546","cmd":"productdone","vmc_no":55418}
+2024-09-16 14:05:47 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 14
+2024-09-16 14:09:03 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"supply","supply":{"10007":"9999","9991":"9999","10009":"-14970","19991":"-150773"},"time":"20240916140902","cmd":"machinestatus","vmc_no":55418}
+2024-09-16 14:09:03 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 21
+2024-09-16 14:09:29 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":800,"ProductId":551,"ProductName":"热奶泡","canisterIds":"226","count":0,"isDelete":false,"isok":true,"nameKey":"hot_milk_foam","order_no":"202409161408395541827765","order_resend_times":0,"order_uploaded":false,"recipeName":"热奶泡","timestamp":"20240916140928","cmd":"productdone","vmc_no":55418}
+2024-09-16 14:09:29 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 21
+2024-09-17 09:30:34 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 14184 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 09:30:34 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 09:30:37 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 09:30:37 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.058s)
+2024-09-17 09:30:37 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 09:30:37 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 09:30:41 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.312 seconds (process running for 9.748)
+2024-09-17 10:05:17 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 2824 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 10:05:17 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 10:05:20 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 10:05:20 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.048s)
+2024-09-17 10:05:20 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 10:05:20 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 10:05:25 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.37 seconds (process running for 10.104)
+2024-09-17 10:35:23 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 14404 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 10:35:23 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 10:35:26 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 10:35:26 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.049s)
+2024-09-17 10:35:26 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 10:35:26 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 10:35:31 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.325 seconds (process running for 9.945)
+2024-09-17 10:38:30 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 5144 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 10:38:30 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 10:38:33 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 10:38:33 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.056s)
+2024-09-17 10:38:33 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 10:38:33 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 10:38:37 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.182 seconds (process running for 8.825)
+2024-09-17 10:39:10 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":46,"sign":"tangtang","timestamp":"20240917","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-17 10:39:10 [Thread-3] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-17 10:39:10 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-17 10:39:11 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":500,"ProductId":108,"ProductName":"Лунго","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"long_coffee","order_no":"202409161437165541845481","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240916143840","cmd":"productdone","vmc_no":55418}
+2024-09-17 10:39:11 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409161515545541837120","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240916151730","cmd":"productdone","vmc_no":55418}
+2024-09-17 10:39:11 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":3000,"ProductId":243,"ProductName":"拿铁","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"latte","order_no":"202409170653325541847720","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240917065450","cmd":"productdone","vmc_no":55418}
+2024-09-17 10:39:11 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":500,"ProductId":108,"ProductName":"Лунго","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"long_coffee","order_no":"202409170702465541846044","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240917070403","cmd":"productdone","vmc_no":55418}
+2024-09-17 10:39:11 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":4000,"ProductId":178,"ProductName":"双份长咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"lungo_coffee_2","order_no":"202409170707265541817294","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240917071024","cmd":"productdone","vmc_no":55418}
+2024-09-17 10:39:12 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409170711115541836375","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240917071253","cmd":"productdone","vmc_no":55418}
+2024-09-17 10:39:12 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409170921045541897655","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240917092241","cmd":"productdone","vmc_no":55418}
+2024-09-17 10:48:15 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 14652 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 10:48:15 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 10:48:18 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 10:48:18 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.056s)
+2024-09-17 10:48:18 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 10:48:18 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 10:48:22 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.305 seconds (process running for 9.946)
+2024-09-17 11:07:52 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":48,"sign":"tangtang","timestamp":"20240917","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-17 11:07:59 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":50,"sign":"tangtang","timestamp":"20240917","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-17 11:27:02 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 14264 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 11:27:02 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 11:27:04 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 11:27:04 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.063s)
+2024-09-17 11:27:05 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 11:27:05 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 11:27:09 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.17 seconds (process running for 9.784)
+2024-09-17 11:40:45 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":74,"sign":"tangtang","timestamp":"20240917","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-17 11:40:53 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 7488 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 11:40:53 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 11:40:56 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 11:40:56 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.057s)
+2024-09-17 11:40:56 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 11:40:56 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 11:41:01 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.133 seconds (process running for 9.773)
+2024-09-17 11:43:43 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":92,"sign":"tangtang","timestamp":"20240917","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-17 11:47:44 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 9668 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 11:47:44 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 11:47:47 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 11:47:47 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.054s)
+2024-09-17 11:47:47 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 11:47:47 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 11:47:51 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.319 seconds (process running for 10.0)
+2024-09-17 11:48:10 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":100,"sign":"tangtang","timestamp":"20240917","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-17 11:49:10 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 3248 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 11:49:10 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 11:49:13 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 11:49:13 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.052s)
+2024-09-17 11:49:13 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 11:49:13 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 11:49:18 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.475 seconds (process running for 10.094)
+2024-09-17 11:52:32 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":102,"sign":"tangtang","timestamp":"20240917","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-17 11:52:39 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 9988 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 11:52:39 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 11:52:42 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 11:52:42 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.048s)
+2024-09-17 11:52:42 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 11:52:42 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 11:52:46 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.275 seconds (process running for 9.883)
+2024-09-17 12:14:03 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 13620 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 12:14:03 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 12:14:06 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 12:14:06 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.045s)
+2024-09-17 12:14:06 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 12:14:06 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 12:14:10 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.009 seconds (process running for 9.685)
+2024-09-17 12:16:30 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 12244 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 12:16:30 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 12:16:33 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 12:16:33 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.050s)
+2024-09-17 12:16:33 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 12:16:33 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 12:16:38 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.175 seconds (process running for 9.908)
+2024-09-17 12:21:23 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 9624 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 12:21:23 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 12:21:26 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 12:21:26 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.056s)
+2024-09-17 12:21:26 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 12:21:26 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 12:21:31 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.466 seconds (process running for 10.159)
+2024-09-17 12:42:15 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 12520 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 12:42:15 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 12:42:18 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 12:42:18 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.061s)
+2024-09-17 12:42:18 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 12:42:18 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 12:42:22 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.035 seconds (process running for 9.633)
+2024-09-17 12:43:14 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 16008 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 12:43:14 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 12:43:17 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 12:43:17 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.044s)
+2024-09-17 12:43:17 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 12:43:17 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 12:43:22 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.254 seconds (process running for 9.889)
+2024-09-17 12:44:51 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 5320 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 12:44:51 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 12:44:54 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 12:44:54 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.052s)
+2024-09-17 12:44:54 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 12:44:54 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 12:44:58 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.342 seconds (process running for 9.998)
+2024-09-17 13:20:39 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 12272 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 13:20:39 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 13:20:42 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 13:20:42 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.044s)
+2024-09-17 13:20:42 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 13:20:42 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 13:20:46 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":134,"sign":"tangtang","timestamp":"20240917","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-17 13:20:47 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.094 seconds (process running for 9.73)
+2024-09-17 13:20:48 [Thread-3] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-17 13:20:48 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-17 13:20:53 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1500,"ProductId":105,"ProductName":"美式咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"american_style_coffee","order_no":"202409171046155541872310","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240917104804","cmd":"productdone","vmc_no":55418}
+2024-09-17 13:21:00 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 15520 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 13:21:00 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 13:21:03 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 13:21:03 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.051s)
+2024-09-17 13:21:04 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 13:21:04 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 13:21:08 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.389 seconds (process running for 10.007)
+2024-09-17 13:22:42 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 14120 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 13:22:42 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 13:22:45 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 13:22:46 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.049s)
+2024-09-17 13:22:46 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 13:22:46 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 13:22:50 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.189 seconds (process running for 9.835)
+2024-09-17 13:23:07 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 8644 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 13:23:07 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 13:23:10 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 13:23:10 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.058s)
+2024-09-17 13:23:10 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 13:23:10 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 13:23:15 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.224 seconds (process running for 9.842)
+2024-09-17 13:24:01 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":138,"sign":"tangtang","timestamp":"20240917","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-17 13:24:48 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 14292 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-17 13:24:48 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-17 13:24:51 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-17 13:24:51 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.045s)
+2024-09-17 13:24:51 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-17 13:24:51 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-17 13:24:56 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.337 seconds (process running for 9.947)
+2024-09-17 13:25:53 [main] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-17 13:25:53 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":140,"sign":"tangtang","timestamp":"20240917","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-18 12:11:32 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 4500 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 12:11:32 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 12:11:36 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 12:11:36 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.055s)
+2024-09-18 12:11:36 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 12:11:36 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 12:11:40 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.235 seconds (process running for 8.815)
+2024-09-18 12:12:11 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":2,"sign":"tangtang","timestamp":"20240918","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-18 12:12:12 [Thread-3] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-18 12:12:12 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-18 12:12:12 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1500,"ProductId":105,"ProductName":"美式咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"american_style_coffee","order_no":"202409171046155541872310","order_resend_times":1,"order_uploaded":false,"recipeName":"","timestamp":"20240917104804","cmd":"productdone","vmc_no":55418}
+2024-09-18 12:12:12 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409171110405541845118","order_resend_times":1,"order_uploaded":false,"recipeName":"","timestamp":"20240917111250","cmd":"productdone","vmc_no":55418}
+2024-09-18 12:12:12 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409171114545541893199","order_resend_times":1,"order_uploaded":false,"recipeName":"","timestamp":"20240917111632","cmd":"productdone","vmc_no":55418}
+2024-09-18 12:12:12 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1500,"ProductId":105,"ProductName":"美式咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"american_style_coffee","order_no":"202409171208365541821306","order_resend_times":1,"order_uploaded":false,"recipeName":"","timestamp":"20240917121008","cmd":"productdone","vmc_no":55418}
+2024-09-18 12:12:13 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409171234385541845737","order_resend_times":1,"order_uploaded":false,"recipeName":"","timestamp":"20240917123636","cmd":"productdone","vmc_no":55418}
+2024-09-18 12:12:13 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":3000,"ProductId":243,"ProductName":"拿铁","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"latte","order_no":"202409171424165541865292","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240917142537","cmd":"productdone","vmc_no":55418}
+2024-09-18 12:12:13 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409171426325541899432","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240917142810","cmd":"productdone","vmc_no":55418}
+2024-09-18 12:12:13 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":500,"ProductId":108,"ProductName":"Лунго","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"long_coffee","order_no":"202409171431175541870327","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240917143230","cmd":"productdone","vmc_no":55418}
+2024-09-18 12:12:13 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"test","ProductAmount":0,"ProductId":666,"canisterIds":"","count":0,"isDelete":false,"isok":true,"order_no":"202409171547335541820769","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240917154733","cmd":"productdone","vmc_no":55418}
+2024-09-18 12:15:02 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":4,"sign":"tangtang","timestamp":"20240918","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-18 12:15:03 [Thread-5] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-18 12:15:03 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-18 12:15:03 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"test","ProductAmount":0,"ProductId":666,"canisterIds":"","count":0,"isDelete":false,"isok":true,"order_no":"202409171547335541820769","order_resend_times":1,"order_uploaded":false,"recipeName":"","timestamp":"20240917154733","cmd":"productdone","vmc_no":55418}
+2024-09-18 12:18:07 [Thread-7] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":6,"sign":"tangtang","timestamp":"20240918","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-18 12:21:12 [Thread-9] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":8,"sign":"tangtang","timestamp":"20240918","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-18 12:24:42 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 6064 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 12:24:42 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 12:24:46 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 12:24:46 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.054s)
+2024-09-18 12:24:46 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 12:24:46 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 12:24:50 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 9.464 seconds (process running for 10.133)
+2024-09-18 12:25:32 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":16,"sign":"tangtang","timestamp":"20240918","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-18 12:25:33 [Thread-3] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-18 12:25:33 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-18 12:25:33 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"test","ProductAmount":0,"ProductId":666,"canisterIds":"","count":0,"isDelete":false,"isok":true,"order_no":"202409171547335541820769","order_resend_times":2,"order_uploaded":false,"recipeName":"","timestamp":"20240917154733","cmd":"productdone","vmc_no":55418}
+2024-09-18 12:25:34 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1500,"ProductId":105,"ProductName":"美式咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"american_style_coffee","order_no":"202409171631005541818729","order_resend_times":2,"order_uploaded":false,"recipeName":"","timestamp":"20240917163232","cmd":"productdone","vmc_no":55418}
+2024-09-18 12:25:34 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":500,"ProductId":108,"ProductName":"Лунго","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"long_coffee","order_no":"202409180707405541831535","order_resend_times":2,"order_uploaded":false,"recipeName":"","timestamp":"20240918070906","cmd":"productdone","vmc_no":55418}
+2024-09-18 12:25:34 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409180859415541896879","order_resend_times":2,"order_uploaded":false,"recipeName":"","timestamp":"20240918090308","cmd":"productdone","vmc_no":55418}
+2024-09-18 12:25:34 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409181046015541826957","order_resend_times":2,"order_uploaded":false,"recipeName":"","timestamp":"20240918104746","cmd":"productdone","vmc_no":55418}
+2024-09-18 12:25:35 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":3000,"ProductId":243,"ProductName":"拿铁","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"latte","order_no":"202409181121425541878658","order_resend_times":2,"order_uploaded":false,"recipeName":"","timestamp":"20240918112312","cmd":"productdone","vmc_no":55418}
+2024-09-18 12:25:35 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":4000,"ProductId":178,"ProductName":"双份长咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"lungo_coffee_2","order_no":"202409181147545541890222","order_resend_times":2,"order_uploaded":false,"recipeName":"","timestamp":"20240918115024","cmd":"productdone","vmc_no":55418}
+2024-09-18 12:52:11 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 10828 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 12:52:11 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 12:52:14 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 12:52:14 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.056s)
+2024-09-18 12:52:14 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 12:52:14 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 12:52:19 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.129 seconds (process running for 9.72)
+2024-09-18 12:52:58 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 13636 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 12:52:58 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 12:53:02 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 12:53:02 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.060s)
+2024-09-18 12:53:02 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 12:53:02 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 12:53:07 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 9.334 seconds (process running for 10.978)
+2024-09-18 12:54:31 [main] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-18 12:54:31 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":20,"sign":"tangtang","timestamp":"20240918","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-18 12:54:35 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 3268 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 12:54:35 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 12:54:39 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 12:54:39 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.050s)
+2024-09-18 12:54:39 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 12:54:39 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 12:54:43 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.372 seconds (process running for 9.992)
+2024-09-18 12:56:53 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":22,"sign":"tangtang","timestamp":"20240918","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-18 13:05:58 [main] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-18 13:10:32 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 12848 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 13:10:32 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 13:10:36 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 13:10:36 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.055s)
+2024-09-18 13:10:36 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 13:10:36 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 13:10:41 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 9.52 seconds (process running for 11.114)
+2024-09-18 13:11:32 [main] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-18 13:11:36 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 10280 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 13:11:36 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 13:11:39 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 13:11:39 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.052s)
+2024-09-18 13:11:39 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 13:11:39 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 13:11:43 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.081 seconds (process running for 9.708)
+2024-09-18 13:12:58 [main] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-18 13:19:07 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 1336 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 13:19:07 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 13:19:11 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 13:19:11 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.050s)
+2024-09-18 13:19:11 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 13:19:11 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 13:19:17 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 9.958 seconds (process running for 11.654)
+2024-09-18 13:21:04 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":40,"sign":"tangtang","timestamp":"20240918","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-18 13:21:23 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 4656 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 13:21:23 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 13:21:26 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 13:21:26 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.052s)
+2024-09-18 13:21:27 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 13:21:27 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 13:21:33 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 10.126 seconds (process running for 11.834)
+2024-09-18 13:22:42 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 8988 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 13:22:42 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 13:22:45 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 13:22:45 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.068s)
+2024-09-18 13:22:45 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 13:22:45 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 13:22:49 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.023 seconds (process running for 9.63)
+2024-09-18 13:25:23 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":44,"sign":"tangtang","timestamp":"20240918","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-18 13:30:07 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 7316 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 13:30:07 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 13:30:10 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 13:30:10 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.065s)
+2024-09-18 13:30:10 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 13:30:10 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 13:30:15 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.126 seconds (process running for 9.767)
+2024-09-18 13:33:05 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":48,"sign":"tangtang","timestamp":"20240918","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-18 14:53:41 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 13708 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 14:53:41 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 14:53:44 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 14:53:44 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.048s)
+2024-09-18 14:53:44 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 14:53:44 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 14:53:48 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 7.913 seconds (process running for 9.276)
+2024-09-18 15:13:59 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 5576 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 15:13:59 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 15:14:02 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 15:14:02 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.041s)
+2024-09-18 15:14:03 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 15:14:03 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 15:14:06 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 7.891 seconds (process running for 8.498)
+2024-09-18 15:14:39 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":54,"sign":"tangtang","timestamp":"20240918","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-18 15:14:40 [Thread-3] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-18 15:14:40 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-18 15:14:40 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1500,"ProductId":105,"ProductName":"美式咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"american_style_coffee","order_no":"202409181234215541848026","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240918123554","cmd":"productdone","vmc_no":55418}
+2024-09-18 15:14:40 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409181438075541820568","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240918143943","cmd":"productdone","vmc_no":55418}
+2024-09-18 15:48:55 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 13308 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 15:48:55 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 15:48:58 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 15:48:58 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.054s)
+2024-09-18 15:48:59 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 15:48:59 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 15:49:03 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.501 seconds (process running for 10.17)
+2024-09-18 16:21:49 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 6056 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 16:21:49 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 16:21:52 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 16:21:52 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.049s)
+2024-09-18 16:21:52 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 16:21:52 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 16:21:56 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.189 seconds (process running for 9.804)
+2024-09-18 16:28:58 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 5012 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 16:28:58 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 16:29:01 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 16:29:02 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.052s)
+2024-09-18 16:29:02 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 16:29:02 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 16:29:06 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.102 seconds (process running for 9.667)
+2024-09-18 16:29:18 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 10008 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 16:29:18 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 16:29:21 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 16:29:22 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.056s)
+2024-09-18 16:29:22 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 16:29:22 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 16:29:26 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.131 seconds (process running for 9.697)
+2024-09-18 16:45:14 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 1592 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 16:45:14 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 16:45:17 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 16:45:17 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.055s)
+2024-09-18 16:45:17 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 16:45:17 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 16:45:23 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 9.409 seconds (process running for 11.024)
+2024-09-18 16:46:33 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":86,"sign":"tangtang","timestamp":"20240918","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-18 16:48:13 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 16660 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 16:48:13 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 16:48:17 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 16:48:17 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.055s)
+2024-09-18 16:48:17 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 16:48:17 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 16:48:22 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 9.517 seconds (process running for 11.181)
+2024-09-18 16:49:04 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 14920 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 16:49:04 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 16:49:07 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 16:49:08 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.052s)
+2024-09-18 16:49:08 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 16:49:08 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 16:49:12 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 8.329 seconds (process running for 9.919)
+2024-09-18 16:50:21 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":92,"sign":"tangtang","timestamp":"20240918","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-18 16:56:59 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 10260 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 16:56:59 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 16:57:02 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 16:57:03 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.054s)
+2024-09-18 16:57:03 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 16:57:03 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 16:57:07 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.832 seconds (process running for 9.465)
+2024-09-18 16:57:53 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":98,"sign":"tangtang","timestamp":"20240918","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-18 17:00:57 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":100,"sign":"tangtang","timestamp":"20240918","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-18 17:04:09 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 16636 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 17:04:09 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 17:04:13 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 17:04:13 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.050s)
+2024-09-18 17:04:13 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 17:04:13 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 17:04:17 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.008 seconds (process running for 8.725)
+2024-09-18 17:05:25 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":108,"sign":"tangtang","timestamp":"20240918","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-18 17:05:25 [Thread-3] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-18 17:05:25 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-18 17:06:20 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 13476 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-18 17:06:20 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-18 17:06:24 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-18 17:06:24 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.059s)
+2024-09-18 17:06:24 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-18 17:06:24 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-18 17:06:28 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 9.321 seconds (process running for 10.015)
+2024-09-18 17:06:56 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":110,"sign":"tangtang","timestamp":"20240918","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-18 17:06:56 [Thread-3] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-18 17:06:56 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-19 09:15:14 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 2152 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-19 09:15:14 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-19 09:15:18 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-19 09:15:18 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.046s)
+2024-09-19 09:15:18 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-19 09:15:18 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-19 09:15:22 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.648 seconds (process running for 9.26)
+2024-09-19 09:18:09 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 1908 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-19 09:18:09 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-19 09:18:12 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-19 09:18:12 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.045s)
+2024-09-19 09:18:12 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-19 09:18:12 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-19 09:18:16 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 7.637 seconds (process running for 9.008)
+2024-09-19 09:18:48 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Starting JetinnoTelemetryApplicationTests using Java 22.0.1 with PID 8356 (started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-19 09:18:48 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2024-09-19 09:18:51 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-19 09:18:51 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.049s)
+2024-09-19 09:18:51 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-19 09:18:51 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-19 09:18:55 [main] INFO  c.e.t.JetinnoTelemetryApplicationTests - Started JetinnoTelemetryApplicationTests in 7.454 seconds (process running for 8.838)
+2024-09-19 13:33:04 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 6320 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-19 13:33:04 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-19 13:33:07 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-19 13:33:08 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.048s)
+2024-09-19 13:33:08 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-19 13:33:08 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-19 13:33:11 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.23 seconds (process running for 8.857)
+2024-09-19 13:42:22 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 8800 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-19 13:42:22 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-19 13:42:25 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-19 13:42:25 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.054s)
+2024-09-19 13:42:25 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-19 13:42:25 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-19 13:42:30 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.892 seconds (process running for 9.449)
+2024-09-19 13:53:00 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":2,"sign":"tangtang","timestamp":"20240919","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-19 13:53:01 [Thread-3] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-19 13:53:01 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"islock":false,"status":"machinelock","time":"2024-09-19 13:53:01","cmd":"machinestatus","vmc_no":55418}
+2024-09-19 13:53:01 [Thread-3] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-19 13:53:01 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-19 13:53:01 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":3000,"ProductId":243,"ProductName":"拿铁","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"latte","order_no":"202409190653585541836108","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240919065515","cmd":"productdone","vmc_no":55418}
+2024-09-19 13:53:01 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":4000,"ProductId":178,"ProductName":"双份长咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"lungo_coffee_2","order_no":"202409190702505541813961","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240919070618","cmd":"productdone","vmc_no":55418}
+2024-09-19 13:53:02 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":500,"ProductId":108,"ProductName":"Лунго","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"long_coffee","order_no":"202409190707575541883463","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240919070927","cmd":"productdone","vmc_no":55418}
+2024-09-19 13:53:02 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1500,"ProductId":105,"ProductName":"美式咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"american_style_coffee","order_no":"202409190842175541891848","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240919084350","cmd":"productdone","vmc_no":55418}
+2024-09-19 13:53:02 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1500,"ProductId":105,"ProductName":"美式咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"american_style_coffee","order_no":"202409191147595541820359","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240919114947","cmd":"productdone","vmc_no":55418}
+2024-09-19 13:53:02 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1500,"ProductId":105,"ProductName":"美式咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"american_style_coffee","order_no":"202409191231305541883882","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240919123304","cmd":"productdone","vmc_no":55418}
+2024-09-19 13:53:02 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409191340435541886333","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240919134222","cmd":"productdone","vmc_no":55418}
+2024-09-19 13:53:03 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"test","ProductAmount":0,"ProductId":666,"canisterIds":"","count":0,"isDelete":false,"isok":true,"order_no":"202409191343115541880599","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240919134311","cmd":"productdone","vmc_no":55418}
+2024-09-19 13:53:07 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":2,"sign":"tangtang","timestamp":"20240919","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-19 13:53:07 [Thread-3] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-19 13:53:07 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-19 14:02:02 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":4,"sign":"tangtang","timestamp":"20240919","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-19 14:02:03 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 17
+2024-09-19 14:02:03 [Thread-5] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-19 14:02:03 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-19 14:02:03 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 17
+2024-09-19 14:37:02 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"datetime":"20240919","error_code":"WARNING:10009","error_description":"material lack","isSet":true,"is_fatal_error":true,"is_pessistance_error":false,"cmd":"error","vmc_no":55418}
+2024-09-19 14:37:02 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 84
+2024-09-19 14:37:02 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"datetime":"20240919","error_code":"WARNING:19991","error_description":"material lack","isSet":true,"is_fatal_error":true,"is_pessistance_error":false,"cmd":"error","vmc_no":55418}
+2024-09-19 14:37:02 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 84
+2024-09-19 14:38:12 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"170,225,226","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409191436265541898959","order_resend_times":0,"order_uploaded":false,"recipeName":"卡布奇诺","timestamp":"20240919143812","cmd":"productdone","vmc_no":55418}
+2024-09-19 14:38:12 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 87
+2024-09-19 14:39:35 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":800,"ProductId":551,"ProductName":"热奶泡","canisterIds":"226","count":0,"isDelete":false,"isok":true,"nameKey":"hot_milk_foam","order_no":"202409191438475541871166","order_resend_times":0,"order_uploaded":false,"recipeName":"热奶泡","timestamp":"20240919143935","cmd":"productdone","vmc_no":55418}
+2024-09-19 14:39:35 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 89
+2024-09-19 14:56:31 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":4,"sign":"tangtang","timestamp":"20240919","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-19 14:56:31 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 122
+2024-09-19 14:56:31 [Thread-5] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-19 14:56:31 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-19 14:56:31 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 122
+2024-09-19 15:04:36 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":4,"sign":"tangtang","timestamp":"20240919","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-19 15:04:36 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 138
+2024-09-19 15:04:36 [Thread-5] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-19 15:04:36 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-19 15:04:36 [Thread-5] INFO  c.e.telemetry.config.TcpServerConfig - hb : 138
+2024-09-19 15:21:25 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 2056 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-19 15:21:25 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-19 15:21:28 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-19 15:21:29 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.044s)
+2024-09-19 15:21:29 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-19 15:21:29 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-19 15:21:33 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.777 seconds (process running for 9.405)
+2024-09-19 15:21:42 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":16,"sign":"tangtang","timestamp":"20240919","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-19 15:21:42 [Thread-3] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-19 15:21:42 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-20 09:44:44 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 1944 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-20 09:44:44 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-20 09:44:48 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-20 09:44:48 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.054s)
+2024-09-20 09:44:48 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-20 09:44:48 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-20 09:44:52 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 8.468 seconds (process running for 9.122)
+2024-09-20 09:45:15 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":2,"sign":"tangtang","timestamp":"20240920","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-20 09:45:15 [Thread-3] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-20 09:45:15 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-20 09:45:16 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1500,"ProductId":105,"ProductName":"美式咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"american_style_coffee","order_no":"202409191648095541815325","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240919164929","cmd":"productdone","vmc_no":55418}
+2024-09-20 09:45:16 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409200703045541834321","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240920070440","cmd":"productdone","vmc_no":55418}
+2024-09-20 09:45:16 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":500,"ProductId":108,"ProductName":"Лунго","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"long_coffee","order_no":"202409200723295541899882","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240920072441","cmd":"productdone","vmc_no":55418}
+2024-09-20 09:45:16 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409200904155541839582","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240920090603","cmd":"productdone","vmc_no":55418}
+2024-09-20 09:45:16 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":18000,"ProductId":200,"ProductName":"Кирилучино","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"","order_no":"202409200922195541879033","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240920092411","cmd":"productdone","vmc_no":55418}
+2024-09-20 09:45:17 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":8800,"ProductId":201,"ProductName":"Антонорикано","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"","order_no":"202409200932515541825648","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240920093425","cmd":"productdone","vmc_no":55418}
+2024-09-20 09:45:17 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":9900,"ProductId":200,"ProductName":"Кириллучино","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"","order_no":"202409200940285541857759","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240920094210","cmd":"productdone","vmc_no":55418}
+2024-09-23 12:07:33 [main] INFO  c.e.telemetry.TelemetryApplication - Starting TelemetryApplication using Java 22.0.1 with PID 12816 (C:\Users\vadim.tissen\IdeaProjects\demo\target\classes started by vadim.tissen in C:\Users\vadim.tissen\IdeaProjects\demo)
+2024-09-23 12:07:33 [main] INFO  c.e.telemetry.TelemetryApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-23 12:07:37 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/CoffeeTelemetry (PostgreSQL 16.4)
+2024-09-23 12:07:37 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.049s)
+2024-09-23 12:07:37 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2024-09-23 12:07:37 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2024-09-23 12:07:42 [main] INFO  c.e.telemetry.TelemetryApplication - Started TelemetryApplication in 9.737 seconds (process running for 10.489)
+2024-09-23 12:08:07 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"comp_id":0,"io_version":"V78.37","login_count":2,"sign":"tangtang","timestamp":"20240923","version":"V1.0.4.3_JL15_30","cmd":"login","vmc_no":55418}
+2024-09-23 12:08:07 [Thread-3] INFO  c.e.t.service.ResponseService - Unknown command: machinestatus
+2024-09-23 12:08:07 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"status":"clearerror","cmd":"machinestatus","vmc_no":55418}
+2024-09-23 12:08:08 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409201128265541845897","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240920113010","cmd":"productdone","vmc_no":55418}
+2024-09-23 12:08:08 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":4000,"ProductId":178,"ProductName":"双份长咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"lungo_coffee_2","order_no":"202409201146365541852629","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240920114817","cmd":"productdone","vmc_no":55418}
+2024-09-23 12:08:08 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1500,"ProductId":105,"ProductName":"美式咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"american_style_coffee","order_no":"202409201212315541838936","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240920121355","cmd":"productdone","vmc_no":55418}
+2024-09-23 12:08:08 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":9900,"ProductId":200,"ProductName":"Кириллучино","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"","order_no":"202409201233385541818726","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240920123513","cmd":"productdone","vmc_no":55418}
+2024-09-23 12:08:08 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":8800,"ProductId":201,"ProductName":"Антонорикано","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"","order_no":"202409201520575541855831","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240920152224","cmd":"productdone","vmc_no":55418}
+2024-09-23 12:08:08 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1500,"ProductId":105,"ProductName":"美式咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"american_style_coffee","order_no":"202409201541185541846091","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240920154239","cmd":"productdone","vmc_no":55418}
+2024-09-23 12:08:09 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":3000,"ProductId":243,"ProductName":"拿铁","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"latte","order_no":"202409220952505541843515","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240922095404","cmd":"productdone","vmc_no":55418}
+2024-09-23 12:08:09 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":800,"ProductId":551,"ProductName":"热奶泡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"hot_milk_foam","order_no":"202409220954435541871330","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240922095531","cmd":"productdone","vmc_no":55418}
+2024-09-23 12:08:09 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":3000,"ProductId":243,"ProductName":"拿铁","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"latte","order_no":"202409230734055541822135","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240923073530","cmd":"productdone","vmc_no":55418}
+2024-09-23 12:08:09 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":8800,"ProductId":201,"ProductName":"Антонорикано","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"","order_no":"202409230750225541862962","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240923075157","cmd":"productdone","vmc_no":55418}
+2024-09-23 12:08:10 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409230802405541850975","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240923080420","cmd":"productdone","vmc_no":55418}
+2024-09-23 12:08:10 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":800,"ProductId":551,"ProductName":"热奶泡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"hot_milk_foam","order_no":"202409230804565541811590","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240923080549","cmd":"productdone","vmc_no":55418}
+2024-09-23 12:08:10 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409230826245541836964","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240923082806","cmd":"productdone","vmc_no":55418}
+2024-09-23 12:08:10 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":9900,"ProductId":200,"ProductName":"Кириллучино","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"","order_no":"202409230844565541838335","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240923084632","cmd":"productdone","vmc_no":55418}
+2024-09-23 12:08:10 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":1400,"ProductId":101,"ProductName":"卡布奇诺","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"cappuccino","order_no":"202409230847335541859616","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240923084957","cmd":"productdone","vmc_no":55418}
+2024-09-23 12:08:11 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":4000,"ProductId":178,"ProductName":"双份长咖啡","canisterIds":"","count":0,"isDelete":false,"isok":true,"nameKey":"lungo_coffee_2","order_no":"202409231146415541882973","order_resend_times":0,"order_uploaded":false,"recipeName":"","timestamp":"20240923114824","cmd":"productdone","vmc_no":55418}
+2024-09-23 12:25:27 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - {"PayType":"mdb_cashless","ProductAmount":8800,"ProductId":201,"ProductName":"Антонорикано","canisterIds":"170","count":0,"isDelete":false,"isok":true,"nameKey":"","order_no":"202409231224005541889261","order_resend_times":0,"order_uploaded":false,"recipeName":"Антонмакиато","timestamp":"20240923122526","cmd":"productdone","vmc_no":55418}
+2024-09-23 12:25:27 [Thread-3] INFO  c.e.telemetry.config.TcpServerConfig - hb : 34

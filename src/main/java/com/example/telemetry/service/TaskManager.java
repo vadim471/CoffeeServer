@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+/**
+ * Класс для хранения всех сообщений в очереди (запросы от сервиса или входящие от вендингового аппарата).
+ */
 @Service
 public class TaskManager {
     private final BlockingQueue<Task> taskQueue = new LinkedBlockingQueue<>();

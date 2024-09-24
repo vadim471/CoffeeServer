@@ -17,6 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
+/**
+ * Класс, созданный для отправки запросов на вендинговый аппарат. Должен использоваться Rabbit'ом для обработки входящих
+ * запросов от ОПТИМы
+ */
 @RestController
 public class MachineStatusController {
 

@@ -54,6 +54,12 @@ public class ResponseService {
         return null;
     }
 
+    /**
+     *
+     * @param task - класс, содержащий команду (cmd) и JSON tree.
+     * @return String, JSON тело будущего fram'а
+     * Метод ищет в Map подходящий хендлер согласно пришедшему cmd и передает его в метод, составляющий JSON tree ответ
+     */
     public String generateResponseBody(Task task){
         try {
             ObjectNode jsonNode = task.getBody();
@@ -75,6 +81,10 @@ public class ResponseService {
         return null;
     }
 
+    /**
+     * @param frameSize - размер сгенерированного тела JSON
+     * @return Head fram'а
+     */
     private byte[] generateHeader(int frameSize){
         int firstByteValue = frameSize + 48 + 12;
         byte firstByte = (byte) firstByteValue;
@@ -89,6 +99,11 @@ public class ResponseService {
         return header;
     }
 
+    /**
+     * Метод для конечной генерации frame, который будет отправлен на вендинговый аппарат.
+     * @param header - заголовок frame
+     * @param body - тело, JSON
+     */
     private byte[] createFrame(byte[] header, String body) {
         byte[] bodyBytes = body.getBytes(StandardCharsets.UTF_8);
 
@@ -101,6 +116,11 @@ public class ResponseService {
         return frame;
     }
 
+    /**
+     * @param jsonNode - JSON дерево, поступившее от аппарата, из которого достаются нужные данные (номер машины, номер заказа, тип команды)
+     *                 для генерации ответа
+     * @return JSON дерево, согласно API документации аппарата
+     */
     private ObjectNode handlerHeartbeat(ObjectNode jsonNode){
         ObjectNode response = objectMapper.createObjectNode();
         response.put("cmd", "hb");

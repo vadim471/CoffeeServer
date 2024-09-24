@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-
+/**
+ * Класс для отображения заказов из БД (страница в браузере)
+ */
 @Controller
 public class TelemetryController {
     private final TelemetryDataRepository telemetryDataRepository;

@@ -25,7 +25,6 @@ import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -51,10 +50,11 @@ public class TcpServerConfig {
     private final CoffeeMessageRepository coffeeMessageRepository;
     private final ChinaMessageRepository chinaMessageRepository;
     private final CoffeeOrderRepository coffeeOrderRepository;
+
     private MessageSender messageSender;
     private ServerSocket serverSocket;
-    private static final Logger logger = LoggerFactory.getLogger(TcpServerConfig.class);
-    private int hb_counter = 0;
+    private static final Logger logger                                  = LoggerFactory.getLogger(TcpServerConfig.class);
+    private int hb_counter                                              = 0; ///< счетчик полученных heartbeat за время, возможно понадобится для тестов
 
     @Autowired
     public TcpServerConfig(ResponseService responseService, CoffeeMessageRepository coffeeMessageRepository, ChinaMessageRepository chinaMessageRepository, CoffeeOrderRepository coffeeOrderRepository) {
@@ -83,6 +83,14 @@ public class TcpServerConfig {
             e.printStackTrace();
         }
     }
+
+    /**
+     *
+     * @param clientSocket
+     * @param responseService
+     * Основной метод для поддержки связи между сервисом, вендинговым аппаратом и китайским сервером (прокси).
+     * Все порты, ip-адреса расположены в properties.
+     */
 
     private void handleClient(Socket clientSocket, ResponseService responseService) {
 
@@ -136,8 +144,6 @@ public class TcpServerConfig {
                         /*
                         if (responseFrame != null)
                             messageSender.sendMessage(responseFrame);
-
-
                          */
                     }
                 } catch (IOException e) {

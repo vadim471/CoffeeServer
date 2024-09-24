@@ -3,6 +3,9 @@ package com.example.telemetry.service;
 import java.io.IOException;
 import java.io.OutputStream;
 
+/**
+ * Класс, реализующий отправку сообщений из буфера в стрим
+ */
 public class MessageSender {
 
     private final OutputStream out;

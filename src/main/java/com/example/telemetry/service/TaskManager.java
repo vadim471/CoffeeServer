@@ -1,12 +1,11 @@
 package com.example.telemetry.service;
 
-import com.example.telemetry.config.TcpServerConfig;
-import com.example.telemetry.model.Task;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -15,19 +14,19 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 @Service
 public class TaskManager {
-    private final BlockingQueue<Task> taskQueue = new LinkedBlockingQueue<>();
-    private final ResponseService responseService;
-    private final TcpServerConfig tcpServerConfig;
+    private final BlockingQueue<byte[]> taskQueue                                            = new LinkedBlockingQueue<>();
+    private final SocketStreamManager socketStreamManager;
+
 
     @Autowired
-    public TaskManager(ResponseService responseService, TcpServerConfig tcpServerConfig) {
-        this.responseService = responseService;
-        this.tcpServerConfig = tcpServerConfig;
+    public TaskManager(SocketStreamManager socketStreamManager) {
+        this.socketStreamManager = socketStreamManager;
+
     }
 
-    public void addTask(Task task) {
+    public void addTask(byte[] byteMessage) {
         try {
-            taskQueue.put(task);
+            taskQueue.put(byteMessage);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
@@ -43,8 +42,8 @@ public class TaskManager {
     private void processTask() {
         while (true) {
             try {
-                Task task = taskQueue.take();
-                handleTask(task);
+                byte[] arrByte = taskQueue.take();
+                handleTask(arrByte);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             } catch (IOException e) {
@@ -53,11 +52,15 @@ public class TaskManager {
         }
     }
 
-    private void handleTask(Task task) throws IOException {
+    private void handleTask(byte[] byteMessage) throws IOException {
         try {
-            byte[] response = responseService.processTelemetry(task);
+            //byte[] response = responseService.processTelemetry(task);
 
-            tcpServerConfig.sendCommandToMachine(response);
+            if (socketStreamManager.hasStreams()) {
+                OutputStream out = socketStreamManager.getOutputStream();
+                out.write(byteMessage);
+                out.flush();
+            }
         } catch (Exception e){
             e.printStackTrace();
         }

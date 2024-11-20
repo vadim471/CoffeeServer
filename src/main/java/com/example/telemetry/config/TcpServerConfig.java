@@ -7,9 +7,11 @@ import com.example.telemetry.model.Task;
 import com.example.telemetry.repository.ChinaMessageRepository;
 import com.example.telemetry.repository.CoffeeMessageRepository;
 import com.example.telemetry.repository.CoffeeOrderRepository;
-import com.example.telemetry.service.MessageSender;
 import com.example.telemetry.service.ResponseService;
+import com.example.telemetry.service.SocketStreamManager;
+import com.example.telemetry.service.TaskManager;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
@@ -25,7 +27,6 @@ import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Optional;
 
 
@@ -46,22 +47,27 @@ public class TcpServerConfig {
     @Value("${expectedFrames}")
     private String expected;
 
-    private final ResponseService responseService;
+    private final TaskManager taskManager;
     private final CoffeeMessageRepository coffeeMessageRepository;
     private final ChinaMessageRepository chinaMessageRepository;
     private final CoffeeOrderRepository coffeeOrderRepository;
+    private final ObjectMapper objectMapper =                                       new ObjectMapper();
 
-    private MessageSender messageSender;
+    //private static MessageSender messageSender;
     private ServerSocket serverSocket;
     private static final Logger logger                                  = LoggerFactory.getLogger(TcpServerConfig.class);
     private int hb_counter                                              = 0; ///< счетчик полученных heartbeat за время, возможно понадобится для тестов
+    private final SocketStreamManager socketStreamManager;
+    private final ResponseService responseService;
 
     @Autowired
-    public TcpServerConfig(ResponseService responseService, CoffeeMessageRepository coffeeMessageRepository, ChinaMessageRepository chinaMessageRepository, CoffeeOrderRepository coffeeOrderRepository) {
-        this.responseService = responseService;
+    public TcpServerConfig(ResponseService responseService, TaskManager manager, CoffeeMessageRepository coffeeMessageRepository, ChinaMessageRepository chinaMessageRepository, CoffeeOrderRepository coffeeOrderRepository, SocketStreamManager streamManager) {
         this.coffeeMessageRepository = coffeeMessageRepository;
         this.chinaMessageRepository = chinaMessageRepository;
         this.coffeeOrderRepository = coffeeOrderRepository;
+        this.socketStreamManager = streamManager;
+        this.taskManager = manager;
+        this.responseService = responseService;
     }
 
     @PostConstruct
@@ -77,7 +83,8 @@ public class TcpServerConfig {
             while (true) {
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("Accepted connection from " + clientSocket.getInetAddress());
-                handleClient(clientSocket, responseService);
+                System.out.println(clientSocket.getPort());
+                handleClient(clientSocket);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -87,25 +94,27 @@ public class TcpServerConfig {
     /**
      *
      * @param clientSocket
-     * @param responseService
      * Основной метод для поддержки связи между сервисом, вендинговым аппаратом и китайским сервером (прокси).
      * Все порты, ip-адреса расположены в properties.
      */
 
-    private void handleClient(Socket clientSocket, ResponseService responseService) {
+    private void handleClient(Socket clientSocket) {
 
         try (InputStream in = clientSocket.getInputStream();
              OutputStream out = clientSocket.getOutputStream();
+
              Socket chinaSocket = new Socket(chinaIp, chinaPort);
              InputStream chinaIn = chinaSocket.getInputStream();
              OutputStream chinaOut = chinaSocket.getOutputStream()) {
 
+
+
             Thread forwardThread = new Thread(() -> {
                 try {
-                    messageSender = new MessageSender(out);
+                    socketStreamManager.setStreams(in, out);
 
                     byte[] header = new byte[4];
-                    byte[] buffer = new byte[1024];
+                    byte[] buffer = new byte[2048];
 
                     int bytesRead;
                     while ((bytesRead = in.read(buffer)) != -1) {
@@ -121,10 +130,16 @@ public class TcpServerConfig {
                         String jsonBody = new String(bodyBuffer, StandardCharsets.UTF_8);
                         System.out.println("Received from machine to server: " + jsonBody);
 
-                        ObjectNode body = (ObjectNode) responseService.getObjectMapper().readTree(jsonBody);
+                        ObjectNode body = (ObjectNode) objectMapper.readTree(jsonBody);
                         Task task = new Task(body.get("cmd").asText(), body);
-                        byte[] responseFrame = responseService.processTelemetry(task);
+                        byte[] response = responseService.processTelemetry(task);
+                        /*
+                        if (response != null)
+                            taskManager.addTask(response);
 
+                         */
+                        //byte[] responseFrame = responseService.processTelemetry(task);
+                        /*
                         if (!Objects.equals(body.get("cmd").asText(), "hb")) {
                             logger.info(jsonBody);
                             if (hb_counter > 0)
@@ -133,18 +148,15 @@ public class TcpServerConfig {
                             hb_counter++;
                         }
 
+                         */
+
                         if (jsonBody.contains("PayType")) {
                             saveCoffeeOrder(jsonBody);
-                        } else {
-                            //saveCoffeeMessage(jsonBody); //to DB for what??
                         }
                         //saveFrameToFile(header, jsonBody, input); //for creating tests
-                        chinaOut.write(buffer, 0, bytesRead);
+
+                        chinaOut.write(buffer, 0, bytesRead); //it's for proxy
                         chinaOut.flush();
-                        /*
-                        if (responseFrame != null)
-                            messageSender.sendMessage(responseFrame);
-                         */
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -154,11 +166,13 @@ public class TcpServerConfig {
             Thread reverseThread = new Thread(() -> {
                 try {
                     byte[] responseHeader = new byte[4];
-                    byte[] responseBuffer = new byte[1024];
+                    byte[] responseBuffer = new byte[2048];
                     int bytesRead;
+
                     while ((bytesRead = chinaIn.read(responseBuffer)) != -1) {
 
                         System.arraycopy(responseBuffer, 0, responseHeader, 0, 4);
+
                         getChinaHeader(responseHeader);
                         int responseBodyLength = getPacketSize(responseHeader);
                         byte[] responseBodyBuffer = new byte[responseBodyLength];
@@ -168,11 +182,16 @@ public class TcpServerConfig {
                         String responseJsonBody = new String(responseBodyBuffer, StandardCharsets.UTF_8);
                         System.out.println("Received from server to machine: " + responseJsonBody);
 
-                        //saveChinaMessage(responseJsonBody);  //to DB for what??
-                        //saveFrameToFile(responseHeader, responseJsonBody, expected); //for creating tests
 
+                        ObjectNode body = (ObjectNode) objectMapper.readTree(responseJsonBody);
+                        Task task = new Task(body.get("cmd").asText(), body);
+                        //byte[] response = responseService.processTelemetry(task);
+                        //taskManager.addTask(responseBodyBuffer);
                         out.write(responseBuffer, 0, bytesRead);
                         out.flush();
+
+                        //saveFrameToFile(responseHeader, responseJsonBody, expected); //for creating tests
+
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -196,23 +215,11 @@ public class TcpServerConfig {
         }
     }
 
-    private void saveFrameToFile(byte[] header, String body, String filename) throws IOException{
-        try (FileOutputStream fos = new FileOutputStream(filename, true)){
-            fos.write("Header : " .getBytes(StandardCharsets.UTF_8));
-            fos.write(header);
-            fos.write('\n');
-        }
-
-        try (FileWriter writer = new FileWriter(filename, true)) {
-            writer.write("Body : " + body + "\n\n");
-
-        }
-    }
     private void saveCoffeeOrder(String responseJsonBody) throws JsonProcessingException {
-        ObjectNode body = (ObjectNode) responseService.getObjectMapper().readTree(responseJsonBody);
+        ObjectNode body = (ObjectNode) objectMapper.readTree(responseJsonBody);
+
         if (body.get("nameKey") != null) {
             Optional<CoffeeOrder> existingMessage = coffeeOrderRepository.findByProductName(body.get("nameKey").asText());
-
 
             if (existingMessage.isPresent()) {
                 CoffeeOrder message = existingMessage.get();
@@ -230,6 +237,42 @@ public class TcpServerConfig {
         }
     }
 
+    /*
+    public static void sendCommandToMachine(byte[] data) throws IOException {
+        if (messageSender != null) {
+            //messageSender.sendMessage(data);
+        } else {
+            System.out.println("No active connections!");
+        }
+    }
+
+     */
+
+    private void getChinaHeader(byte[] buffer) {
+        for (int i = 0; i < buffer.length; i++)
+            buffer[i] = (byte) (buffer[i] - 48);
+    }
+
+    private int getPacketSize(byte[] headerBuffer) {
+        ByteBuffer byteBuffer = ByteBuffer.wrap(headerBuffer);
+        byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
+        return byteBuffer.getInt() - 12; //12 - size of header
+    }
+
+    private void saveFrameToFile(byte[] header, String body, String filename) throws IOException{
+        try (FileOutputStream fos = new FileOutputStream(filename, true)){
+            fos.write("Header : " .getBytes(StandardCharsets.UTF_8));
+            fos.write(header);
+            fos.write('\n');
+        }
+
+        try (FileWriter writer = new FileWriter(filename, true)) {
+            writer.write("Body : " + body + "\n\n");
+
+        }
+    }
+
+    @Deprecated
     private void saveChinaMessage(String jsonBody) {
         Optional<ChinaMessage> existingMessage = chinaMessageRepository.findByMessage(jsonBody);
 
@@ -245,6 +288,7 @@ public class TcpServerConfig {
         }
     }
 
+    @Deprecated
     private void saveCoffeeMessage(String jsonBody) {
         Optional<CoffeeMessage> existingMessage = coffeeMessageRepository.findByMessage(jsonBody);
 
@@ -258,24 +302,5 @@ public class TcpServerConfig {
             newMessage.setRepeatCount(1);
             coffeeMessageRepository.save(newMessage);
         }
-    }
-
-    public void sendCommandToMachine(byte[] data) throws IOException {
-        if (messageSender != null) {
-            messageSender.sendMessage(data);
-        } else {
-            System.out.println("No active connections!");
-        }
-    }
-
-    private void getChinaHeader(byte[] buffer) {
-        for (int i = 0; i < buffer.length; i++)
-            buffer[i] = (byte) (buffer[i] - 48);
-    }
-
-    private int getPacketSize(byte[] headerBuffer) {
-        ByteBuffer byteBuffer = ByteBuffer.wrap(headerBuffer);
-        byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
-        return byteBuffer.getInt() - 12; //12 - size of header
     }
 }

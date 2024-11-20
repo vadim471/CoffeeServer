@@ -71,7 +71,7 @@ public class MachineStatusController {
             jsonNode.put("operation", remoteOperations.getOperation());
 
             Task task = new Task(jsonNode.get("cmd").asText(), jsonNode);
-            taskManager.addTask(task);
+            //taskManager.addTask(task); rewrite on byte array
 
             return ResponseEntity.ok().build();
         } catch (Exception e){

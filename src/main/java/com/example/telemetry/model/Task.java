@@ -6,6 +6,7 @@ public class Task {
     private String command;
     private ObjectNode body;
 
+
     public Task(String command, ObjectNode body) {
         this.command = command;
         this.body = body;

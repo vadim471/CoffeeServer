@@ -1,34 +1,40 @@
-package com.example.telemetry.service;
+package com.example.telemetry.manager;
 
 
+import com.example.telemetry.model.CoffeeOrder;
 import com.example.telemetry.model.Task;
 import com.example.telemetry.model.TelemetryData;
+import com.example.telemetry.repository.CoffeeOrderRepository;
 import com.example.telemetry.repository.TelemetryDataRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Function;
 
 @Service
-public class ResponseService {
+public class ResponseManager {
     private final ObjectMapper objectMapper =                                       new ObjectMapper();
-    private static final Logger LOGGER =                                            LoggerFactory.getLogger(ResponseService.class);
+    private static final Logger logger =                                            LoggerFactory.getLogger(ResponseManager.class);
     private final Map<String, Function<ObjectNode, ObjectNode>> commandHandlers =   new HashMap<>();
     private final TelemetryDataRepository telemetryDataRepository;
+    private final CoffeeOrderRepository coffeeOrderRepository;
+
+    @Value("${dir}")
+    private String dir;
+
 
     @Autowired
-    public ResponseService(TelemetryDataRepository telemetryDataRepository) {
+    public ResponseManager(TelemetryDataRepository telemetryDataRepository, CoffeeOrderRepository coffeeOrderRepository) throws JsonProcessingException {
         commandHandlers.put("hb", this :: handlerHeartbeat);
         commandHandlers.put("login", this :: handlerLogin);
         //commandHandlers.put("machinestatus", this :: handlerMachineStatus);
@@ -36,10 +42,14 @@ public class ResponseService {
         commandHandlers.put("error", this :: handlerError);
         commandHandlers.put("rinsingrecord", this :: handleRinsing);
         commandHandlers.put("remote", this :: handlerRemote);
+        commandHandlers.put("upgrade", this::handlerUpgradeRecipe);
         this.telemetryDataRepository = telemetryDataRepository;
+        this.coffeeOrderRepository = coffeeOrderRepository;
     }
 
-    public byte[] processTelemetry(Task task){
+    //тестовый метод
+    /*
+    public byte[] switchUrlPath(Task task) {
         try {
             String responseBody = generateResponseBody(task);
             if (responseBody == null)
@@ -54,8 +64,23 @@ public class ResponseService {
         return null;
     }
 
+     */
+
+    public byte[] processTelemetry(Task task){
+        try {
+            String responseBody = generateResponseBody(task);
+            if (responseBody == null)
+                return null;
+            int responseLength = responseBody.getBytes(StandardCharsets.UTF_8).length;
+            byte[] responseHeader = generateHeader(responseLength);
+            return createFrame(responseHeader, responseBody);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
     /**
-     *
      * @param task - класс, содержащий команду (cmd) и JSON tree.
      * @return String, JSON тело будущего fram'а
      * Метод ищет в Map подходящий хендлер согласно пришедшему cmd и передает его в метод, составляющий JSON tree ответ
@@ -72,7 +97,7 @@ public class ResponseService {
                 //System.out.println("My response: " + receiveBody);
                 return objectMapper.writeValueAsString(response);
             } else {
-                LOGGER.info("Unknown command: " + cmd);
+                logger.info("Unknown command: " + cmd);
                 return null;
             }
         } catch (Exception e) {
@@ -141,9 +166,10 @@ public class ResponseService {
 
     private ObjectNode handlerRemote(ObjectNode jsonNode){
         ObjectNode response = objectMapper.createObjectNode();
+        int vmcNumber = jsonNode.get("vmc_no").asInt();
         response.put("cmd", "remote");
-        response.put("vmc_no", jsonNode.get("vmc_no").asInt());
-        response.put("session_id", "202408261843585541821673");
+        response.put("vmc_no", vmcNumber);
+        response.put("session_id", generateSessionId(vmcNumber));
         response.put("operation", jsonNode.get("operation").asText());
         return response;
     }
@@ -156,9 +182,22 @@ public class ResponseService {
         return response;
     }
 
-    private ObjectNode handlerProductCompletion(ObjectNode jsonNode){
+    private ObjectNode handlerUpgradeRecipe(ObjectNode jsonNode) {
+        ObjectNode response = objectMapper.createObjectNode();
+        int vmcNumber = jsonNode.get("vmc_no").asInt();
+        response.put("cmd", "upgrade");
+        response.put("type", "recipe");
+        response.put("vmc_no", vmcNumber);
+        response.put("session_id", generateSessionId(vmcNumber));
+        response.put("notify_url", "");
+        response.put("dir", dir);
+        return response;
+    }
+
+    private ObjectNode handlerProductCompletion(ObjectNode jsonNode) {
         if (!Objects.equals(jsonNode.get("PayType").asText(), "test"))
             saveTelemetryData(jsonNode);
+        saveCoffeeOrder(jsonNode);
         ObjectNode response = objectMapper.createObjectNode();
         response.put("cmd", "productdone_r");
         response.put("vmc_no", jsonNode.get("vmc_no").asInt());
@@ -209,5 +248,35 @@ public class ResponseService {
 
         TelemetryData data = new TelemetryData(productId, nameKey, productAmount, payType, date);
         telemetryDataRepository.save(data);
+    }
+
+    private void saveCoffeeOrder(ObjectNode body) {
+        if (body.get("nameKey") != null) {
+            Optional<CoffeeOrder> existingMessage = coffeeOrderRepository.findByProductName(body.get("nameKey").asText());
+
+            if (existingMessage.isPresent()) {
+                CoffeeOrder message = existingMessage.get();
+                message.setProductPriceSumm(message.getProductPriceSumm() + body.get("ProductAmount").asInt() / 100);
+                message.setProductRepeat(message.getProductRepeat() + 1);
+                coffeeOrderRepository.save(message);
+            } else {
+                CoffeeOrder newMessage = new CoffeeOrder();
+                newMessage.setProductName(body.get("nameKey").asText());
+                newMessage.setProductLastPrice(body.get("ProductAmount").asInt() / 100);
+                newMessage.setProductPriceSumm(body.get("ProductAmount").asInt() / 100);
+                newMessage.setProductRepeat(1);
+                coffeeOrderRepository.save(newMessage);
+            }
+        }
+    }
+
+    private static String generateSessionId(int vmcNumber) {
+
+        LocalDateTime dateTime = LocalDateTime.now().plusHours(3);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        String formattedDateTime = dateTime.format(formatter);
+        Random randomInt = new Random();
+        String randomPart = String.format("%05d", randomInt.nextInt(100000));
+        return formattedDateTime + vmcNumber + randomPart;
     }
 }

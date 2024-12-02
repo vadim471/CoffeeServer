@@ -1,7 +1,7 @@
 package com.example.telemetry;
 
 import com.example.telemetry.model.Task;
-import com.example.telemetry.service.ResponseService;
+import com.example.telemetry.manager.ResponseManager;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -13,8 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,10 +25,10 @@ class JetinnoTelemetryApplicationTests {
 	@Value("${expectedFrames}")
 	private String expectedFrames;
 
-	private final ResponseService responseService;
+	private final ResponseManager responseService;
 
 	@Autowired
-    public JetinnoTelemetryApplicationTests(ResponseService responseService) {
+    public JetinnoTelemetryApplicationTests(ResponseManager responseService) {
         this.responseService = responseService;
     }
 

@@ -1,19 +1,14 @@
 package com.example.telemetry.controller;
 
 import com.example.telemetry.enums.RemoteOperations;
+
 import com.example.telemetry.model.Task;
-import com.example.telemetry.service.ResponseService;
-import com.example.telemetry.service.TaskManager;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.telemetry.manager.ResponseManager;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -22,15 +17,26 @@ import java.util.Map;
  * запросов от ОПТИМы
  */
 @RestController
-public class MachineStatusController {
+@RequestMapping("/command")
+public class MachineController {
 
-    private final TaskManager taskManager;
-    private final ResponseService responseService;
+    private final ResponseManager responseManager;
 
     @Autowired
-    public MachineStatusController(TaskManager taskManager, ResponseService responseService) {
-        this.taskManager = taskManager;
-        this.responseService = responseService;
+    public MachineController(ResponseManager responseManager) {
+        this.responseManager = responseManager;
+
+    }
+
+    @GetMapping("/recipe")
+    public void sendRecipe() {
+        try {
+            //Task task = new Task("upgrade", );
+            //byte[] response = responseManager.processTelemetry(task);
+            //taskManager.addTask(task);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
  /*
@@ -54,7 +60,6 @@ public class MachineStatusController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
     */
 
@@ -65,7 +70,7 @@ public class MachineStatusController {
             String operation = ((String) request.get("operation")).toUpperCase();
             RemoteOperations remoteOperations = RemoteOperations.valueOf(operation);
 
-            ObjectNode jsonNode = responseService.getObjectMapper().createObjectNode();
+            ObjectNode jsonNode = responseManager.getObjectMapper().createObjectNode();
             jsonNode.put("cmd", "remote");
             jsonNode.put("vmc_no", 55418);
             jsonNode.put("operation", remoteOperations.getOperation());

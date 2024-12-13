@@ -1,7 +1,7 @@
 package com.example.telemetry;
 
 import com.example.telemetry.model.Task;
-import com.example.telemetry.manager.ResponseManager;
+import com.example.telemetry.generator.ResponseGenerator;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -25,10 +25,10 @@ class JetinnoTelemetryApplicationTests {
 	@Value("${expectedFrames}")
 	private String expectedFrames;
 
-	private final ResponseManager responseService;
+	private final ResponseGenerator responseService;
 
 	@Autowired
-    public JetinnoTelemetryApplicationTests(ResponseManager responseService) {
+    public JetinnoTelemetryApplicationTests(ResponseGenerator responseService) {
         this.responseService = responseService;
     }
 

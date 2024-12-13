@@ -5,7 +5,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -22,15 +21,46 @@ public class TelemetryData {
     private Integer productAmount;
     private String payType;
     private LocalDateTime date; //from timestamp Format：%Y%m%d%H%M%S
+    private int vmc_number;
+    private String order_no;
+    private String status;
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setOrder_no(String order_no) {
+        this.order_no = order_no;
+    }
+
+    public String getOrder_no() {
+        return order_no;
+    }
+
     public TelemetryData(){
     }
 
-    public TelemetryData(Integer product_id, String nameKey, Integer productAmount, String payType, LocalDateTime date){
+    public void setVmc_number(int vmc_number) {
+        this.vmc_number = vmc_number;
+    }
+
+    public int getVmc_number() {
+        return vmc_number;
+    }
+
+    public TelemetryData(Integer product_id, String nameKey, Integer productAmount, String payType, LocalDateTime date, int vmcNumber, String order_no, String status){
         this.product_id = product_id;
         this.nameKey = nameKey;
         this.productAmount = productAmount;
         this.payType = payType;
         this.date = date;
+        this.vmc_number = vmcNumber;
+        this.order_no = order_no;
+        this.status = status;
     }
 
     public void setDate(LocalDateTime date) {

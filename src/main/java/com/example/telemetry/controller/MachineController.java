@@ -1,76 +1,103 @@
 package com.example.telemetry.controller;
 
-import com.example.telemetry.enums.RemoteOperations;
-
+import com.example.telemetry.generator.RequestGenerator;
+import com.example.telemetry.manager.MachinesManager;
 import com.example.telemetry.model.Task;
-import com.example.telemetry.manager.ResponseManager;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
+import java.net.InetAddress;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Класс, созданный для отправки запросов на вендинговый аппарат. Должен использоваться Rabbit'ом для обработки входящих
  * запросов от ОПТИМы
  */
 @RestController
-@RequestMapping("/command")
 public class MachineController {
 
-    private final ResponseManager responseManager;
+    private final RequestGenerator requestGenerator;
+    private final MachinesManager machinesManager;
 
     @Autowired
-    public MachineController(ResponseManager responseManager) {
-        this.responseManager = responseManager;
-
+    public MachineController(RequestGenerator requestGenerator, MachinesManager machinesManager) {
+        this.requestGenerator = requestGenerator;
+        this.machinesManager = machinesManager;
     }
 
-    @GetMapping("/recipe")
-    public void sendRecipe() {
+    @GetMapping("/ping")
+    public HttpStatus ping() {
+        return HttpStatus.resolve(200);
+    }
+
+    //Can exclude cmd
+    //4 point part for recipe
+    @PostMapping("/setrecipes")
+    public void sendRecipe(@RequestParam String ip) {
         try {
-            //Task task = new Task("upgrade", );
-            //byte[] response = responseManager.processTelemetry(task);
-            //taskManager.addTask(task);
+            InetAddress machineAddress = InetAddress.getByName(ip);
+            int vmcNumber = machinesManager.getVmcNumber(machineAddress);
+            byte[] response = requestGenerator.processTelemetry("upgrade", vmcNumber, "recipe");
+
+            CompletableFuture<byte[]> bytes = machinesManager.handleRequest(machineAddress, response);
+            if (bytes != null) {
+                 bytes.whenComplete((res, error) -> {
+                    System.out.println(res);
+                 });
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
- /*
-    @PostMapping("/machinestatus")
-    public void getMachineStatus(@RequestBody Map<String, Object> request) {
+    @PostMapping("/setproducts")
+    public void send(@RequestParam String ip) {
         try {
+            InetAddress machineAddress = InetAddress.getByName(ip);
+            int vmcNumber = machinesManager.getVmcNumber(machineAddress);
+            byte[] response = requestGenerator.processTelemetry("upgrade", vmcNumber, "recipe");
+
+            CompletableFuture<byte[]> bytes = machinesManager.handleRequest(machineAddress, response);
+            if (bytes != null) {
+                bytes.whenComplete((res, error) -> {
+                    System.out.println(res);
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
-            String status = (String) request.get("status");
-            MachineStatus machineStatus = MachineStatus.valueOf(status);
+    @PostMapping("/supply")
+    public void getMachineStatus(@RequestParam String ip) {
+        try {
+            InetAddress machineAddress = InetAddress.getByName(ip);
+            int vmcNumber = machinesManager.getVmcNumber(machineAddress);
+            byte[] response = requestGenerator.processTelemetry("remote", vmcNumber, "sync");
 
-            ObjectNode jsonNode = responseService.getObjectMapper().createObjectNode();
-            jsonNode.put("cmd", "machinestatus");
-            jsonNode.put("vmc_no", (Integer) request.get("vmc_no"));
-            jsonNode.put("status", machineStatus.getStatus());
-
-            responseService.processTelemetry(jsonNode);
-
-
+            CompletableFuture<byte[]> bytes = machinesManager.handleRequest(machineAddress, response);
+                if (bytes != null) {
+                bytes.whenComplete((res, error) -> {
+                    Task responseTask = requestGenerator.generateTaskFromResponseBytes(res);
+                    System.out.println("FROM CONTROLLER!!!11" + responseTask.getBody());
+                });
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    */
 
 
+/*
     @PostMapping("/remote")
     public ResponseEntity<Void> getReconfiguration(@RequestBody Map<String, Object> request) {
         try {
             String operation = ((String) request.get("operation")).toUpperCase();
             RemoteOperations remoteOperations = RemoteOperations.valueOf(operation);
 
-            ObjectNode jsonNode = responseManager.getObjectMapper().createObjectNode();
+            ObjectNode jsonNode = responseGenerator.getObjectMapper().createObjectNode();
             jsonNode.put("cmd", "remote");
             jsonNode.put("vmc_no", 55418);
             jsonNode.put("operation", remoteOperations.getOperation());
@@ -84,5 +111,7 @@ public class MachineController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+  */
 
 }

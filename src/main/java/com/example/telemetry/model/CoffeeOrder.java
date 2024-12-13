@@ -17,15 +17,25 @@ public class CoffeeOrder {
     private Integer productLastPrice;
     private Integer productRepeat;
     private Integer productPriceSumm;
+    private Integer productId;
 
     public CoffeeOrder() {
     }
 
-    public CoffeeOrder(String productName, Integer productLastPrice, Integer productRepeat, Integer productPriceSumm) {
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public CoffeeOrder(String productName, Integer productLastPrice, Integer productRepeat, Integer productPriceSumm, Integer productId) {
         this.productName = productName;
         this.productLastPrice = productLastPrice;
         this.productRepeat = productRepeat;
         this.productPriceSumm = productPriceSumm;
+        this.productId = productId;
     }
 
     public void setProductRepeat(Integer productRepeat) {

@@ -33,7 +33,7 @@
     </thead>
     <tbody>
     <tr th:each="telemetry : ${telemetryDataList}">
-        <td th:text="${telemetry.product_id}"></td>
+        <td th:text="${telemetry.productId}"></td>
         <td th:text="${telemetry.nameKey}"></td>
         <td th:text="${telemetry.productAmount}"></td>
         <td th:text="${telemetry.formattedDate}"></td>
@@ -42,7 +42,7 @@
     </tbody>
 </table>
 <script>
-    function sendStatus(status) {
+    function sendStatus(operation) {
         fetch('/machinestatus', {
             method: 'POST',
             headers: {

@@ -1,10 +1,11 @@
-package com.example.telemetry.manager;
+package com.example.telemetry.generator;
 
 
 import com.example.telemetry.model.CoffeeOrder;
 import com.example.telemetry.model.Task;
 import com.example.telemetry.model.TelemetryData;
 import com.example.telemetry.repository.CoffeeOrderRepository;
+import com.example.telemetry.repository.ErrorRepository;
 import com.example.telemetry.repository.TelemetryDataRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,7 +13,6 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -22,49 +22,40 @@ import java.util.*;
 import java.util.function.Function;
 
 @Service
-public class ResponseManager {
+public class ResponseGenerator {
     private final ObjectMapper objectMapper =                                       new ObjectMapper();
-    private static final Logger logger =                                            LoggerFactory.getLogger(ResponseManager.class);
+    private static final Logger logger =                                            LoggerFactory.getLogger(ResponseGenerator.class);
     private final Map<String, Function<ObjectNode, ObjectNode>> commandHandlers =   new HashMap<>();
     private final TelemetryDataRepository telemetryDataRepository;
     private final CoffeeOrderRepository coffeeOrderRepository;
-
-    @Value("${dir}")
-    private String dir;
-
+    private final ErrorRepository errorRepository;
 
     @Autowired
-    public ResponseManager(TelemetryDataRepository telemetryDataRepository, CoffeeOrderRepository coffeeOrderRepository) throws JsonProcessingException {
+    public ResponseGenerator(TelemetryDataRepository telemetryDataRepository, CoffeeOrderRepository coffeeOrderRepository, ErrorRepository errorRepository) throws JsonProcessingException {
         commandHandlers.put("hb", this :: handlerHeartbeat);
         commandHandlers.put("login", this :: handlerLogin);
-        //commandHandlers.put("machinestatus", this :: handlerMachineStatus);
+        commandHandlers.put("machinestatus", this :: handlerMachineStatus);
         commandHandlers.put("productdone", this :: handlerProductCompletion);
         commandHandlers.put("error", this :: handlerError);
         commandHandlers.put("rinsingrecord", this :: handleRinsing);
         commandHandlers.put("remote", this :: handlerRemote);
-        commandHandlers.put("upgrade", this::handlerUpgradeRecipe);
+
         this.telemetryDataRepository = telemetryDataRepository;
         this.coffeeOrderRepository = coffeeOrderRepository;
+        this.errorRepository = errorRepository;
     }
 
-    //тестовый метод
-    /*
-    public byte[] switchUrlPath(Task task) {
+    public Task generateTaskFromBytes(byte[] array) {
         try {
-            String responseBody = generateResponseBody(task);
-            if (responseBody == null)
-                return null;
-            //System.out.println(responseBody);
-            int responseLength = responseBody.getBytes(StandardCharsets.UTF_8).length;
-            byte[] responseHeader = generateHeader(responseLength);
-            return createFrame(responseHeader, responseBody);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+            String body = new String(array, StandardCharsets.UTF_8);
+            ObjectNode objectNode = (ObjectNode) objectMapper.readTree(body);
+            String cmd = objectNode.get("cmd").asText();
+            return new Task(cmd, objectNode);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return null;
         }
-        return null;
     }
-
-     */
 
     public byte[] processTelemetry(Task task){
         try {
@@ -94,7 +85,6 @@ public class ResponseManager {
             Function<ObjectNode, ObjectNode> receiveBody = commandHandlers.get(cmd);
             if (receiveBody != null) {
                 ObjectNode response = receiveBody.apply(jsonNode);
-                //System.out.println("My response: " + receiveBody);
                 return objectMapper.writeValueAsString(response);
             } else {
                 logger.info("Unknown command: " + cmd);
@@ -170,6 +160,7 @@ public class ResponseManager {
         response.put("cmd", "remote");
         response.put("vmc_no", vmcNumber);
         response.put("session_id", generateSessionId(vmcNumber));
+        response.put("notify_url", "");
         response.put("operation", jsonNode.get("operation").asText());
         return response;
     }
@@ -177,20 +168,8 @@ public class ResponseManager {
     private ObjectNode handlerMachineStatus(ObjectNode jsonNode){
         ObjectNode response = objectMapper.createObjectNode();
         response.put("status", jsonNode.get("status").asText());
-        response.put("cmd", "machinestatus");
         response.put("vmc_no", jsonNode.get("vmc_no").asInt());
-        return response;
-    }
-
-    private ObjectNode handlerUpgradeRecipe(ObjectNode jsonNode) {
-        ObjectNode response = objectMapper.createObjectNode();
-        int vmcNumber = jsonNode.get("vmc_no").asInt();
-        response.put("cmd", "upgrade");
-        response.put("type", "recipe");
-        response.put("vmc_no", vmcNumber);
-        response.put("session_id", generateSessionId(vmcNumber));
-        response.put("notify_url", "");
-        response.put("dir", dir);
+        response.put("cmd", "machinestatus");
         return response;
     }
 
@@ -206,7 +185,8 @@ public class ResponseManager {
         return response;
     }
 
-    private ObjectNode handlerError(ObjectNode jsonNode){
+    private ObjectNode handlerError(ObjectNode jsonNode) {
+        errorRepository.;
         ObjectNode response = objectMapper.createObjectNode();
         response.put("cmd", "error_r");
         response.put("vmc_no", jsonNode.get("vmc_no").asInt());
@@ -221,7 +201,7 @@ public class ResponseManager {
         return response;
     }
 
-    private String formatDate(){
+    public static String formatDate(){
         LocalDateTime date = LocalDateTime.now();
         return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
@@ -236,6 +216,10 @@ public class ResponseManager {
         String payType = jsonNode.get("PayType").asText();
         Integer productAmount = jsonNode.get("ProductAmount").asInt() / 100;
         String timestamp = jsonNode.get("timestamp").asText();
+        int vmcNumber = jsonNode.get("vmc_no").asInt();
+        String orderNumber = jsonNode.get("order_no").asText();
+
+        String status = (jsonNode.get("isok").asText() == "true") ? "success" : "failed";
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
         LocalDateTime date = LocalDateTime.parse(timestamp, formatter);
@@ -246,13 +230,13 @@ public class ResponseManager {
             return;
 
 
-        TelemetryData data = new TelemetryData(productId, nameKey, productAmount, payType, date);
+        TelemetryData data = new TelemetryData(productId, nameKey, productAmount, payType, date, vmcNumber, orderNumber, status);
         telemetryDataRepository.save(data);
     }
 
     private void saveCoffeeOrder(ObjectNode body) {
-        if (body.get("nameKey") != null) {
-            Optional<CoffeeOrder> existingMessage = coffeeOrderRepository.findByProductName(body.get("nameKey").asText());
+        if (body.get("ProductId") != null) {
+            Optional<CoffeeOrder> existingMessage = coffeeOrderRepository.findByProductId(body.get("ProductId").asInt());
 
             if (existingMessage.isPresent()) {
                 CoffeeOrder message = existingMessage.get();
@@ -270,7 +254,14 @@ public class ResponseManager {
         }
     }
 
-    private static String generateSessionId(int vmcNumber) {
+    private void saveErrorMessage(ObjectNode jsonNode) {
+        String errorCode = jsonNode.get("error_code").asText();
+        String errorDescription = jsonNode.get("error_description").asText();
+        String
+
+    }
+
+    public static String generateSessionId(int vmcNumber) {
 
         LocalDateTime dateTime = LocalDateTime.now().plusHours(3);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");

@@ -1,13 +1,10 @@
 package com.example.telemetry.config;
 
 
+import com.example.telemetry.manager.MachinesManager;
 import com.example.telemetry.repository.CoffeeOrderRepository;
-import com.example.telemetry.factory.ConnectionFactory;
-import com.example.telemetry.manager.ResponseManager;
+import com.example.telemetry.generator.ResponseGenerator;
 import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -22,12 +19,6 @@ public class TcpEntryPoint {
     @Value("${tcp.server.port}")
     private int port;
 
-    @Value("${tcp.china_server.port}")
-    private int chinaPort;
-
-    @Value("${china_server_ip}")
-    private String chinaIp;
-
     @Value("${inputFrames}")
     private String input;
 
@@ -37,17 +28,15 @@ public class TcpEntryPoint {
     private final CoffeeOrderRepository coffeeOrderRepository;
 
     private ServerSocket serverSocket;
-    private static final Logger logger                                  = LoggerFactory.getLogger(TcpEntryPoint.class);
-    private int hb_counter                                              = 0; ///< счетчик полученных heartbeat за время, возможно понадобится для тестов
 
-    private final ResponseManager responseService;
-    private final ConnectionFactory connectionFactory;
+    private final ResponseGenerator responseService;
+    private final MachinesManager connectionFactory;
 
 
     @Autowired
-    public TcpEntryPoint(ResponseManager responseService, CoffeeOrderRepository coffeeOrderRepository) {
+    public TcpEntryPoint(ResponseGenerator responseService, CoffeeOrderRepository coffeeOrderRepository, MachinesManager connectionFactory) {
         this.coffeeOrderRepository = coffeeOrderRepository;
-        this.connectionFactory = new ConnectionFactory();
+        this.connectionFactory = connectionFactory;
         this.responseService = responseService;
 
     }
@@ -59,18 +48,6 @@ public class TcpEntryPoint {
         }).start();
         //new thread for incoming requests
 
-    }
-
-    @PreDestroy
-    public void stopServer() {
-        connectionFactory.shutDown();
-        try {
-            if (serverSocket != null) {
-                serverSocket.close();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private void runServer(int port) {

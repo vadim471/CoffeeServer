@@ -5,10 +5,12 @@ import com.example.telemetry.handler.CommandHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import static com.example.telemetry.generator.ResponseGenerator.generateSessionId;
 
-public class UpgradeRecipeHandler implements CommandHandler {
+@Component
+public class UpgradeHandler implements CommandHandler {
 
     @Value("${dir}")
     private String dir;

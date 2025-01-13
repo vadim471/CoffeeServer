@@ -3,10 +3,14 @@ package com.example.telemetry.controller;
 import com.example.telemetry.generator.RequestGenerator;
 import com.example.telemetry.manager.MachinesManager;
 import com.example.telemetry.model.Task;
+import com.example.telemetry.model.TelemetryResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.InetAddress;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -33,11 +37,10 @@ public class MachineController {
     //Can exclude cmd
     //4 point part for recipe
     @PostMapping("/setrecipes")
-    public void sendRecipe(@RequestParam String ip) {
+    public void sendRecipe(@RequestParam int deviceid) {
         try {
-            InetAddress machineAddress = InetAddress.getByName(ip);
-            int vmcNumber = machinesManager.getVmcNumber(machineAddress);
-            byte[] response = requestGenerator.processTelemetry("upgrade", vmcNumber, "recipe");
+            InetAddress machineAddress = machinesManager.getInetAddress(deviceid);
+            byte[] response = requestGenerator.processTelemetry("upgrade", deviceid, "recipe").getResponseBytes();
 
             CompletableFuture<byte[]> bytes = machinesManager.handleRequest(machineAddress, response);
             if (bytes != null) {
@@ -51,11 +54,10 @@ public class MachineController {
     }
 
     @PostMapping("/setproducts")
-    public void send(@RequestParam String ip) {
+    public void send(@RequestParam int deviceid) {
         try {
-            InetAddress machineAddress = InetAddress.getByName(ip);
-            int vmcNumber = machinesManager.getVmcNumber(machineAddress);
-            byte[] response = requestGenerator.processTelemetry("upgrade", vmcNumber, "recipe");
+            InetAddress machineAddress = machinesManager.getInetAddress(deviceid);
+            byte[] response = requestGenerator.processTelemetry("upgrade", deviceid, "recipe").getResponseBytes();
 
             CompletableFuture<byte[]> bytes = machinesManager.handleRequest(machineAddress, response);
             if (bytes != null) {
@@ -70,11 +72,10 @@ public class MachineController {
 
 
     @PostMapping("/supply")
-    public void getMachineStatus(@RequestParam String ip) {
+    public void getMachineStatus(@RequestParam int deviceid) {
         try {
-            InetAddress machineAddress = InetAddress.getByName(ip);
-            int vmcNumber = machinesManager.getVmcNumber(machineAddress);
-            byte[] response = requestGenerator.processTelemetry("remote", vmcNumber, "sync");
+            InetAddress machineAddress = machinesManager.getInetAddress(deviceid);
+            byte[] response = requestGenerator.processTelemetry("remote", deviceid, "sync").getResponseBytes();
 
             CompletableFuture<byte[]> bytes = machinesManager.handleRequest(machineAddress, response);
                 if (bytes != null) {
@@ -89,29 +90,59 @@ public class MachineController {
         }
     }
 
-
-/*
-    @PostMapping("/remote")
-    public ResponseEntity<Void> getReconfiguration(@RequestBody Map<String, Object> request) {
+    @PostMapping("/setprice")
+    public void setProductPrice(@RequestParam int deviceid, @RequestBody Map<String, Object> price) {
         try {
-            String operation = ((String) request.get("operation")).toUpperCase();
-            RemoteOperations remoteOperations = RemoteOperations.valueOf(operation);
+            InetAddress machineAddress = machinesManager.getInetAddress(deviceid);
+            List<List<Integer>> priceArray = (List<List<Integer>>) price.get("price");
+            Map<String, Object> params = Map.of(
+                    "price", priceArray
+            );
+            TelemetryResponse response = requestGenerator.processTelemetry("priceset", deviceid, params);
+            machinesManager.handleRequest(machineAddress, response.getResponseBytes());
 
-            ObjectNode jsonNode = responseGenerator.getObjectMapper().createObjectNode();
-            jsonNode.put("cmd", "remote");
-            jsonNode.put("vmc_no", 55418);
-            jsonNode.put("operation", remoteOperations.getOperation());
-
-            Task task = new Task(jsonNode.get("cmd").asText(), jsonNode);
-            //taskManager.addTask(task); rewrite on byte array
-
-            return ResponseEntity.ok().build();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
-  */
+    @PostMapping("/setorder")
+    public ResponseEntity<?> makeProduct(@RequestParam int deviceid, @RequestBody Map<String, Object> payload) {
+        try {
+            InetAddress machineAddress = machinesManager.getInetAddress(deviceid);
+            Map<String, Object> order = (Map<String, Object>) payload.get("order");
+
+            int productId = (Integer) order.get("productId");
+            int price = (Integer) order.get("price");
+            Map<String, Object> params = Map.of(
+                    "operation", "products",
+                    "productId", productId,
+                    "price", price
+            );
+
+            //byte[] response = requestGenerator.processTelemetry("products", deviceid, params).getResponseBytes();
+            TelemetryResponse response = requestGenerator.processTelemetry("products", deviceid, params);
+
+            if (!response.isSuccess()) {
+                if ("PRICE_MISMATCH".equals(response.getMessage())) {
+                    return ResponseEntity.status(402).body(response.getMessage());
+                }
+                return ResponseEntity.status(400).body(response.getResponseBytes());
+            }
+            machinesManager.handleRequest(machineAddress, response.getResponseBytes());
+            return ResponseEntity.status(200).body("success");
+            //CompletableFuture<byte[]> bytes =
+//            if (bytes != null) {
+//                bytes.whenComplete((res, error) -> {
+//                    Task responseTask = requestGenerator.generateTaskFromResponseBytes(res);
+//                    System.out.println("FROM CONTROLLER!!!11" + responseTask.getBody());
+//                });
+//            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Internal server error");
+        }
+    }
 
 }

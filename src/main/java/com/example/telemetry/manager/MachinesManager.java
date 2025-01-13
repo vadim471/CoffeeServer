@@ -2,13 +2,12 @@ package com.example.telemetry.manager;
 
 import com.example.telemetry.generator.ResponseGenerator;
 import com.example.telemetry.model.MachineInterface;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 import java.net.InetAddress;
-
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
@@ -17,11 +16,14 @@ import java.util.concurrent.CompletableFuture;
 @Service
 public class MachinesManager {
 
-    @Value("${poolSize}")
-    private int poolSize;
+    @Value("${tcp.china_server.port}")
+    private int proxyPort;
+
+    @Value("${china_server_ip}")
+    private String proxyIp;
 
     private HashMap<InetAddress, MachineInterface> machineMap = new HashMap<>();
-
+    private HashMap<Integer, InetAddress> machineIdToIp = new HashMap<>();
     private final ResponseGenerator responseGenerator;
 
     @Autowired
@@ -31,7 +33,10 @@ public class MachinesManager {
 
     public void acceptConnection(Socket clientSocket) throws IOException {
         if (!machineMap.containsKey(clientSocket.getInetAddress())) {
-            machineMap.put(clientSocket.getInetAddress(), new MachineInterface(clientSocket, responseGenerator));
+            MachineInterface machineInterface =  new MachineInterface(clientSocket, responseGenerator, proxyIp, proxyPort);
+            InetAddress clientAddress = clientSocket.getInetAddress();
+            machineMap.put(clientAddress, machineInterface);
+            machineIdToIp.put(MachineInterface.getVmcNumber(), clientAddress);
         }
         machineMap.get(clientSocket.getInetAddress()).handleRequest(clientSocket);
     }
@@ -45,8 +50,7 @@ public class MachinesManager {
         return null;
     }
 
-    public int getVmcNumber(InetAddress ip) {
-        MachineInterface machine = machineMap.get(ip);
-        return machine.getVmcNumber();
+    public InetAddress getInetAddress(int id) {
+        return machineIdToIp.get(id);
     }
 }

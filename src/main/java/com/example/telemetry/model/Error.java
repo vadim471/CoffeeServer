@@ -1,10 +1,14 @@
 package com.example.telemetry.model;
 
+import com.vladmihalcea.hibernate.type.interval.PostgreSQLIntervalType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.hibernate.annotations.Type;
 
+
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,9 +23,20 @@ public class Error {
     private String faultyState;
     private LocalDateTime occuredTime;
     private LocalDateTime clearTime;
-    private LocalDateTime faultDuration;
+
+    @Type(PostgreSQLIntervalType.class)
+    private Duration faultDuration;
 
     public Error() {
+    }
+
+    public Error(int vmcNumber, int faultCode, String faultInfo,
+                 String faultyState, LocalDateTime occuredTime) {
+        this.vmcNumber = vmcNumber;
+        this.faultCode = faultCode;
+        this.faultInfo = faultInfo;
+        this.faultyState = faultyState;
+        this.occuredTime = occuredTime;
     }
 
     public void setId(Long id) {
@@ -50,10 +65,9 @@ public class Error {
 
     public void setClearTime(LocalDateTime clearTime) {
         this.clearTime = clearTime;
-    }
-
-    public void setFaultDuration(LocalDateTime faultDuration) {
-        this.faultDuration = faultDuration;
+        if (this.occuredTime != null) {
+            this.faultDuration = Duration.between(this.occuredTime, clearTime);
+        }
     }
 
     public Long getId() {
@@ -84,7 +98,7 @@ public class Error {
         return clearTime;
     }
 
-    public LocalDateTime getFaultDuration() {
+    public Duration getFaultDuration() {
         return faultDuration;
     }
 }

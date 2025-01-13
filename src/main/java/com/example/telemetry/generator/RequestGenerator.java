@@ -2,8 +2,11 @@ package com.example.telemetry.generator;
 
 import com.example.telemetry.handler.CommandHandler;
 import com.example.telemetry.model.Task;
+import com.example.telemetry.model.TelemetryResponse;
+import com.example.telemetry.requestHandler.PriceSetHandler;
+import com.example.telemetry.requestHandler.ProductsHandler;
 import com.example.telemetry.requestHandler.RemoteHandler;
-import com.example.telemetry.requestHandler.UpgradeRecipeHandler;
+import com.example.telemetry.requestHandler.UpgradeHandler;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -16,10 +19,8 @@ import org.springframework.stereotype.Component;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
 
-import static com.example.telemetry.generator.ResponseGenerator.generateSessionId;
-import static com.example.telemetry.generator.ResponseGenerator.formatDate;
+import static com.example.telemetry.generator.ResponseGenerator.*;
 
 @Component
 public class RequestGenerator {
@@ -31,24 +32,31 @@ public class RequestGenerator {
     private String dirForDownload;
 
     @Autowired
-    public RequestGenerator() {
-        commandHandlers.put("upgrade", new UpgradeRecipeHandler());
-        commandHandlers.put("remote", new RemoteHandler());
+    public RequestGenerator(ProductsHandler productsHandler,
+                            UpgradeHandler upgradeHandler,
+                            RemoteHandler remoteHandler,
+                            PriceSetHandler priceSetHandler) {
+        commandHandlers.put("upgrade", upgradeHandler);
+        commandHandlers.put("remote", remoteHandler);
+        commandHandlers.put("products", productsHandler);
+        commandHandlers.put("priceset", priceSetHandler);
     }
 
-    public byte[] processTelemetry(String cmd, int vmcNumber, Object params){
+    public TelemetryResponse processTelemetry(String cmd, int vmcNumber, Object params) {
         try {
             CommandHandler handler = commandHandlers.get(cmd);
             String responseBody = handler.handle(vmcNumber, params);
-            if (responseBody == null)
-                return null;
-            int responseLength = responseBody.getBytes(StandardCharsets.UTF_8).length;
-            byte[] responseHeader = generateHeader(responseLength);
-            return createFrame(responseHeader, responseBody);
+
+            //TODO move this to controller method "makeProduct"
+            if ("PRICE_MISMATCH".equals(responseBody)) {
+                return TelemetryResponse.failure(responseBody, null);
+            }
+
+            byte[] successBytes = createFrame(generateHeader(responseBody.length()), responseBody);
+            return TelemetryResponse.success(successBytes, Map.of("message", "Order processed successfully"));
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            return TelemetryResponse.failure("Internal server error: " + e.getMessage(), null);
         }
-        return null;
     }
 
     public Task generateTaskFromResponseBytes(byte[] array) {
@@ -61,24 +69,6 @@ public class RequestGenerator {
             e.printStackTrace();
             return null;
         }
-    }
-
-    /**
-     * @param frameSize - размер сгенерированного тела JSON
-     * @return Head fram'а
-     */
-    private byte[] generateHeader(int frameSize){
-        int firstByteValue = frameSize + 48 + 12;
-        byte firstByte = (byte) firstByteValue;
-
-        byte[] header = new byte[12];
-        header[0] = firstByte;
-
-        for (int i = 1; i < header.length; i++){
-            header[i] = '0';
-        }
-
-        return header;
     }
 
     /**
@@ -97,28 +87,5 @@ public class RequestGenerator {
 
         return frame;
     }
-
-    //implements redirect in handler
-    private ObjectNode handlerPriceSet(ObjectNode jsonNode) {
-        ObjectNode response = objectMapper.createObjectNode();
-        int vmcNumber = jsonNode.get("vmc_no").asInt();
-        response.put("cmd", "priceset");
-        response.put("vmc_no", vmcNumber);
-        response.put("session_id", generateSessionId(vmcNumber));
-        return response;
-    }
-
-    private ObjectNode handlerUpload(ObjectNode jsonNode) {
-        ObjectNode response = objectMapper.createObjectNode();
-        int vmcNumber = jsonNode.get("vmc_no").asInt();
-        response.put("cmd", "upload");
-        response.put("vmc_no", vmcNumber);
-        response.put("session_id", generateSessionId(vmcNumber));
-        response.put("date", formatDate());
-        response.put("folder", ""); //check dir
-        response.put("dir", dirForDownload);
-        return response;
-    }
-
 }
 

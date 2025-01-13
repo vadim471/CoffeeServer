@@ -4,11 +4,12 @@ import com.example.telemetry.enums.Remote;
 import com.example.telemetry.handler.CommandHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.springframework.stereotype.Component;
 
 import static com.example.telemetry.generator.ResponseGenerator.generateSessionId;
 
 //"2017-05-01 02:13:50"
-
+@Component
 public class RemoteHandler implements CommandHandler {
     private final ObjectMapper objectMapper = new ObjectMapper();
 

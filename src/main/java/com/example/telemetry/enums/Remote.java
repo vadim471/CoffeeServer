@@ -2,7 +2,9 @@ package com.example.telemetry.enums;
 
 //5 point
 public enum Remote {
-    SYNC("sync");
+    SYNC("sync"),
+    PRODUCTS("products"),
+    PRICESET("priceset");
 
     private final String value;
 

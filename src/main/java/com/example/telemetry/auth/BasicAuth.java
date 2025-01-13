@@ -37,12 +37,12 @@ public class BasicAuth {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http.authorizeHttpRequests(request -> request.anyRequest()
+        return http.csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(request -> request.anyRequest()
                         .authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {

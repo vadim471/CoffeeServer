@@ -33,7 +33,7 @@ public class OrderService {
             productInfo.put("ProductID", data.getProduct_id());
             productInfo.put("Price", coffeeOrder != null ? coffeeOrder.getProductLastPrice() : null);
             productInfo.put("PayType", data.getPayType());
-            productInfo.put("Status", "wtf");
+            productInfo.put("Status", data.getStatus());
             productInfo.put("BuyTime", data.getDate());
             return productInfo;
         }).collect(Collectors.toList());

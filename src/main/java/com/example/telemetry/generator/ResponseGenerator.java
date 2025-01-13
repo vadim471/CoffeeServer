@@ -2,6 +2,7 @@ package com.example.telemetry.generator;
 
 
 import com.example.telemetry.model.CoffeeOrder;
+import com.example.telemetry.model.Error;
 import com.example.telemetry.model.Task;
 import com.example.telemetry.model.TelemetryData;
 import com.example.telemetry.repository.CoffeeOrderRepository;
@@ -100,15 +101,27 @@ public class ResponseGenerator {
      * @param frameSize - размер сгенерированного тела JSON
      * @return Head fram'а
      */
-    private byte[] generateHeader(int frameSize){
-        int firstByteValue = frameSize + 48 + 12;
-        byte firstByte = (byte) firstByteValue;
+    public static byte[] generateHeader(int frameSize) {
+        int headerSize = 12;
+        int total = frameSize + headerSize;
+        int baseValue = 48;
+        int maxByteValue = 256;
 
-        byte[] header = new byte[12];
-        header[0] = firstByte;
 
-        for (int i = 1; i < header.length; i++){
-            header[i] = '0';
+        byte[] header = new byte[headerSize];
+
+        for (int i = 0; i < header.length; i++) {
+            header[i] = (byte) baseValue;
+        }
+
+        int remainingSize = total;
+
+        for (int i = 0; i < 4; i++) {
+            if (remainingSize > 0) {
+                int value = remainingSize % maxByteValue;
+                header[i] = (byte) (baseValue + value);
+                remainingSize = (remainingSize + 48) / maxByteValue;
+            }
         }
 
         return header;
@@ -186,7 +199,7 @@ public class ResponseGenerator {
     }
 
     private ObjectNode handlerError(ObjectNode jsonNode) {
-        errorRepository.;
+        saveErrorMessage(jsonNode);
         ObjectNode response = objectMapper.createObjectNode();
         response.put("cmd", "error_r");
         response.put("vmc_no", jsonNode.get("vmc_no").asInt());
@@ -218,8 +231,8 @@ public class ResponseGenerator {
         String timestamp = jsonNode.get("timestamp").asText();
         int vmcNumber = jsonNode.get("vmc_no").asInt();
         String orderNumber = jsonNode.get("order_no").asText();
-
-        String status = (jsonNode.get("isok").asText() == "true") ? "success" : "failed";
+        boolean isOK = jsonNode.get("isok").asBoolean();
+        String status = isOK ? "success" : "failed";
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
         LocalDateTime date = LocalDateTime.parse(timestamp, formatter);
@@ -255,10 +268,17 @@ public class ResponseGenerator {
     }
 
     private void saveErrorMessage(ObjectNode jsonNode) {
-        String errorCode = jsonNode.get("error_code").asText();
+        String errorStringCode = jsonNode.get("error_code").asText();
         String errorDescription = jsonNode.get("error_description").asText();
-        String
+        Boolean isFatalError = jsonNode.get("is_fatal_error").asBoolean();
+        Boolean isSet = jsonNode.get("isSet").asBoolean();
+        int vmcNumber = jsonNode.get("vmc_no").asInt();
+        Boolean pessistanceError = jsonNode.get("is_pessistance_error").asBoolean();
+        LocalDateTime occuredTime = LocalDateTime.now();
 
+        Error error = new Error(vmcNumber, extractFaultCode(errorStringCode), errorDescription, "verstehe niht", occuredTime);
+
+        errorRepository.save(error);
     }
 
     public static String generateSessionId(int vmcNumber) {
@@ -269,5 +289,13 @@ public class ResponseGenerator {
         Random randomInt = new Random();
         String randomPart = String.format("%05d", randomInt.nextInt(100000));
         return formattedDateTime + vmcNumber + randomPart;
+    }
+
+    private void updateErrorClearTime(int vmcNumber, int faultCode, LocalDateTime clearTime) {
+        //TODO
+    }
+
+    private int extractFaultCode(String faultCode) {
+        return Integer.parseInt(faultCode.split(":")[1]);
     }
 }

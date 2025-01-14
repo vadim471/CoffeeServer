@@ -4,6 +4,7 @@ import com.example.telemetry.generator.RequestGenerator;
 import com.example.telemetry.manager.MachinesManager;
 import com.example.telemetry.model.Task;
 import com.example.telemetry.model.TelemetryResponse;
+import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,18 +30,82 @@ public class MachineController {
         this.machinesManager = machinesManager;
     }
 
+    /**
+     * first point API
+      * @return HTTPStatus
+     */
     @GetMapping("/ping")
     public HttpStatus ping() {
         return HttpStatus.resolve(200);
     }
 
-    //Can exclude cmd
-    //4 point part for recipe
-    @PostMapping("/setrecipes")
-    public void sendRecipe(@RequestParam int deviceid) {
+    /**
+     * second point API
+     * for deliver drinks from vending
+     * @param deviceid
+     */
+    @GetMapping("/getproducts")
+    public void getProductsFromVending(@RequestParam int deviceid) {
         try {
             InetAddress machineAddress = machinesManager.getInetAddress(deviceid);
-            byte[] response = requestGenerator.processTelemetry("upgrade", deviceid, "recipe").getResponseBytes();
+            byte[] response = requestGenerator.processTelemetry("upload", deviceid, Map.of("upload", "product")).getResponseBytes();
+            CompletableFuture<byte[]> bytes = machinesManager.handleRequest(machineAddress, response);
+
+            /*
+            if (bytes != null) {
+                bytes.whenComplete((res, error) -> {
+                    Task responseTask = requestGenerator.generateTaskFromResponseBytes(res);
+                    System.out.println("FROM CONTROLLER!!!11" + responseTask.getBody());
+                });
+            }
+             */
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * third point API
+     * for deliver recipes from vending
+     * @param deviceid
+     */
+    @GetMapping("/getrecipes")
+    public void getRecipesFromVending(@RequestParam int deviceid) {
+        try {
+            InetAddress machineAddress = machinesManager.getInetAddress(deviceid);
+            byte[] response = requestGenerator.processTelemetry("upload", deviceid, Map.of("upload", "recipe")).getResponseBytes();
+            CompletableFuture<byte[]> bytes = machinesManager.handleRequest(machineAddress, response);
+
+            /*
+            if (bytes != null) {
+                bytes.whenComplete((res, error) -> {
+                    Task responseTask = requestGenerator.generateTaskFromResponseBytes(res);
+                    System.out.println("FROM CONTROLLER!!!11" + responseTask.getBody());
+                });
+            }
+             */
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * forth point API
+     *
+     * @param deviceid
+     */
+    @PostMapping("/setrecipes")
+    public void sendRecipe(@RequestParam int deviceid, @RequestBody JsonNode payLoad) {
+        try {
+            InetAddress machineAddress = machinesManager.getInetAddress(deviceid);
+
+            JsonNode products = payLoad.get("products");
+            String nameZipArchieve = requestGenerator.saveJsonFileAndArchieve(products);
+
+            byte[] response = requestGenerator.processTelemetry("upgrade", deviceid, Map.of("type", "recipe",
+                                                                                                    "zipDir", nameZipArchieve)).getResponseBytes();
 
             CompletableFuture<byte[]> bytes = machinesManager.handleRequest(machineAddress, response);
             if (bytes != null) {
@@ -48,6 +113,7 @@ public class MachineController {
                     System.out.println(res);
                  });
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,7 +123,7 @@ public class MachineController {
     public void send(@RequestParam int deviceid) {
         try {
             InetAddress machineAddress = machinesManager.getInetAddress(deviceid);
-            byte[] response = requestGenerator.processTelemetry("upgrade", deviceid, "recipe").getResponseBytes();
+            byte[] response = requestGenerator.processTelemetry("upgrade", deviceid, "products").getResponseBytes();
 
             CompletableFuture<byte[]> bytes = machinesManager.handleRequest(machineAddress, response);
             if (bytes != null) {
@@ -70,7 +136,10 @@ public class MachineController {
         }
     }
 
-
+    /**
+     * point 5 API
+     * @param deviceid
+     */
     @PostMapping("/supply")
     public void getMachineStatus(@RequestParam int deviceid) {
         try {
@@ -90,6 +159,12 @@ public class MachineController {
         }
     }
 
+    /**
+     * 8 point API
+     * for creating order
+     * @param deviceid
+     * @param price
+     */
     @PostMapping("/setprice")
     public void setProductPrice(@RequestParam int deviceid, @RequestBody Map<String, Object> price) {
         try {

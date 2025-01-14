@@ -187,9 +187,9 @@ public class ResponseGenerator {
     }
 
     private ObjectNode handlerProductCompletion(ObjectNode jsonNode) {
+        saveCoffeeOrder(jsonNode);
         if (!Objects.equals(jsonNode.get("PayType").asText(), "test"))
             saveTelemetryData(jsonNode);
-        saveCoffeeOrder(jsonNode);
         ObjectNode response = objectMapper.createObjectNode();
         response.put("cmd", "productdone_r");
         response.put("vmc_no", jsonNode.get("vmc_no").asInt());
@@ -258,6 +258,7 @@ public class ResponseGenerator {
                 coffeeOrderRepository.save(message);
             } else {
                 CoffeeOrder newMessage = new CoffeeOrder();
+                newMessage.setProductId(body.get("ProductId").asInt());
                 newMessage.setProductName(body.get("nameKey").asText());
                 newMessage.setProductLastPrice(body.get("ProductAmount").asInt() / 100);
                 newMessage.setProductPriceSumm(body.get("ProductAmount").asInt() / 100);

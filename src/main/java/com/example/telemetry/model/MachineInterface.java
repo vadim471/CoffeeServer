@@ -29,17 +29,31 @@ public class MachineInterface {
     private InputStream machineInputStream;
     private static String softwareVersion;
     private static String ioVersion;
+    private volatile boolean isControllerRequest = false;
+
 
     public static int getVmcNumber() {
         return vmcNumber;
     }
 
     private void init() {
-        try {
-            this.proxySocket = new Socket(proxyIp, proxyPort);
-        } catch (IOException e) {
-            e.printStackTrace();
+        while (true) {
+            try {
+                this.proxySocket = new Socket(proxyIp, proxyPort);
+                System.out.println("Connection success");
+                break;
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                    break;
+                }
+
+            }
         }
+
     }
 
     public MachineInterface(Socket machineSocket, ResponseGenerator responseGenerator, String proxyIp, int proxyPort) throws IOException {
@@ -62,11 +76,24 @@ public class MachineInterface {
 
     private void sendToProxy(byte[] array) {
         try {
+            if (proxySocket == null || proxySocket.isClosed() || !proxySocket.isConnected()) {
+                init();
+            }
+
             proxySocket.getOutputStream().write(array);
             proxySocket.getOutputStream().flush();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error sending data to proxy: " + e.getMessage());
+            try {
+                if (proxySocket != null) {
+                    proxySocket.close();
+                }
+            } catch (IOException ex) {
+                System.out.println("Error closing proxy connection: " + ex.getMessage());
+            }
+            init();
+
         }
     }
 
@@ -75,25 +102,33 @@ public class MachineInterface {
             try {
                 //proxySocket = new Socket(proxyIp, proxyPort);
                 //method for sending message to server
-                while (true) {
-                    OutputStream machineOutput = socket.getOutputStream();
-                    InputStream machineInput = socket.getInputStream();
-                    MachineRequest machineRequest = getInputBytes(machineInput);
+                while (!socket.isClosed()) {
+                    if (!isControllerRequest) {
+                        OutputStream machineOutput = socket.getOutputStream();
+                        InputStream machineInput = socket.getInputStream();
+                        MachineRequest machineRequest = getInputBytes(machineInput);
 
-                    if (machineRequest != null) {
-                        byte[] response = processRequest(machineRequest);
+                        if (machineRequest != null) {
+                            byte[] response = processRequest(machineRequest);
 
-                        byte[] machineByteRequest = createFrame(responseGenerator.generateHeader(machineRequest.getBody().length), machineRequest.getBody());
-                        sendToProxy(machineByteRequest); //TODO checking server availability
+                            byte[] machineByteRequest = createFrame(responseGenerator.generateHeader(machineRequest.getBody().length), machineRequest.getBody());
+                            sendToProxy(machineByteRequest); //TODO checking server availability
 
-                        machineOutput.write(response);
-                        machineOutput.flush();
+                            machineOutput.write(response);
+                            machineOutput.flush();
+                        }
+
                     }
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Client disconnected: " + e.getMessage());
+            } finally {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-            //TODO delete socket from this method
         }).start();
     }
 
@@ -133,22 +168,30 @@ public class MachineInterface {
         return null;
     }
 
-    public CompletableFuture<byte[]> sendToMachineFromController(byte[] array) {
+    public CompletableFuture<byte[]> sendToMachineFromController(byte[] array, String expectedFrame) {
 
         CompletableFuture<byte[]> arrayBytes = new CompletableFuture<>();
 
         new Thread(() -> {
             try {
-                //String mIp = machineIp.getHostAddress();
-                //Socket clientSocket = new Socket(mIp, machinePort);
-                //OutputStream out = clientSocket.getOutputStream();
+                isControllerRequest = true;
                 machineOutputStream.write(array, 0, array.length);
                 machineOutputStream.flush();
-                MachineRequest machineRequest = getInputBytes(machineInputStream);
-                arrayBytes.complete(machineRequest.getBody());
+                while (true) {
+                    MachineRequest machineResponse = getInputBytes(machineInputStream);
+                    if (machineResponse != null) {
+                        String responseBody = new String(machineResponse.getBody(), StandardCharsets.UTF_8);
+                        if (responseBody.contains(expectedFrame)) {
+                            arrayBytes.complete(machineResponse.getBody());
+                            break;
+                        }
+                    }
+                }
             } catch (IOException e) {
                 e.printStackTrace();
                 arrayBytes.complete(new byte[0]);
+            } finally {
+                isControllerRequest = false;
             }
         }).start();
 

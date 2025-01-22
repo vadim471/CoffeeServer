@@ -1,8 +1,8 @@
 package com.example.telemetry.manager;
 
+import com.example.telemetry.exceptions.MachineNotFoundException;
 import com.example.telemetry.generator.ResponseGenerator;
 import com.example.telemetry.model.MachineInterface;
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -41,16 +41,19 @@ public class MachinesManager {
         machineMap.get(clientSocket.getInetAddress()).handleRequest(clientSocket);
     }
 
-    public CompletableFuture<byte[]> handleRequest(InetAddress ip, byte[] request) {
+    public CompletableFuture<byte[]> handleRequest(InetAddress ip, byte[] request, String expectedFrame) {
         MachineInterface machine = machineMap.get(ip);
-       //int vmc_no = machineMap.get(id).getType();
         if (machine != null) {
-            return machine.sendToMachineFromController(request);
+            return machine.sendToMachineFromController(request, expectedFrame);
         }
         return null;
     }
 
-    public InetAddress getInetAddress(int id) {
-        return machineIdToIp.get(id);
+    public InetAddress getInetAddress(int id) throws MachineNotFoundException {
+        InetAddress address = machineIdToIp.get(id);
+        if (address == null) {
+            throw new MachineNotFoundException("Machine with id: " + id + " not found");
+        }
+        return address;
     }
 }

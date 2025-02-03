@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -219,6 +220,12 @@ public class ResponseGenerator {
         return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 
+    public LocalDateTime parseFrameDate(String frameDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        LocalDate frameDateTime = LocalDate.parse(frameDate, formatter);
+        return frameDateTime.atStartOfDay();
+    }
+
     public ObjectMapper getObjectMapper(){
         return objectMapper;
     }
@@ -233,6 +240,7 @@ public class ResponseGenerator {
         String orderNumber = jsonNode.get("order_no").asText();
         boolean isOK = jsonNode.get("isok").asBoolean();
         String status = isOK ? "success" : "failed";
+        String canisterIds = jsonNode.get("canisterIds").asText();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
         LocalDateTime date = LocalDateTime.parse(timestamp, formatter);
@@ -243,7 +251,7 @@ public class ResponseGenerator {
             return;
 
 
-        TelemetryData data = new TelemetryData(productId, nameKey, productAmount, payType, date, vmcNumber, orderNumber, status);
+        TelemetryData data = new TelemetryData(productId, nameKey, productAmount, payType, date, vmcNumber, orderNumber, status, canisterIds);
         telemetryDataRepository.save(data);
     }
 
@@ -255,11 +263,12 @@ public class ResponseGenerator {
                 CoffeeOrder message = existingMessage.get();
                 message.setProductPriceSumm(message.getProductPriceSumm() + body.get("ProductAmount").asInt() / 100);
                 message.setProductRepeat(message.getProductRepeat() + 1);
+                message.setProductName(body.get("ProductName").asText());
                 coffeeOrderRepository.save(message);
             } else {
                 CoffeeOrder newMessage = new CoffeeOrder();
                 newMessage.setProductId(body.get("ProductId").asInt());
-                newMessage.setProductName(body.get("nameKey").asText());
+                newMessage.setProductName(body.get("ProductName").asText());
                 newMessage.setProductLastPrice(body.get("ProductAmount").asInt() / 100);
                 newMessage.setProductPriceSumm(body.get("ProductAmount").asInt() / 100);
                 newMessage.setProductRepeat(1);
@@ -277,7 +286,10 @@ public class ResponseGenerator {
         Boolean pessistanceError = jsonNode.get("is_pessistance_error").asBoolean();
         LocalDateTime occuredTime = LocalDateTime.now();
 
-        Error error = new Error(vmcNumber, extractFaultCode(errorStringCode), errorDescription, "verstehe niht", occuredTime);
+        String frameDate = jsonNode.get("datetime").asText();
+        LocalDateTime frameDateTime = parseFrameDate(frameDate);
+
+        Error error = new Error(vmcNumber, extractFaultCode(errorStringCode), errorDescription, "verstehe niht", occuredTime, frameDateTime);
 
         errorRepository.save(error);
     }

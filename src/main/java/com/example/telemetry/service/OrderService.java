@@ -35,6 +35,7 @@ public class OrderService {
             productInfo.put("PayType", data.getPayType());
             productInfo.put("Status", data.getStatus());
             productInfo.put("BuyTime", data.getDate());
+
             return productInfo;
         }).collect(Collectors.toList());
 

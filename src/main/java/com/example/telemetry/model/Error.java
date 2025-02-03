@@ -9,6 +9,7 @@ import org.hibernate.annotations.Type;
 
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -23,6 +24,15 @@ public class Error {
     private String faultyState;
     private LocalDateTime occuredTime;
     private LocalDateTime clearTime;
+    private LocalDateTime frameDateTime;
+
+    public void setFrameDateTime(LocalDateTime frameDateTime) {
+        this.frameDateTime = frameDateTime;
+    }
+
+    public LocalDateTime getFrameDateTime() {
+        return frameDateTime;
+    }
 
     @Type(PostgreSQLIntervalType.class)
     private Duration faultDuration;
@@ -31,12 +41,13 @@ public class Error {
     }
 
     public Error(int vmcNumber, int faultCode, String faultInfo,
-                 String faultyState, LocalDateTime occuredTime) {
+                 String faultyState, LocalDateTime occuredTime, LocalDateTime frameDateTime) {
         this.vmcNumber = vmcNumber;
         this.faultCode = faultCode;
         this.faultInfo = faultInfo;
         this.faultyState = faultyState;
         this.occuredTime = occuredTime;
+        this.frameDateTime = frameDateTime;
     }
 
     public void setId(Long id) {

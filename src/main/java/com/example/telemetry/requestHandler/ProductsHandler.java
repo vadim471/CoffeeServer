@@ -42,7 +42,7 @@ public class ProductsHandler implements CommandHandler {
         if(product.isPresent()) {
             int actualPrice = product.get().getProductLastPrice();
             if (price != actualPrice) {
-                return "PRICE_MISMATCH";
+                return "Failed: PRICE_MISMATCH ";
             }
         }
 

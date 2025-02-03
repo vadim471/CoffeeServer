@@ -22,9 +22,19 @@ public class RemoteHandler implements CommandHandler {
 
         ObjectNode response = objectMapper.createObjectNode();
         response.put("cmd", "remote");
-        response.put("operation", (String) params);
         response.put("vmc_no", vmcNumber);
         response.put("session_id", generateSessionId(vmcNumber));
+
+        switch ((String) params) {
+            case "supplys":
+
+                break;
+            default:
+                response.put("operation", (String) params);
+        }
+
+
+
 
         try {
             return objectMapper.writeValueAsString(response);

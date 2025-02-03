@@ -13,7 +13,7 @@ import static com.example.telemetry.generator.ResponseGenerator.generateSessionI
 @Component
 public class UpgradeHandler implements CommandHandler {
 
-    @Value("${dirForSavedRecipes}")
+    @Value("${dirForUploadRecipe}")
     private String dir;
 
     private final ObjectMapper objectMapper = new ObjectMapper();

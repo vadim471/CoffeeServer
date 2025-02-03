@@ -24,6 +24,15 @@ public class TelemetryData {
     private int vmc_number;
     private String order_no;
     private String status;
+    private String canisterIds;
+
+    public void setCanisterIds(String canisterIds) {
+        this.canisterIds = canisterIds;
+    }
+
+    public String getCanisterIds() {
+        return canisterIds;
+    }
 
     public void setStatus(String status) {
         this.status = status;
@@ -52,7 +61,8 @@ public class TelemetryData {
         return vmc_number;
     }
 
-    public TelemetryData(Integer product_id, String nameKey, Integer productAmount, String payType, LocalDateTime date, int vmcNumber, String order_no, String status){
+    public TelemetryData(Integer product_id, String nameKey, Integer productAmount, String payType, LocalDateTime date,
+                         int vmcNumber, String order_no, String status, String canisterIds) {
         this.product_id = product_id;
         this.nameKey = nameKey;
         this.productAmount = productAmount;
@@ -61,6 +71,7 @@ public class TelemetryData {
         this.vmc_number = vmcNumber;
         this.order_no = order_no;
         this.status = status;
+        this.canisterIds = canisterIds;
     }
 
     public void setDate(LocalDateTime date) {

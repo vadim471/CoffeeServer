@@ -4,7 +4,8 @@ package com.example.telemetry.enums;
 public enum Remote {
     SYNC("sync"),
     PRODUCTS("products"),
-    PRICESET("priceset");
+    PRICESET("priceset"),
+    SUPPLYS("supplys");
 
     private final String value;
 

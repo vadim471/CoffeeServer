@@ -8,11 +8,11 @@ import com.example.telemetry.model.TelemetryResponse;
 import com.example.telemetry.service.SupplyService;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.InetAddress;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -41,8 +41,10 @@ public class MachineController {
      * @return HTTPStatus
      */
     @GetMapping("/ping")
-    public HttpStatus ping() {
-        return HttpStatus.resolve(200);
+    public ResponseEntity<?> ping() {
+        Map<String, String> okStatus = new HashMap<>();
+        okStatus.put("Status", "OK");
+        return ResponseEntity.status(200).body(okStatus);
     }
 
     /**
@@ -66,7 +68,7 @@ public class MachineController {
                 });
             }
              */
-            return ResponseEntity.ok("");
+            return ResponseEntity.status(404).body("Not supported");
 
         } catch (MachineNotFoundException ex) {
             return ResponseEntity.status(404).body(ex.getMessage());
@@ -96,7 +98,7 @@ public class MachineController {
                 });
             }
              */
-            return ResponseEntity.ok("");
+            return ResponseEntity.status(404).body("Not supported");
 
         } catch (MachineNotFoundException ex) {
             return ResponseEntity.status(404).body(ex.getMessage());
@@ -188,6 +190,19 @@ public class MachineController {
         });
     }
 
+    @PostMapping("/fillsupply")
+    public ResponseEntity<?> addSupply(@RequestParam int deviceid,  @RequestBody JsonNode supplyLoad) {
+        try {
+            InetAddress machineAddress = machinesManager.getInetAddress(deviceid);
+            //TODO
+            return ResponseEntity.ok("");
+        } catch (MachineNotFoundException ex) {
+            return ResponseEntity.status(404).body(ex.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Internal server error " + e.getMessage());
+        }
+    }
+
     /**
      * 8 point API
      * for creating order
@@ -231,7 +246,7 @@ public class MachineController {
             TelemetryResponse response = requestGenerator.processTelemetry("products", deviceid, params);
 
             if (!response.isSuccess()) {
-                return ResponseEntity.status(400).body(response.getMessage());
+                return ResponseEntity.status(402).body(response.getMessage());
             }
             machinesManager.handleRequest(machineAddress, response.getResponseBytes(), "cmd");
             return ResponseEntity.status(200).body("success");

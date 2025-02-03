@@ -56,7 +56,7 @@ public class RequestGenerator {
             CommandHandler handler = commandHandlers.get(cmd);
             String responseBody = handler.handle(vmcNumber, params);
 
-            if ("Failed".contains(responseBody)) {
+            if (responseBody.contains("Failed")) {
                 return TelemetryResponse.failure(responseBody, null);
             }
 

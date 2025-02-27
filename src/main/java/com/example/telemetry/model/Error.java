@@ -9,7 +9,6 @@ import org.hibernate.annotations.Type;
 
 
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,7 +18,7 @@ public class Error {
     private Long Id;
 
     private int vmcNumber;
-    private int faultCode;
+    private String faultCode;
     private String faultInfo;
     private String faultyState;
     private LocalDateTime occuredTime;
@@ -40,7 +39,7 @@ public class Error {
     public Error() {
     }
 
-    public Error(int vmcNumber, int faultCode, String faultInfo,
+    public Error(int vmcNumber, String faultCode, String faultInfo,
                  String faultyState, LocalDateTime occuredTime, LocalDateTime frameDateTime) {
         this.vmcNumber = vmcNumber;
         this.faultCode = faultCode;
@@ -58,7 +57,7 @@ public class Error {
         this.vmcNumber = vmcNumber;
     }
 
-    public void setFaultCode(int faultCode) {
+    public void setFaultCode(String faultCode) {
         this.faultCode = faultCode;
     }
 
@@ -89,7 +88,7 @@ public class Error {
         return vmcNumber;
     }
 
-    public int getFaultCode() {
+    public String getFaultCode() {
         return faultCode;
     }
 

@@ -1,12 +1,12 @@
 package com.example.telemetry.repository;
 
-import com.example.telemetry.model.CoffeeMessage;
+import com.example.telemetry.model.Machine;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface CoffeeMessageRepository extends JpaRepository<CoffeeMessage, Long> {
-    Optional<CoffeeMessage> findByMessage(String message);
+public interface MachineRepository extends JpaRepository<Machine, Long> {
+    Optional<Machine> findByVmcNumber(int vmcNumber);
 }

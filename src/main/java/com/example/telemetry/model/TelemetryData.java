@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -25,6 +26,12 @@ public class TelemetryData {
     private String order_no;
     private String status;
     private String canisterIds;
+    private LocalDateTime dateFrame;
+
+
+    public LocalDateTime getDateFrame() {
+        return dateFrame;
+    }
 
     public void setCanisterIds(String canisterIds) {
         this.canisterIds = canisterIds;
@@ -72,6 +79,7 @@ public class TelemetryData {
         this.order_no = order_no;
         this.status = status;
         this.canisterIds = canisterIds;
+        this.dateFrame = LocalDateTime.now();
     }
 
     public void setDate(LocalDateTime date) {

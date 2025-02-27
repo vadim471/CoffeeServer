@@ -25,19 +25,14 @@ public class TcpEntryPoint {
     @Value("${expectedFrames}")
     private String expected;
 
-    private final CoffeeOrderRepository coffeeOrderRepository;
-
     private ServerSocket serverSocket;
 
-    private final ResponseGenerator responseService;
     private final MachinesManager connectionFactory;
 
 
     @Autowired
-    public TcpEntryPoint(ResponseGenerator responseService, CoffeeOrderRepository coffeeOrderRepository, MachinesManager connectionFactory) {
-        this.coffeeOrderRepository = coffeeOrderRepository;
+    public TcpEntryPoint(MachinesManager connectionFactory) {
         this.connectionFactory = connectionFactory;
-        this.responseService = responseService;
 
     }
 

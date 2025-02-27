@@ -19,4 +19,7 @@ public interface TelemetryDataRepository extends JpaRepository<TelemetryData, Lo
     List<TelemetryData> findByDateRange(@Param("dates") LocalDateTime startDate,
                                         @Param("datef") LocalDateTime endDate,
                                         @Param("deviceid") int deviceid);
+
+    @Query("SELECT t FROM TelemetryData t WHERE t.vmc_number = :vmcNumber")
+    List<TelemetryData> findByVmcNumber(@Param("vmcNumber") int vmcNumber);
 }

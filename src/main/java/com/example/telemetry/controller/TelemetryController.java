@@ -1,43 +1,33 @@
 package com.example.telemetry.controller;
 
-import com.example.telemetry.model.TelemetryData;
-import com.example.telemetry.repository.TelemetryDataRepository;
+
+import com.example.telemetry.manager.MachinesManager;
 import com.example.telemetry.service.ErrorService;
 import com.example.telemetry.service.OrderService;
+import com.example.telemetry.service.RinsingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
-import java.util.List;
+
 import java.util.Map;
 
-/**
- * Класс для отображения заказов из БД (страница в браузере)
- */
 @Controller
 public class TelemetryController {
-    private final TelemetryDataRepository telemetryDataRepository;
+
     private final OrderService orderService;
     private final ErrorService errorService;
+    private final RinsingService rinsingService;
 
     @Autowired
-    public TelemetryController(TelemetryDataRepository telemetryDataRepository, OrderService orderService, ErrorService errorService) {
-        this.telemetryDataRepository = telemetryDataRepository;
+    public TelemetryController(OrderService orderService, ErrorService errorService, RinsingService rinsingService) {
         this.orderService = orderService;
         this.errorService = errorService;
-    }
-
-    @GetMapping("/")
-    public String index(Model model) {
-        List<TelemetryData> telemetryDataList = telemetryDataRepository.findAll();
-
-        model.addAttribute("telemetryDataList", telemetryDataList);
-        return "index";
+        this.rinsingService = rinsingService;
     }
 
 
@@ -51,14 +41,20 @@ public class TelemetryController {
      */
     @GetMapping("/order")
     public ResponseEntity<Map<String, Object>> getOrders(
-            @RequestParam("deviceid") int deviceid,
-            @RequestParam("dates") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
-            @RequestParam("datef") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
+            @RequestParam String deviceid,
+            @RequestParam(value = "dates", required = false)@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+            @RequestParam(value = "datef", required = false)@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
 
         //if input params date is yyyy-mm-dd - LocalDate
         //startDate = startDate.toLocalDate().atStartOfDay();
         //endDate = endDate.atTime(LocalTime.MAX);
-        Map<String, Object> orders = orderService.getOrdersByDateRange(startDate, endDate, deviceid);
+        Map<String, Object> orders;
+        int deviceId = Integer.parseInt(deviceid);
+        if (startDate != null && endDate != null) {
+            orders = orderService.getOrdersByDateRange(startDate, endDate, deviceId);
+        } else {
+            orders = orderService.getOrders(deviceId);
+        }
         return ResponseEntity.ok(orders);
     }
 
@@ -70,21 +66,43 @@ public class TelemetryController {
      */
     @GetMapping("/faulty")
     public ResponseEntity<Map<String, Object>> getErrors(
-            @RequestParam int deviceid,
-            @RequestParam(required = false)@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
-            @RequestParam(required = false)@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
+            @RequestParam String deviceid,
+            @RequestParam(value = "dates", required = false)@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+            @RequestParam(value = "datef", required = false)@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
 
         Map<String, Object> errors;
-
+        int deviceId = Integer.parseInt(deviceid);
         if (startDate != null && endDate != null) {
-            errors = errorService.getErrorsByDateRange(deviceid, startDate, endDate);
+            errors = errorService.getErrorsByDateRange(deviceId, startDate, endDate);
         } else {
-            errors = errorService.getErrors(deviceid);
+            errors = errorService.getErrors(deviceId);
         }
         return ResponseEntity.ok(errors);
     }
 
+    @GetMapping("/rinsing")
+    public ResponseEntity<?> getRinsingRecord(
+            @RequestParam String deviceid,
+            @RequestParam(value = "dates", required = false)@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+            @RequestParam(value = "datef", required = false)@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
+        Map<String, Object> rinsingRecords;
+        int deviceId = Integer.parseInt(deviceid);
 
+        if (startDate != null && endDate != null) {
+            rinsingRecords = rinsingService.getRinsingRecordsByDateRange(deviceId, startDate, endDate);
+        } else {
+            rinsingRecords = rinsingService.getRinsingRecords(deviceId);
+        }
+        return ResponseEntity.ok(rinsingRecords);
 
+    }
 
+    @GetMapping("/getNameCoffeeOrders")
+    public ResponseEntity<?> getNameCoffeeOrders() {
+        try {
+            return ResponseEntity.ok(orderService.getCoffeeNames());
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Internal server error");
+        }
+    }
 }

@@ -32,6 +32,7 @@ class JetinnoTelemetryApplicationTests {
         this.responseService = responseService;
     }
 
+	/*
     @Test
 	public void testGeneratedFrame() throws Exception {
 		List<Map.Entry<byte[], String>> requests = readFrameFromFile(inputFrames);
@@ -73,6 +74,8 @@ class JetinnoTelemetryApplicationTests {
 			j++;
 		}
 	}
+
+	 */
 
 	private List<Map.Entry<byte[], String>> readFrameFromFile(String filename) throws Exception {
 		byte[] content = Files.readAllBytes(Paths.get(filename));

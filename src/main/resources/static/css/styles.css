@@ -1,0 +1,27 @@
+body {
+    background-color: #f0f8ff;
+    font-family: Arial, sans-serif;
+}
+
+.webix_datatable {
+    border: 1px solid #0073e6;
+}
+
+.webix_header {
+    background: #0073e6;
+    color: white;
+}
+
+.webix_row_even {
+    background: #e6f2ff;
+}
+
+.webix_sidebar {
+    background: #0073e6;
+    color: white;
+}
+
+.webix_button {
+    background: #0073e6;
+    color: white;
+}

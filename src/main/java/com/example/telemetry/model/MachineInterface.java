@@ -1,6 +1,7 @@
 package com.example.telemetry.model;
 
 import com.example.telemetry.generator.ResponseGenerator;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.slf4j.Logger;
@@ -13,27 +14,43 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+
+import static com.example.telemetry.manager.MachinesManager.removeMachineFromMaps;
 
 public class MachineInterface {
     private static final Logger logger = LoggerFactory.getLogger(MachineInterface.class);
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private final InetAddress machineIp;
+    private InetAddress machineIp;
     private int machinePort;
     private ResponseGenerator responseGenerator;
     private Socket proxySocket;
     private int proxyPort;
     private String proxyIp;
-    private static int vmcNumber;
     private OutputStream machineOutputStream;
     private InputStream machineInputStream;
-    private static String softwareVersion;
-    private static String ioVersion;
+    private LocalDateTime lastMessageTime;
+    private Map<String, Object> lastMessage;
+    private int vmcNumber;
+    private String softwareVersion;
+    private String ioVersion;
     private volatile boolean isControllerRequest = false;
 
-
-    public static int getVmcNumber() {
+    public int getVmcNumber() {
         return vmcNumber;
+    }
+
+    public String getIoVersion() {
+        return ioVersion;
+    }
+
+    public String getSoftwareVersion() {
+        return softwareVersion;
     }
 
     private void init() {
@@ -50,10 +67,8 @@ public class MachineInterface {
                     Thread.currentThread().interrupt();
                     break;
                 }
-
             }
         }
-
     }
 
     public MachineInterface(Socket machineSocket, ResponseGenerator responseGenerator, String proxyIp, int proxyPort) throws IOException {
@@ -61,7 +76,7 @@ public class MachineInterface {
         this.machineOutputStream = machineSocket.getOutputStream();
         this.machineInputStream = machineSocket.getInputStream();
         this.responseGenerator = responseGenerator;
-        this.machinePort = machineSocket.getPort();
+        //this.machinePort = machineSocket.getPort();
         this.proxyIp = proxyIp;
         this.proxyPort = proxyPort;
 
@@ -93,7 +108,6 @@ public class MachineInterface {
                 System.out.println("Error closing proxy connection: " + ex.getMessage());
             }
             init();
-
         }
     }
 
@@ -117,13 +131,13 @@ public class MachineInterface {
                             machineOutput.write(response);
                             machineOutput.flush();
                         }
-
                     }
                 }
             } catch (IOException e) {
                 System.out.println("Client disconnected: " + e.getMessage());
             } finally {
                 try {
+                    removeMachineFromMaps(vmcNumber, machineIp);
                     socket.close();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -141,14 +155,6 @@ public class MachineInterface {
         System.arraycopy(body, 0, frame, header.length, body.length);
 
         return frame;
-    }
-
-    public static String getIoVersion() {
-        return ioVersion;
-    }
-
-    public static String getSoftwareVersion() {
-        return softwareVersion;
     }
 
     private byte[] handleLogin(MachineRequest machineRequest) {
@@ -184,6 +190,9 @@ public class MachineInterface {
                         if (responseBody.contains(expectedFrame)) {
                             arrayBytes.complete(machineResponse.getBody());
                             break;
+                        } else if (responseBody.contains("hb")) {
+                            arrayBytes.complete(machineResponse.getBody());
+                            break;
                         }
                     }
                 }
@@ -197,7 +206,6 @@ public class MachineInterface {
 
         return arrayBytes;
     }
-
 
     private MachineRequest getInputBytes(InputStream inputStream) throws IOException {
         ByteArrayOutputStream messageBuffer = new ByteArrayOutputStream();
@@ -229,6 +237,7 @@ public class MachineInterface {
                     if (fullMessage.length > bodyLength + 12) {
                         messageBuffer.write(fullMessage, bodyLength + 12, fullMessage.length - (bodyLength + 12));
                     }
+                    lastMessageTime = LocalDateTime.now();
 
                     return machineRequest;
                 }
@@ -248,9 +257,10 @@ public class MachineInterface {
             //exclude may be?? for logging should use another method
             //not depend on implementation
             System.out.println("Received from machine to server: " + jsonBody);
-            if (!jsonBody.contains("hb"))
+            if (!jsonBody.contains("hb")) {
                 logger.info(jsonBody);
-
+                lastMessage = objectMapper.readValue(jsonBody, new TypeReference<>() {});
+            }
 
             ObjectNode body = (ObjectNode) objectMapper.readTree(jsonBody);
             Task task = new Task(body.get("cmd").asText(), body);
@@ -274,6 +284,36 @@ public class MachineInterface {
         }
         return packetSize - 12;
     }
+
+
+    public Map<String, Object> getMachineInfo() {
+        Map<String, Object> info = new HashMap<>();
+        info.put("deviceid", getVmcNumber());
+        info.put("SoftwareVersion", getSoftwareVersion());
+        info.put("IoVersion", getIoVersion());
+        return info;
+    }
+
+    private Map<String, Object> getLastMessage() {
+        return lastMessage;
+    }
+
+    private LocalDateTime getLastMessageTime() {
+        return lastMessageTime;
+    }
+
+    public Map<String, Object> getConnectInfo() {
+        Map<String, Object> connectInfo = new HashMap<>();
+
+        long timeDiffSeconds = Duration.between(getLastMessageTime(), LocalDateTime.now()).getSeconds();
+        LocalDateTime diffTime = LocalDateTime.MIN.plusSeconds(timeDiffSeconds);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+        connectInfo.put("time", diffTime.format(formatter));
+        connectInfo.put("message", getLastMessage());
+        return connectInfo;
+    }
+
 
      /*
     private MachineRequest getInputBytes(InputStream inputStream) throws IOException {

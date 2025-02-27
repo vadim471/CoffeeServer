@@ -3,8 +3,10 @@ package com.example.telemetry.controller;
 import com.example.telemetry.exceptions.MachineNotFoundException;
 import com.example.telemetry.generator.RequestGenerator;
 import com.example.telemetry.manager.MachinesManager;
+import com.example.telemetry.model.MachineInterface;
 import com.example.telemetry.model.Task;
 import com.example.telemetry.model.TelemetryResponse;
+import com.example.telemetry.service.MachineService;
 import com.example.telemetry.service.SupplyService;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.InetAddress;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,12 +30,14 @@ public class MachineController {
     private final RequestGenerator requestGenerator;
     private final MachinesManager machinesManager;
     private final SupplyService supplyService;
+    private final MachineService machineService;
 
     @Autowired
-    public MachineController(RequestGenerator requestGenerator, MachinesManager machinesManager, SupplyService supplyService) {
+    public MachineController(RequestGenerator requestGenerator, MachinesManager machinesManager, SupplyService supplyService, MachineService machineService) {
         this.requestGenerator = requestGenerator;
         this.machinesManager = machinesManager;
         this.supplyService = supplyService;
+        this.machineService = machineService;
     }
 
     /**
@@ -54,10 +59,11 @@ public class MachineController {
      * @param deviceid
      */
     @GetMapping("/getproducts")
-    public ResponseEntity<?> getProductsFromVending(@RequestParam int deviceid) {
+    public ResponseEntity<?> getProductsFromVending(@RequestParam String deviceid) {
         try {
-            InetAddress machineAddress = machinesManager.getInetAddress(deviceid);
-            byte[] response = requestGenerator.processTelemetry("upload", deviceid, Map.of("upload", "product")).getResponseBytes();
+            int deviceId = Integer.parseInt(deviceid);
+            InetAddress machineAddress = machinesManager.getInetAddress(deviceId);
+            byte[] response = requestGenerator.processTelemetry("upload", deviceId, Map.of("upload", "product")).getResponseBytes();
             CompletableFuture<byte[]> bytes = machinesManager.handleRequest(machineAddress, response, "cmd");
 
             /*
@@ -84,10 +90,11 @@ public class MachineController {
      * @param deviceid
      */
     @GetMapping("/getrecipes")
-    public ResponseEntity<?> getRecipesFromVending(@RequestParam int deviceid) {
+    public ResponseEntity<?> getRecipesFromVending(@RequestParam String deviceid) {
         try {
-            InetAddress machineAddress = machinesManager.getInetAddress(deviceid);
-            byte[] response = requestGenerator.processTelemetry("upload", deviceid, Map.of("upload", "recipe")).getResponseBytes();
+            int deviceId = Integer.parseInt(deviceid);
+            InetAddress machineAddress = machinesManager.getInetAddress(deviceId);
+            byte[] response = requestGenerator.processTelemetry("upload", deviceId, Map.of("upload", "recipe")).getResponseBytes();
             CompletableFuture<byte[]> bytes = machinesManager.handleRequest(machineAddress, response, "cmd");
 
             /*
@@ -113,14 +120,15 @@ public class MachineController {
      * @param deviceid
      */
     @PostMapping("/setrecipes")
-    public ResponseEntity<?> sendRecipe(@RequestParam int deviceid, @RequestBody JsonNode payLoad) {
+    public ResponseEntity<?> sendRecipe(@RequestParam String deviceid, @RequestBody JsonNode payLoad) {
         try {
-            InetAddress machineAddress = machinesManager.getInetAddress(deviceid);
+            int deviceId = Integer.parseInt(deviceid);
+            InetAddress machineAddress = machinesManager.getInetAddress(deviceId);
 
             JsonNode products = payLoad.get("products");
             String nameZipArchieve = requestGenerator.saveJsonFileAndArchieve(products);
 
-            byte[] response = requestGenerator.processTelemetry("upgrade", deviceid, Map.of("type", "recipe",
+            byte[] response = requestGenerator.processTelemetry("upgrade", deviceId, Map.of("type", "recipe",
                     "zipDir", nameZipArchieve)).getResponseBytes();
 
             CompletableFuture<byte[]> bytes = machinesManager.handleRequest(machineAddress, response, "cmd");
@@ -138,10 +146,11 @@ public class MachineController {
     }
 
     @PostMapping("/setproducts")
-    public ResponseEntity<?> send(@RequestParam int deviceid) {
+    public ResponseEntity<?> send(@RequestParam String deviceid) {
         try {
-            InetAddress machineAddress = machinesManager.getInetAddress(deviceid);
-            byte[] response = requestGenerator.processTelemetry("upgrade", deviceid, "products").getResponseBytes();
+            int deviceId = Integer.parseInt(deviceid);
+            InetAddress machineAddress = machinesManager.getInetAddress(deviceId);
+            byte[] response = requestGenerator.processTelemetry("upgrade", deviceId, "products").getResponseBytes();
 
             CompletableFuture<byte[]> bytes = machinesManager.handleRequest(machineAddress, response, "cmd");
             if (bytes != null) {
@@ -160,12 +169,16 @@ public class MachineController {
      *
      * @param deviceid
      */
-    @PostMapping("/supply")
-    public CompletableFuture<ResponseEntity<?>> getMachineStatus(@RequestParam int deviceid) {
+    @GetMapping("/supply")
+    public CompletableFuture<ResponseEntity<?>> getMachineStatus(@RequestParam String deviceid) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                InetAddress machineAddress = machinesManager.getInetAddress(deviceid);
-                byte[] response = requestGenerator.processTelemetry("remote", deviceid, "sync").getResponseBytes();
+                int deviceId = Integer.parseInt(deviceid);
+                if (deviceId == 55418) {
+                    return ResponseEntity.ok("Not supported");
+                }
+                InetAddress machineAddress = machinesManager.getInetAddress(deviceId);
+                byte[] response = requestGenerator.processTelemetry("remote", deviceId, "sync").getResponseBytes();
 
                 CompletableFuture<byte[]> bytes = machinesManager.handleRequest(machineAddress, response, "supply");
 
@@ -191,9 +204,10 @@ public class MachineController {
     }
 
     @PostMapping("/fillsupply")
-    public ResponseEntity<?> addSupply(@RequestParam int deviceid,  @RequestBody JsonNode supplyLoad) {
+    public ResponseEntity<?> addSupply(@RequestParam String deviceid,  @RequestBody JsonNode supplyLoad) {
         try {
-            InetAddress machineAddress = machinesManager.getInetAddress(deviceid);
+            int deviceId = Integer.parseInt(deviceid);
+            InetAddress machineAddress = machinesManager.getInetAddress(deviceId);
             //TODO
             return ResponseEntity.ok("");
         } catch (MachineNotFoundException ex) {
@@ -211,14 +225,15 @@ public class MachineController {
      * @param price
      */
     @PostMapping("/setprice")
-    public ResponseEntity<?> setProductPrice(@RequestParam int deviceid, @RequestBody Map<String, Object> price) {
+    public ResponseEntity<?> setProductPrice(@RequestParam String deviceid, @RequestBody Map<String, Object> price) {
         try {
-            InetAddress machineAddress = machinesManager.getInetAddress(deviceid);
+            int deviceId = Integer.parseInt(deviceid);
+            InetAddress machineAddress = machinesManager.getInetAddress(deviceId);
             List<List<Integer>> priceArray = (List<List<Integer>>) price.get("price");
             Map<String, Object> params = Map.of(
                     "price", priceArray
             );
-            TelemetryResponse response = requestGenerator.processTelemetry("priceset", deviceid, params);
+            TelemetryResponse response = requestGenerator.processTelemetry("priceset", deviceId, params);
             machinesManager.handleRequest(machineAddress, response.getResponseBytes(), "cmd");
             return ResponseEntity.ok("");
         } catch (MachineNotFoundException ex) {
@@ -229,27 +244,29 @@ public class MachineController {
     }
 
     @PostMapping("/setorder")
-    public ResponseEntity<?> makeProduct(@RequestParam int deviceid, @RequestBody Map<String, Object> payload) throws MachineNotFoundException {
+    public ResponseEntity<?> makeProduct(@RequestParam String deviceid, @RequestBody Map<String, Object> payload) {
         try {
-            InetAddress machineAddress = machinesManager.getInetAddress(deviceid);
+            int deviceId = Integer.parseInt(deviceid);
+            InetAddress machineAddress = machinesManager.getInetAddress(deviceId);
             Map<String, Object> order = (Map<String, Object>) payload.get("order");
 
             int productId = (Integer) order.get("productId");
-            int price = (Integer) order.get("price");
             Map<String, Object> params = Map.of(
                     "operation", "products",
-                    "productId", productId,
-                    "price", price
+                    "productId", productId
             );
 
             //byte[] response = requestGenerator.processTelemetry("products", deviceid, params).getResponseBytes();
-            TelemetryResponse response = requestGenerator.processTelemetry("products", deviceid, params);
+            TelemetryResponse response = requestGenerator.processTelemetry("products", deviceId, params);
 
             if (!response.isSuccess()) {
-                return ResponseEntity.status(402).body(response.getMessage());
+                return ResponseEntity.status(400).body(response.getMessage());
             }
             machinesManager.handleRequest(machineAddress, response.getResponseBytes(), "cmd");
-            return ResponseEntity.status(200).body("success");
+
+            Map<String, String> success = new HashMap<>();
+            success.put("Status", "Success");
+            return ResponseEntity.status(200).body(success);
             //CompletableFuture<byte[]> bytes =
 //            if (bytes != null) {
 //                bytes.whenComplete((res, error) -> {
@@ -257,6 +274,63 @@ public class MachineController {
 //                    System.out.println("FROM CONTROLLER!!!11" + responseTask.getBody());
 //                });
 //            }
+
+        } catch (MachineNotFoundException ex) {
+            return ResponseEntity.status(404).body(ex.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Internal server error");
+        }
+    }
+
+    @GetMapping("/listMachines")
+    public ResponseEntity<?> getListMachines() {
+        try {
+            return ResponseEntity.ok(new ArrayList<>(machineService.getListMachines()));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Internal server error");
+        }
+    }
+
+    @GetMapping("/getMachineInfoById")
+    public ResponseEntity<?> getInfoById(Integer deviceId) {
+        try {
+            return ResponseEntity.ok(machineService.getMachineById(deviceId));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Internal server error");
+        }
+    }
+
+    @GetMapping("/listActiveMachines")
+    public ResponseEntity<?> getListActiveMachines() {
+        try {
+
+            List<Map<String,Object>> result = new ArrayList<>();
+            for (Integer key : machinesManager.getListActiveMachines().keySet()) {
+                Map<String, Object> machineInfo = new HashMap<>();
+                MachineInterface machineInterface = machinesManager.getMachineInterfaceById(key);
+                machineInfo.put("deviceId", key);
+                machineInfo.put("info", machineInterface.getConnectInfo());
+                result.add(machineInfo);
+            }
+
+
+            return ResponseEntity.status(200).body(result);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Internal server error");
+        }
+
+    }
+
+    @GetMapping("/checkMachineAvailability")
+    public ResponseEntity<?> checkMachineAvailability(@RequestParam String deviceid) {
+        try {
+            int deviceId = Integer.parseInt(deviceid);
+            if (machinesManager.isConnectedMachine(deviceId)) {
+                MachineInterface machineInterface = machinesManager.getMachineInterfaceById(deviceId);
+                return ResponseEntity.status(200).body(machineInterface.getMachineInfo());
+            } else
+                return null;
 
         } catch (MachineNotFoundException ex) {
             return ResponseEntity.status(404).body(ex.getMessage());

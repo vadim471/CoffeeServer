@@ -1,28 +1,34 @@
 package com.example.telemetry.service;
 
+import com.example.telemetry.manager.MachinesManager;
 import com.example.telemetry.model.Error;
+import com.example.telemetry.model.MachineInterface;
 import com.example.telemetry.repository.ErrorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.example.telemetry.model.MachineInterface.*;
-
 @Service
 public class ErrorService {
     private final ErrorRepository errorRepository;
 
-    public ErrorService(ErrorRepository errorRepository) {
+    @Autowired
+    private final MachinesManager machinesManager;
+
+    public ErrorService(ErrorRepository errorRepository, MachinesManager machinesManager) {
+        this.machinesManager = machinesManager;
         this.errorRepository = errorRepository;
     }
 
     public Map<String, Object> getErrors(int deviceId) {
         List<Error> errors = errorRepository.findByVmcNumber(deviceId);
+
+        MachineInterface machineInterface = machinesManager.getMachineInterfaceById(deviceId);
 
         List<Map<String, Object>> errorResult = errors.stream().map(error -> {
             Map<String, Object> errorInfo = new HashMap<>();
@@ -38,10 +44,11 @@ public class ErrorService {
         }).collect(Collectors.toList());
 
         Map<String, Object> result = new HashMap<>();
-        result.put("deviceid", getVmcNumber());
-        result.put("SoftwareVersion", getSoftwareVersion());
-        result.put("IoVersion", getIoVersion());
-        result.put("products", Collections.singletonList(errorResult));
+
+        if (machineInterface != null) {
+            result.putAll(machineInterface.getMachineInfo());
+        }
+        result.put("products", errorResult);
 
         return result;
     }
@@ -49,6 +56,9 @@ public class ErrorService {
     public Map<String, Object> getErrorsByDateRange(int deviceId, LocalDateTime startDate, LocalDateTime endDate) {
         List<Error> errors = errorRepository.findByDateRange(deviceId, startDate, endDate);
 
+        MachineInterface machineInterface = machinesManager.getMachineInterfaceById(deviceId);
+
+
         List<Map<String, Object>> errorResult = errors.stream().map(error -> {
             Map<String, Object> errorInfo = new HashMap<>();
             errorInfo.put("DeviceID", error.getVmcNumber());
@@ -63,10 +73,12 @@ public class ErrorService {
         }).collect(Collectors.toList());
 
         Map<String, Object> result = new HashMap<>();
-        result.put("deviceid", getVmcNumber());
-        result.put("SoftwareVersion", getSoftwareVersion());
-        result.put("IoVersion", getIoVersion());
-        result.put("products", Collections.singletonList(errors));
+
+        if (machineInterface != null) {
+            result.putAll(machineInterface.getMachineInfo());
+        }
+
+        result.put("products", errorResult);
 
         return result;
     }

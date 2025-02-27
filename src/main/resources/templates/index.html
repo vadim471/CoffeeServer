@@ -1,72 +1,53 @@
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Telemetry Data</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Interface</title>
+    <script th:src="@{/js/scripts.js(v=${#dates.createNow().getTime()})}"></script>
+    <link rel="stylesheet" th:href="@{/css/stylesHTML.css}">
 </head>
 <body>
-<h1>Telemetry Data</h1>
-<button onclick="sendStatus('MACHINESUPPLY')">Get supply</button>
-<button onclick="sendOperation('SYNC')">Get machine report </button>
+<header>
+    <a href="/jetinno_api/orders" class="nav-button">Заказы</a>
+    <a href="/jetinno_api/faults" class="nav-button">Ошибки</a>
+</header>
 
-<table>
-    <thead>
-    <tr>
-        <th>Product ID</th>
-        <th>CoffeeType</th>
-        <th>ProductAmount</th>
-        <th>Timestamp</th>
-        <th>PayType</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="telemetry : ${telemetryDataList}">
-        <td th:text="${telemetry.productId}"></td>
-        <td th:text="${telemetry.nameKey}"></td>
-        <td th:text="${telemetry.productAmount}"></td>
-        <td th:text="${telemetry.formattedDate}"></td>
-        <td th:text="${telemetry.payType}"></td>
-    </tr>
-    </tbody>
-</table>
-<script>
-    function sendStatus(operation) {
-        fetch('/machinestatus', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                data: "supply"
-            })
-        })
-        .then(response => response.json());
-    }
+<main>
+    <section id="statusAndOrder">
+        <div id="statusSection">
+            <h2>Получение статуса запасов</h2>
+            <label for="deviceid">Device ID:</label>
+            <select id="deviceid"></select>
+            <button onclick="fetchSupply()">Получить данные</button>
+            <table>
+                <thead>
+                <tr>
+                    <th>Supply Name</th>
+                    <th>Surplus</th>
+                    <th>Upload Time</th>
+                </tr>
+                </thead>
+                <tbody id="supplyTableBody"></tbody>
+            </table>
+        </div>
 
-    function sendOperation(operation) {
-        fetch('/remote', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                operation: "SYNC"
-            })
-        })
-        .then(response => response.json());
-    }
-</script>
+        <div id="orderSection">
+            <h2>Создание заказа</h2>
+            <label>Выберите напиток:
+                <select id="productSelect" onchange="updateOrderFields()">
+                    <option value="">-- Выберите напиток --</option>
+                </select>
+            </label>
+            <label>Цена:
+                <input type="number" id="priceInput">
+            </label>
+            <label for="device">Device ID:</label>
+            <select id="device"></select>
+            <button onclick="sendOrder()">Отправить заказ</button>
+        </div>
+    </section>
+</main>
 </body>
 </html>

@@ -35,29 +35,28 @@ public class ProductsHandler implements CommandHandler {
         Map<String, Object> paramMap = (Map<String, Object>) params;
         String operation = (String) paramMap.get("operation");
         int productId = (Integer) paramMap.get("productId");
-        int price = (Integer) paramMap.get("price");
 
         Optional<CoffeeOrder> product = coffeeOrderRepository.findByProductId(productId);
 
         if(product.isPresent()) {
-            int actualPrice = product.get().getProductLastPrice();
-            if (price != actualPrice) {
-                return "Failed: PRICE_MISMATCH ";
+            ObjectNode response = objectMapper.createObjectNode();
+            response.put("cmd", "remote");
+            response.put("vmc_no", vmcNumber);
+            response.put("session_id", generateSessionId(vmcNumber));
+            response.put("notify_url", "");
+            response.put("operation", operation);
+            response.put("product_id", productId);
+            try {
+                return objectMapper.writeValueAsString(response);
+            } catch (Exception e) {
+                throw new RuntimeException("Failed", e);
             }
+        } else {
+            return("Failed: no product with id " + productId);
         }
 
-        ObjectNode response = objectMapper.createObjectNode();
-        response.put("cmd", "remote");
-        response.put("vmc_no", vmcNumber);
-        response.put("session_id", generateSessionId(vmcNumber));
-        response.put("notify_url", "");
-        response.put("operation", operation);
-        response.put("product_id", productId);
 
-        try {
-            return objectMapper.writeValueAsString(response);
-        } catch (Exception e) {
-            throw new RuntimeException("Failed", e);
-        }
+
+
     }
 }

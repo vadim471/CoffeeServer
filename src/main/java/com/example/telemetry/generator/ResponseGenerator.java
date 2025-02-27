@@ -1,12 +1,11 @@
 package com.example.telemetry.generator;
 
 
-import com.example.telemetry.model.CoffeeOrder;
+import com.example.telemetry.model.*;
 import com.example.telemetry.model.Error;
-import com.example.telemetry.model.Task;
-import com.example.telemetry.model.TelemetryData;
 import com.example.telemetry.repository.CoffeeOrderRepository;
 import com.example.telemetry.repository.ErrorRepository;
+import com.example.telemetry.repository.RinsingRepository;
 import com.example.telemetry.repository.TelemetryDataRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,9 +30,10 @@ public class ResponseGenerator {
     private final TelemetryDataRepository telemetryDataRepository;
     private final CoffeeOrderRepository coffeeOrderRepository;
     private final ErrorRepository errorRepository;
+    private final RinsingRepository rinsingRepository;
 
     @Autowired
-    public ResponseGenerator(TelemetryDataRepository telemetryDataRepository, CoffeeOrderRepository coffeeOrderRepository, ErrorRepository errorRepository) throws JsonProcessingException {
+    public ResponseGenerator(TelemetryDataRepository telemetryDataRepository, CoffeeOrderRepository coffeeOrderRepository, ErrorRepository errorRepository, RinsingRepository rinsingRepository) throws JsonProcessingException {
         commandHandlers.put("hb", this :: handlerHeartbeat);
         commandHandlers.put("login", this :: handlerLogin);
         commandHandlers.put("machinestatus", this :: handlerMachineStatus);
@@ -45,6 +45,7 @@ public class ResponseGenerator {
         this.telemetryDataRepository = telemetryDataRepository;
         this.coffeeOrderRepository = coffeeOrderRepository;
         this.errorRepository = errorRepository;
+        this.rinsingRepository = rinsingRepository;
     }
 
     public Task generateTaskFromBytes(byte[] array) {
@@ -188,9 +189,11 @@ public class ResponseGenerator {
     }
 
     private ObjectNode handlerProductCompletion(ObjectNode jsonNode) {
-        saveCoffeeOrder(jsonNode);
-        if (!Objects.equals(jsonNode.get("PayType").asText(), "test"))
+
+        if (!Objects.equals(jsonNode.get("PayType").asText(), "test")) {
             saveTelemetryData(jsonNode);
+            saveCoffeeOrder(jsonNode);
+        }
         ObjectNode response = objectMapper.createObjectNode();
         response.put("cmd", "productdone_r");
         response.put("vmc_no", jsonNode.get("vmc_no").asInt());
@@ -208,6 +211,7 @@ public class ResponseGenerator {
     }
 
     private ObjectNode handleRinsing(ObjectNode jsonNode){
+        saveRinsingMessage(jsonNode);
         ObjectNode response = objectMapper.createObjectNode();
         response.put("cmd", "rinsingrecord_r");
         response.put("c_uid", jsonNode.get("c_uid").asText());
@@ -263,7 +267,8 @@ public class ResponseGenerator {
                 CoffeeOrder message = existingMessage.get();
                 message.setProductPriceSumm(message.getProductPriceSumm() + body.get("ProductAmount").asInt() / 100);
                 message.setProductRepeat(message.getProductRepeat() + 1);
-                message.setProductName(body.get("ProductName").asText());
+                message.setProductLastPrice(body.get("ProductAmount").asInt() / 100);
+                //message.setProductName(body.get("ProductName").asText());
                 coffeeOrderRepository.save(message);
             } else {
                 CoffeeOrder newMessage = new CoffeeOrder();
@@ -294,6 +299,21 @@ public class ResponseGenerator {
         errorRepository.save(error);
     }
 
+    private void saveRinsingMessage(ObjectNode jsonNode) {
+        String cUid = jsonNode.get("c_uid").asText();
+        boolean isOk = jsonNode.get("isok").asBoolean();
+        String rinsingCode = jsonNode.get("rinsing_code").asText();
+        int vmcNumber = jsonNode.get("vmc_no").asInt();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        LocalDateTime date = LocalDateTime.parse(jsonNode.get("timestamp").asText(), formatter);
+
+        Rinsing rinsing = new Rinsing(rinsingCode, date, isOk, vmcNumber, cUid);
+
+        rinsingRepository.save(rinsing);
+    }
+
+
     public static String generateSessionId(int vmcNumber) {
 
         LocalDateTime dateTime = LocalDateTime.now().plusHours(3);
@@ -308,7 +328,7 @@ public class ResponseGenerator {
         //TODO
     }
 
-    private int extractFaultCode(String faultCode) {
-        return Integer.parseInt(faultCode.split(":")[1]);
+    private String extractFaultCode(String faultCode) {
+        return faultCode.split(":")[1];
     }
 }

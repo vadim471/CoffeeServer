@@ -1,0 +1,2 @@
+ALTER TABLE error
+ALTER COLUMN fault_code TYPE VARCHAR(255) USING fault_code::TEXT;

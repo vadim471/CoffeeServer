@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ошибки</title>
+    <script th:src="@{/js/scripts.js(v=${#dates.createNow().getTime()})}"></script>
+    <link rel="stylesheet" th:href="@{/css/stylesHTML.css}">
+</head>
+<body>
+<header>
+    <a href="/jetinno_api" class="nav-button">Главная</a>
+    <a href="/jetinno_api/orders" class="nav-button">Заказы</a>
+</header>
+
+<main>
+    <h2>Получение ошибок</h2>
+    <label>Дата начала: <input type="datetime-local" id="faultStartDate"></label>
+    <label>Дата конца: <input type="datetime-local" id="faultEndDate"></label>
+    <label for="deviceid">Device ID:</label>
+    <select id="deviceid"></select>
+    <button onclick="fetchFaults()">Получить ошибки</button>
+    <table>
+        <thead>
+        <tr>
+            <th>Fault Code</th>
+            <th>Fault Info</th>
+            <th>Occured Time</th>
+            <th>Clear Time</th>
+            <th>Fault Duration</th>
+        </tr>
+        </thead>
+        <tbody id="faultsTableBody"></tbody>
+    </table>
+</main>
+</body>
+</html>

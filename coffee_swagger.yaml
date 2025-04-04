@@ -1,0 +1,814 @@
+openapi: 3.0.1
+info:
+  title: Optima Vending Api
+  version: v0
+servers:
+- url: http://10.9.2.86:8001/optima_vending_api
+tags:
+  - name: machine-controller
+    description: Работа с вендинговым аппаратом
+  - name: telemetry-controller
+    description: Работа с базой данных
+paths:
+  /setrecipes:
+    post:
+      tags:
+      - machine-controller
+      summary: Установка рецептов
+      operationId: sendRecipe
+      parameters:
+      - name: deviceid
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Drinks"
+        required: true
+      responses:
+        "401":
+          description: Не авторизованы
+        "500":
+          description: Серверная ошибка
+          content:
+            '*/*':
+              schema:
+                type: object
+        "404":
+          description: Вендинговый аппарат не подключен к серверу
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/MachineNotFound'
+  /setproducts:
+    post:
+      tags:
+      - machine-controller
+      summary: Установка напитков
+      operationId: send
+      parameters:
+      - name: deviceid
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Recipe"
+        required: true
+      responses:
+        "401":
+          description: Не авторизованы
+        "500":
+          description: Серверная ошибка
+          content:
+            '*/*':
+              schema:
+                type: object
+        "404":
+          description: Вендинговый аппарат не подключен к серверу
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/MachineNotFound'
+  /setprice:
+    post:
+      tags:
+      - machine-controller
+      summary: Установка цены на напиток
+      operationId: setProductPrice
+      parameters:
+      - name: deviceid
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetPrice'
+        required: true
+      responses:
+        "401":
+          description: Не авторизованы
+        "500":
+          description: Серверная ошибка
+          content:
+            '*/*':
+              schema:
+                type: object
+        "404":
+          description: Вендинговый аппарат не подключен к серверу
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/MachineNotFound'
+  /setorder:
+    post:
+      tags:
+      - machine-controller
+      summary: Размещение заказа на вендиговом аппарате
+      operationId: makeProduct
+      parameters:
+      - name: deviceid
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                type: object
+        required: true
+      responses:
+        "401":
+          description: Не авторизованы
+        "500":
+          description: Серверная ошибка
+          content:
+            '*/*':
+              schema:
+                type: object
+        "404":
+          description: Вендинговый аппарат не подключен к серверу
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/MachineNotFound'
+  /fillsupply:
+    post:
+      tags:
+      - machine-controller
+      summary: Пополнение остатков на вендинговом аппарате
+      operationId: addSupply
+      parameters:
+      - name: deviceid
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SetSupply"
+        required: true
+      responses:
+        "401":
+          description: Не авторизованы
+        "500":
+          description: Серверная ошибка
+          content:
+            '*/*':
+              schema:
+                type: object
+        "404":
+          description: Вендинговый аппарат не подключен к серверу
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/MachineNotFound'
+  /supply:
+    get:
+      tags:
+      - machine-controller
+      summary: Получение остатков на вендинговом аппарате
+      operationId: getMachineStatus
+      parameters:
+      - name: deviceid
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Информация об остатках
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/GetSupply'
+        "401":
+          description: Не авторизованы  
+        "500":
+          description: Серверная ошибка
+          content:
+            '*/*':
+              schema:
+                type: object
+        "404":
+          description: Вендинговый аппарат не подключен к серверу
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/MachineNotFound'
+  /rinsing:
+    get:
+      tags:
+      - telemetry-controller
+      summary: Получение информации о промывках
+      operationId: getRinsingRecord
+      parameters:
+      - name: deviceid
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: dates
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: datef
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      responses:
+        "200":
+          description: Получен список промывок
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/Rinsing'
+  /ping:
+    get:
+      tags:
+      - machine-controller
+      summary: Проверка доступности сервера
+      operationId: ping
+      responses:
+        "200":
+          description: Сервер доступен
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/Ok'
+
+  /order:
+    get:
+      tags:
+      - telemetry-controller
+      summary: "Получение списка заказов"
+      operationId: getOrders
+      parameters:
+      - name: deviceid
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: dates
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: datef
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      responses:
+        "200":
+          description: Получена информация о заказах
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/Order'
+  /listMachines:
+    get:
+      tags:
+      - machine-controller
+      summary: Получение списка вендинговых аппаратов из БД
+      operationId: getListMachines
+      responses:
+        "200":
+          description: Список существующих машин
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Machine'
+
+        "401":
+          description: Не авторизованы
+        "500":
+          description: Серверная ошибка
+          content:
+            '*/*':
+              schema:
+                type: object
+        "404":
+          description: Вендинговый аппарат не подключен к серверу
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/MachineNotFound'
+  /listActiveMachines:
+    get:
+      tags:
+      - machine-controller
+      summary: Возвращает список активных машин
+      operationId: getListActiveMachines
+      responses:
+        "200":
+          description: Список аквтивных машин
+          content:
+        "401":
+          description: Не авторизованы
+        "500":
+          description: Серверная ошибка
+          content:
+            '*/*':
+              schema:
+                type: object
+        "404":
+          description: Вендинговый аппарат не подключен к серверу
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/MachineNotFound'
+  /getrecipes:
+    get:
+      tags:
+      - machine-controller
+      operationId: getRecipesFromVending
+      parameters:
+      - name: deviceid
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "401":
+          description: Не авторизованы
+        "500":
+          description: Серверная ошибка
+          content:
+            '*/*':
+              schema:
+                type: object
+        "404":
+          description: Вендинговый аппарат не подключен к серверу
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/MachineNotFound'
+  /getproducts:
+    get:
+      tags:
+      - machine-controller
+      operationId: getProductsFromVending
+      parameters:
+      - name: deviceid
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "401":
+          description: Не авторизованы
+        "500":
+          description: Серверная ошибка
+          content:
+            '*/*':
+              schema:
+                type: object
+        "404":
+          description: Вендинговый аппарат не подключен к серверу
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/MachineNotFound'
+  /getNameCoffeeOrders:
+    get:
+      tags:
+      - telemetry-controller
+      operationId: getNameCoffeeOrders
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/CoffeeOrder'
+  /getMachineInfoById:
+    get:
+      tags:
+      - machine-controller
+      operationId: getInfoById
+      parameters:
+      - name: deviceId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "401":
+          description: Не авторизованы
+        "500":
+          description: Серверная ошибка
+        "404":
+          description: Вендинговый аппарат не подключен к серверу
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/MachineNotFound'
+  /faulty:
+    get:
+      tags:
+      - telemetry-controller
+      summary: Получение списка ошибок
+      operationId: getErrors
+      parameters:
+      - name: deviceid
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: dates
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: datef
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json: 
+              schema:
+                type: object
+                properties:
+                  groups:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Fault"
+  /checkMachineAvailability:
+    get:
+      tags:
+      - machine-controller
+      summary: Проверка доступности вендингового аппарата
+      operationId: checkMachineAvailability
+      parameters:
+      - name: deviceid
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Информация об вендинговом аппарате
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/MachineAvailable'
+        "401":
+          description: Не авторизованы
+        "500":
+          description: Серверная ошибка
+        "404":
+          description: Вендинговый аппарат не подключен к серверу
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/MachineNotFound'
+components:
+  schemas:
+    Order:
+      properties:
+        Status:
+          type: string
+        BuyTime:
+          type: string
+          format: date-time
+          example: "2025-01-24T13:27:32"
+        ProductName: 
+          type: string
+        Price:
+          type: integer
+        DeviceID: 
+          type: integer
+        OrderNo:
+          type: string
+        prodProductIDuctID:
+          type: integer
+        PayType:
+          type: string 
+      example:
+        - Status: success,
+          BuyTime: "2025-02-17T12:35:25"
+          ProductName: Двойной эспрессо
+          Price: 0
+          DeviceID: 55418
+          OrderNo: "202502171234065541853900"
+          ProductID: 210
+          PayType: free
+    MachineAvailable:
+      properties:
+        ioVersion:
+          type: string
+        softwareVersion:
+          type: string
+        deviceID:
+          type: integer
+    Fault:
+      properties:
+        FaultDuration:
+          type: string
+        DeviceID:
+          type: integer
+        OccuredTime:
+          type: string
+          format: date-time
+        ClearTime:
+          type: string
+          format: date-time
+        FaultyCode:
+          type: string
+        FaultyState:
+          type: string
+        FaultyInfo:
+          type: string
+      example:
+        - FaultDuration: null
+          DeviceID: 55418
+          OccuredTime: "2025-02-03 16:41:09"
+          ClearTime: null
+          FaultyCode: "5B00"
+          FaultyState: "verstehe niht"
+          FaultyInfo: "Поддон для сбора капель не установлен"
+    MachineNotFound:
+      properties:
+        message:
+          type: string
+          example: "Machine with id: 7384 not found"
+    Machine:
+      type: object
+      properties:
+        vmcNumber:
+          type: integer
+        softwareVersion:
+          type: string
+        ioVersion:
+          type: string
+        address:
+          type: string
+        machineName:
+          type: string
+        serialNumber:
+          type: string
+        active:
+          type: boolean
+      example:
+        - vmcNumber: 55418
+          softwareVersion: V1.0.9.T_JL32_33
+          ioVersion: V87.25
+          address: Инит
+          machineName: Маленькая
+          serialNumber: jlX123
+          active: true
+    Drinks:
+      type: object
+      properties:
+        deviceid:
+          type: integer
+        SoftwareVersion:
+          type: string
+        IoVersion:
+          type: string
+        products:
+          type: array
+          items: 
+            type: object
+            properties:
+              bestSell:
+                type: boolean
+              canisterIds:
+                type: integer
+              cupType:
+                type: integer
+              date:
+                type: string
+                example: "20241028 15:11"
+              discount:
+                type: integer
+              distype:
+                type: integer
+              enable: 
+                type: boolean
+                example: hot
+              hotCold:
+                type: string
+              id:
+                type: integer
+              makeTime:
+                type: integer
+              nameCN:
+                type: string
+              nameEN:
+                type: string
+              nameKey:
+                type: string
+              order:
+                type: string
+              picPath:
+                type: string
+                example: ic_Esc.png
+              picPathBig:
+                type: string
+                example: ic_Esc_Big.png
+              price:
+                type: integer
+              productId:
+                type: integer
+              productType:
+                type: integer
+              recipeName:
+                type: string
+              salePrice:
+                type: integer
+              saveOut:
+                type: boolean
+              type: 
+                type: integer
+              visible:
+                type: boolean
+    Recipe:
+      type: object
+      properties:
+        deviceid:
+          type: integer
+        SoftwareVersion:
+          type: string
+        IoVersion:
+          type: string
+        products:
+          type: array
+          items: 
+            type: object
+            properties:
+              canisterIds: 
+                type: string
+              esAttr:
+                type: object
+                properties:
+                  prebrewingTime:
+                    type: integer
+                  prebrewingWaterRatio:
+                    type: string
+                  restorationTime:
+                    type: string
+                  secondSqueezeTime:
+                    type: string
+                  squeezeForce:
+                    type: string
+                  squeezeTime:
+                    type: string
+              nameKey:
+                type: string
+              recipeName:
+                type: string
+              stepses:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    canisterId:
+                      type: string
+                    waterVolume:
+                      type: string
+                    recipeOutOrder:
+                      type: string
+                    delayTime: 
+                      type: string
+                    gradientWeight:
+                      type: string
+                    temptype:
+                      type: string
+              type:
+                type: integer
+    SetPrice:
+      type: object
+      properties:
+        deviceid:
+          type: integer
+        price:
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+              example: [
+                      [102, 1000, 0],
+                      [103, 1500, 0]
+                    ]
+    SetSupply:
+      type: object
+      properties:
+        supply:
+          type: object
+          additionalProperties:
+            type: string
+          example: {
+            "999999": "+999",
+            "10006": "-222"
+          }
+    GetSupply:
+      type: object
+      properties:
+        IoVersion:
+          type: string
+        SoftwareVersion:
+          type: string
+        deviceid:
+          type: integer
+        products:
+          type: array
+          items: 
+            type: object
+            properties:
+              SupplyName:
+                type: string
+                example: Кофейные зерна 2
+              UploadTime: 
+                type: string
+                example: "2025-03-04T14:15:59"
+              SupplyId:
+                type: string
+                example: 10284
+              Surplus:
+                type: string
+                example: 84900
+    Rinsing:
+      type: object
+      properties:
+        IoVersion:
+          type: string
+        SoftwareVersion:
+          type: string
+        deviceid:
+          type: integer
+        products:
+          type: array
+          items: 
+            type: object
+            properties:
+              CUid: 
+                type: string
+                example: C20250203102338961
+              IsOk: 
+                type: boolean
+              RinsingDescription:
+                type: string
+                example: Промывка молочной системы
+              Time:
+                type: string
+                example: "2025-02-03T10:23:38"
+              RinsingCode:
+                type: string
+                example: C02
+    Ok:
+      type: object
+      properties:
+        Status: 
+          type: string
+          example: OK
+    CoffeeOrder:
+      type: object
+      properties:
+        productName:
+          type: string
+          example: "Без сахара маккиато"
+        productLastPrice:
+          type: integer
+          example: 200
+        productRepeat:
+          type: integer
+          example: 127
+        productPriceSumm:
+          type: integer
+          example: 5800
+        id:
+          type: integer
+          example: 13
+

@@ -1,0 +1,24 @@
+services:
+  app:
+    build: .
+    container_name: spring
+    ports:
+      - "8001:8001"
+    environment:
+      SPRING_DATABASE_URL: jdbc:postgresql://localhost:5432/CoffeeTelemetry
+      SPRING_DATABASE_USERNAME: postgres
+      SPRING_DATABASE_PASSWORD: postgres
+    depends_on:
+      - db
+
+  db:
+    image: 'postgres:16'
+    container_name: db
+    environment:
+      POSTGRES_DB: CoffeeTelemetry
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib

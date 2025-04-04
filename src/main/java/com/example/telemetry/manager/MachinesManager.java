@@ -4,6 +4,7 @@ import com.example.telemetry.exceptions.MachineNotFoundException;
 import com.example.telemetry.generator.ResponseGenerator;
 import com.example.telemetry.model.Machine;
 import com.example.telemetry.model.MachineInterface;
+import com.example.telemetry.repository.MachineActivityRepository;
 import com.example.telemetry.repository.MachineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,15 +32,17 @@ public class MachinesManager {
     private static HashMap<Integer, MachineInterface> machineInterfaceById = new HashMap<>(); //vmcNumber - interface
     private final ResponseGenerator responseGenerator;
     private final MachineRepository machineRepository;
+    private final MachineActivityRepository machineActivityRepository;
 
     @Autowired
-    public MachinesManager(ResponseGenerator responseGenerator, MachineRepository machineRepository) {
+    public MachinesManager(ResponseGenerator responseGenerator, MachineRepository machineRepository, MachineActivityRepository machineActivityRepository) {
         this.responseGenerator = responseGenerator;
         this.machineRepository = machineRepository;
+        this.machineActivityRepository = machineActivityRepository;
     }
 
     public void acceptConnection(Socket clientSocket) throws IOException {
-        MachineInterface machineInterface = new MachineInterface(clientSocket, responseGenerator, proxyIp, proxyPort);
+        MachineInterface machineInterface = new MachineInterface(clientSocket, responseGenerator, proxyIp, proxyPort, machineActivityRepository);
         int vmcNumber = machineInterface.getVmcNumber();
         String softwareVersion = machineInterface.getSoftwareVersion();
         String ioVersion = machineInterface.getIoVersion();

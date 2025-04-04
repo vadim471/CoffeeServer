@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +28,7 @@ public class ErrorService {
 
     public Map<String, Object> getErrors(int deviceId) {
         List<Error> errors = errorRepository.findByVmcNumber(deviceId);
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         MachineInterface machineInterface = machinesManager.getMachineInterfaceById(deviceId);
 
         List<Map<String, Object>> errorResult = errors.stream().map(error -> {
@@ -36,7 +37,7 @@ public class ErrorService {
             errorInfo.put("FaultyCode", error.getFaultCode());
             errorInfo.put("FaultyInfo", error.getFaultInfo());
             errorInfo.put("FaultyState", error.getFaultyState());
-            errorInfo.put("OccuredTime", error.getOccuredTime());
+            errorInfo.put("OccuredTime", error.getOccuredTime().format(formatter));
             errorInfo.put("ClearTime", error.getClearTime());
             errorInfo.put("FaultDuration", error.getFaultDuration());
 

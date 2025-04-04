@@ -1,7 +1,6 @@
 package com.example.telemetry.controller;
 
 
-import com.example.telemetry.manager.MachinesManager;
 import com.example.telemetry.service.ErrorService;
 import com.example.telemetry.service.OrderService;
 import com.example.telemetry.service.RinsingService;
@@ -11,12 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 
 import java.util.Map;
 
-@Controller
+@RestController
 public class TelemetryController {
 
     private final OrderService orderService;
@@ -96,6 +96,15 @@ public class TelemetryController {
         return ResponseEntity.ok(rinsingRecords);
 
     }
+
+//    @GetMapping("/supply")
+//    public ResponseEntity<?> getSupplyRecord(
+//            @RequestParam String deviceid,
+//            @RequestParam(value = "dates", required = false)@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+//            @RequestParam(value = "datef", required = false)@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
+//
+//
+//    }
 
     @GetMapping("/getNameCoffeeOrders")
     public ResponseEntity<?> getNameCoffeeOrders() {

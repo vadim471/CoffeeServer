@@ -1,6 +1,7 @@
 package com.example.telemetry.model;
 
 import com.example.telemetry.generator.ResponseGenerator;
+import com.example.telemetry.repository.MachineActivityRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -19,13 +20,17 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 import static com.example.telemetry.manager.MachinesManager.removeMachineFromMaps;
 
+
 public class MachineInterface {
     private static final Logger logger = LoggerFactory.getLogger(MachineInterface.class);
     private final ObjectMapper objectMapper = new ObjectMapper();
+    private final MachineActivityRepository machineActivityRepository;
+
     private InetAddress machineIp;
     private int machinePort;
     private ResponseGenerator responseGenerator;
@@ -40,6 +45,7 @@ public class MachineInterface {
     private String softwareVersion;
     private String ioVersion;
     private volatile boolean isControllerRequest = false;
+
 
     public int getVmcNumber() {
         return vmcNumber;
@@ -71,7 +77,7 @@ public class MachineInterface {
         }
     }
 
-    public MachineInterface(Socket machineSocket, ResponseGenerator responseGenerator, String proxyIp, int proxyPort) throws IOException {
+    public MachineInterface(Socket machineSocket, ResponseGenerator responseGenerator, String proxyIp, int proxyPort, MachineActivityRepository machineActivityRepository) throws IOException {
         this.machineIp = machineSocket.getInetAddress();
         this.machineOutputStream = machineSocket.getOutputStream();
         this.machineInputStream = machineSocket.getInputStream();
@@ -79,7 +85,8 @@ public class MachineInterface {
         //this.machinePort = machineSocket.getPort();
         this.proxyIp = proxyIp;
         this.proxyPort = proxyPort;
-
+        this.machineActivityRepository = machineActivityRepository;
+        this.lastMessageTime = LocalDateTime.now();
         init();
 
         MachineRequest machineRequest = getInputBytes(machineSocket.getInputStream());
@@ -166,8 +173,8 @@ public class MachineInterface {
         if (task != null) {
             byte[] response = responseGenerator.processTelemetry(task);
             vmcNumber = task.getBody().get("vmc_no").asInt();
-            softwareVersion = task.getBody().get("version").asText();
-            ioVersion = task.getBody().get("io_version").asText();
+            softwareVersion = task.getBody().get("version") == null ? " " : task.getBody().get("version").asText();
+            ioVersion = task.getBody().get("io_version") == null ? " " : task.getBody().get("version").asText();
 
             return response;
         }
@@ -237,13 +244,32 @@ public class MachineInterface {
                     if (fullMessage.length > bodyLength + 12) {
                         messageBuffer.write(fullMessage, bodyLength + 12, fullMessage.length - (bodyLength + 12));
                     }
-                    lastMessageTime = LocalDateTime.now();
 
                     return machineRequest;
                 }
             }
         }
         return null;
+    }
+
+    public String trimJson(String json, int maxLength) {
+        if (json.length() <= maxLength) {
+            return json;
+        }
+
+        int lastCommaIndex = json.lastIndexOf(",", maxLength);
+        if (lastCommaIndex == -1) {
+            lastCommaIndex = maxLength;
+        }
+
+        String trimmedJson = json.substring(0, lastCommaIndex);
+
+        try {
+            Map<String, Object> jsonMap = objectMapper.readValue(trimmedJson + "}", Map.class);
+            return objectMapper.writeValueAsString(jsonMap);
+        } catch (IOException e) {
+            return trimmedJson + "}";
+        }
     }
 
 
@@ -257,10 +283,22 @@ public class MachineInterface {
             //exclude may be?? for logging should use another method
             //not depend on implementation
             System.out.println("Received from machine to server: " + jsonBody);
-            if (!jsonBody.contains("hb")) {
+
+            boolean isHeartbeat = jsonBody.contains("hb");
+            LocalDateTime now = LocalDateTime.now();
+
+            if (!isHeartbeat) {
                 logger.info(jsonBody);
                 lastMessage = objectMapper.readValue(jsonBody, new TypeReference<>() {});
+                String messageToSave = trimJson(jsonBody, 250);
+                saveMachineActivity(messageToSave, now);
             }
+
+            if (Duration.between(lastMessageTime, now).getSeconds() >= 60) {
+                lastMessageTime = now;
+                saveMachineActivity(null, now);
+            }
+
 
             ObjectNode body = (ObjectNode) objectMapper.readTree(jsonBody);
             Task task = new Task(body.get("cmd").asText(), body);
@@ -271,6 +309,24 @@ public class MachineInterface {
             e.printStackTrace();
         }
         return new byte[0];
+    }
+
+    private void saveMachineActivity(String message, LocalDateTime time) {
+        Optional<MachineActivity> existingActivity = machineActivityRepository.findByVmcNumber(vmcNumber);
+
+        if (existingActivity.isPresent()) {
+            MachineActivity activity = existingActivity.get();
+            activity.setDateLastActivity(time);
+
+            if (message != null) {
+                activity.setLastMessage(message);
+            }
+
+            machineActivityRepository.save(activity);
+        } else {
+            MachineActivity newActivity = new MachineActivity(vmcNumber, message, LocalDateTime.now());
+            machineActivityRepository.save(newActivity);
+        }
     }
 
 
@@ -284,7 +340,6 @@ public class MachineInterface {
         }
         return packetSize - 12;
     }
-
 
     public Map<String, Object> getMachineInfo() {
         Map<String, Object> info = new HashMap<>();

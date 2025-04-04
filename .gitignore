@@ -33,3 +33,9 @@ build/
 .vscode/
 
 /logs
+
+/.mvn
+
+expectedFrames.txt
+inputFrames.txt
+logs

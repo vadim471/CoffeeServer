@@ -6,9 +6,12 @@ import com.example.telemetry.manager.MachinesManager;
 import com.example.telemetry.model.MachineInterface;
 import com.example.telemetry.model.Task;
 import com.example.telemetry.model.TelemetryResponse;
+import com.example.telemetry.repository.MachineActivityRepository;
 import com.example.telemetry.service.MachineService;
 import com.example.telemetry.service.SupplyService;
 import com.fasterxml.jackson.databind.JsonNode;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,19 +28,28 @@ import java.util.concurrent.CompletableFuture;
  * запросов от ОПТИМы
  */
 @RestController
+@ApiResponses({
+        @ApiResponse(responseCode = "404", description = "Вендинговый аппарат не подключен к серверу"),
+        @ApiResponse(responseCode = "500", description = "Серверная ошибка"),
+        @ApiResponse(responseCode = "401", description = "Не авторизованы")
+
+
+})
 public class MachineController {
 
     private final RequestGenerator requestGenerator;
     private final MachinesManager machinesManager;
     private final SupplyService supplyService;
     private final MachineService machineService;
+    private final MachineActivityRepository machineActivityRepository;
 
     @Autowired
-    public MachineController(RequestGenerator requestGenerator, MachinesManager machinesManager, SupplyService supplyService, MachineService machineService) {
+    public MachineController(RequestGenerator requestGenerator, MachinesManager machinesManager, SupplyService supplyService, MachineService machineService, MachineActivityRepository machineActivityRepository) {
         this.requestGenerator = requestGenerator;
         this.machinesManager = machinesManager;
         this.supplyService = supplyService;
         this.machineService = machineService;
+        this.machineActivityRepository = machineActivityRepository;
     }
 
     /**
@@ -77,7 +89,7 @@ public class MachineController {
             return ResponseEntity.status(404).body("Not supported");
 
         } catch (MachineNotFoundException ex) {
-            return ResponseEntity.status(404).body(ex.getMessage());
+            return ResponseEntity.status(404).body(Map.of("message", ex.getMessage()));
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Internal server error");
         }
@@ -108,7 +120,7 @@ public class MachineController {
             return ResponseEntity.status(404).body("Not supported");
 
         } catch (MachineNotFoundException ex) {
-            return ResponseEntity.status(404).body(ex.getMessage());
+            return ResponseEntity.status(404).body(Map.of("message", ex.getMessage()));
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Internal server error");
         }
@@ -139,7 +151,7 @@ public class MachineController {
             }
             return ResponseEntity.ok("");
         } catch (MachineNotFoundException ex) {
-            return ResponseEntity.status(404).body(ex.getMessage());
+            return ResponseEntity.status(404).body(Map.of("message", ex.getMessage()));
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Internal server error");
         }
@@ -160,7 +172,7 @@ public class MachineController {
             }
             return ResponseEntity.ok("");
         } catch (MachineNotFoundException ex) {
-            return ResponseEntity.status(404).body(ex.getMessage());
+            return ResponseEntity.status(404).body(Map.of("message", ex.getMessage()));
         }
     }
 
@@ -175,7 +187,7 @@ public class MachineController {
             try {
                 int deviceId = Integer.parseInt(deviceid);
                 if (deviceId == 55418) {
-                    return ResponseEntity.ok("Not supported");
+                    return ResponseEntity.ok("Not supported"); //TODO
                 }
                 InetAddress machineAddress = machinesManager.getInetAddress(deviceId);
                 byte[] response = requestGenerator.processTelemetry("remote", deviceId, "sync").getResponseBytes();
@@ -197,8 +209,8 @@ public class MachineController {
                     return null; //TODO WTF cant return ResponseEntity.status(500).body("server");
                 }).join();
 
-            } catch (MachineNotFoundException e) {
-                return ResponseEntity.status(404).body(e.getMessage());
+            } catch (MachineNotFoundException ex) {
+                return ResponseEntity.status(404).body(Map.of("message", ex.getMessage()));
             }
         });
     }
@@ -211,7 +223,7 @@ public class MachineController {
             //TODO
             return ResponseEntity.ok("");
         } catch (MachineNotFoundException ex) {
-            return ResponseEntity.status(404).body(ex.getMessage());
+            return ResponseEntity.status(404).body(Map.of("message", ex.getMessage()));
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Internal server error " + e.getMessage());
         }
@@ -237,7 +249,7 @@ public class MachineController {
             machinesManager.handleRequest(machineAddress, response.getResponseBytes(), "cmd");
             return ResponseEntity.ok("");
         } catch (MachineNotFoundException ex) {
-            return ResponseEntity.status(404).body(ex.getMessage());
+            return ResponseEntity.status(404).body(Map.of("message", ex.getMessage()));
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Internal server error");
         }
@@ -256,7 +268,6 @@ public class MachineController {
                     "productId", productId
             );
 
-            //byte[] response = requestGenerator.processTelemetry("products", deviceid, params).getResponseBytes();
             TelemetryResponse response = requestGenerator.processTelemetry("products", deviceId, params);
 
             if (!response.isSuccess()) {
@@ -276,21 +287,23 @@ public class MachineController {
 //            }
 
         } catch (MachineNotFoundException ex) {
-            return ResponseEntity.status(404).body(ex.getMessage());
+            return ResponseEntity.status(404).body(Map.of("message", ex.getMessage()));
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Internal server error");
         }
     }
 
+    //from DB
     @GetMapping("/listMachines")
     public ResponseEntity<?> getListMachines() {
         try {
-            return ResponseEntity.ok(new ArrayList<>(machineService.getListMachines()));
+            return ResponseEntity.ok(machineService.getListMachines());
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Internal server error");
         }
     }
 
+    //from DB
     @GetMapping("/getMachineInfoById")
     public ResponseEntity<?> getInfoById(Integer deviceId) {
         try {
@@ -312,28 +325,22 @@ public class MachineController {
                 machineInfo.put("info", machineInterface.getConnectInfo());
                 result.add(machineInfo);
             }
-
-
             return ResponseEntity.status(200).body(result);
 
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Internal server error");
         }
-
     }
 
     @GetMapping("/checkMachineAvailability")
-    public ResponseEntity<?> checkMachineAvailability(@RequestParam String deviceid) {
+    public ResponseEntity<?> checkMachineAvailability(@RequestParam(required = false) String deviceid) {
         try {
-            int deviceId = Integer.parseInt(deviceid);
-            if (machinesManager.isConnectedMachine(deviceId)) {
-                MachineInterface machineInterface = machinesManager.getMachineInterfaceById(deviceId);
-                return ResponseEntity.status(200).body(machineInterface.getMachineInfo());
-            } else
-                return null;
-
-        } catch (MachineNotFoundException ex) {
-            return ResponseEntity.status(404).body(ex.getMessage());
+            if (deviceid != null) {
+                int deviceId = Integer.parseInt(deviceid);
+                return ResponseEntity.ok(machineService.getMachineActivity(deviceId));
+            } else {
+                return ResponseEntity.ok(machineService.getListMachineActivity());
+            }
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Internal server error");
         }
